@@ -5,8 +5,43 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:InfoSystemDB"
       mc:Ignorable="d"
-      Title="ProductsPage" Height="450" Width="800">
+      Title="ProductsPage" Height="540" Width="960">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
         
+        <DataGrid Grid.Row="0" x:Name="DGridProducts" AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding id}" Width="40"></DataGridTextColumn>
+                <DataGridTextColumn Header="Тип" Binding="{Binding Tips.title}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Назва" Binding="{Binding title}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Колір" Binding="{Binding Colors.title}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Розмір" Binding="{Binding Sizes.title}" Width="80"></DataGridTextColumn>
+                <DataGridTextColumn Header="Матеріал" Binding="{Binding Colors.Materials.title}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Ціна" Binding="{Binding price}" Width="90"></DataGridTextColumn>
+                <DataGridTextColumn Header="Залишок" Binding="{Binding quantity}" Width="80"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <Button Grid.Column="0" Content="Додати" Click="Add"></Button>
+            <Button Grid.Column="2" Content="Редагувати" Click="Edit"></Button>
+            <Button Grid.Column="4" Content="Видалити" Click="Delete"></Button>
+            <Button Grid.Column="6" Content="Переглянути по типам" Click="ViewTips"></Button>
+        </Grid>
     </Grid>
 </Page>

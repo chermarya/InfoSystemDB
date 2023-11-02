@@ -89,6 +89,7 @@
     <Compile Include="Discounts.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="library\ItemSetting.cs" />
     <Compile Include="library\ItemSettings.cs" />
     <Compile Include="library\ListItem.cs" />
     <Compile Include="Making.cs">
@@ -136,6 +137,9 @@
     <Compile Include="windows\BaseWindow.xaml.cs">
       <DependentUpon>BaseWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="windows\ProductSettings.xaml.cs">
+      <DependentUpon>ProductSettings.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -153,6 +157,7 @@
     <Page Include="pages\ManagersPage.xaml" />
     <Page Include="pages\ProductsPage.xaml" />
     <Page Include="windows\BaseWindow.xaml" />
+    <Page Include="windows\ProductSettings.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

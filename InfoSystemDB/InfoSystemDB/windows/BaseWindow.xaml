@@ -5,7 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:InfoSystemDB"
         mc:Ignorable="d"
-        Title="BaseWindow" Height="450" Width="800">
+        Title="BaseWindow" Height="600" Width="1024">
     <Grid Background="Ivory">
         <Frame x:Name="MainFrame" />
     </Grid>
