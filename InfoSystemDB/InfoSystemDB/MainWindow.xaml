@@ -5,8 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InfoSystemDB"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
+        Title="MainWindow" Height="600" Width="800" ResizeMode="NoResize">
+    <Grid x:Name="GLogin">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="140"/>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition Height="90"/>
+            <RowDefinition />
+            <RowDefinition  Height="140"/>
+        </Grid.RowDefinitions>
         
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        
+        <Image Grid.ColumnSpan="3" Grid.RowSpan="7" Source="img/bc_login.jpg" Stretch="UniformToFill" HorizontalAlignment="Center" />
+        
+        <StackPanel Grid.Row="1" Grid.Column="1">  
+            <TextBox x:Name="logInput" Width="250" Padding="10, 7, 10, 7" MaxLength="16" FontSize="25" FontFamily="Book Antiqua" />
+        </StackPanel>
+        
+        <StackPanel Grid.Row="3" Grid.Column="1">  
+            <PasswordBox x:Name="PassInput" Width="250" Padding="10, 7, 10, 7" MaxLength="16" FontSize="25" />
+        </StackPanel> 
+        
+        <Button Grid.Row="5" Grid.Column="1" Content="Увійти" Click="Login" FontSize="25" FontFamily="Book Antiqua" />
     </Grid>
 </Window>

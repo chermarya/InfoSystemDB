@@ -1,0 +1,975 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище InfoSystemDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Adress">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="city" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="dep" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="note" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Buyers">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nickname" Type="varchar" MaxLength="25" />
+          <Property Name="nname" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="surname" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="tel" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Colors">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="material" Type="int" />
+          <Property Name="code" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Delivery">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="buyer" Type="int" Nullable="false" />
+          <Property Name="adress" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Discounts">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="per" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Making">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sup" Type="int" Nullable="false" />
+          <Property Name="prod" Type="int" Nullable="false" />
+          <Property Name="amount" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Managers">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nname" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="surname" Type="varchar" MaxLength="25" />
+          <Property Name="llogin" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="pass" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Materials">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ddate" Type="date" />
+          <Property Name="del" Type="int" />
+          <Property Name="amount" Type="int" />
+          <Property Name="discount" Type="int" />
+          <Property Name="prepay" Type="int" />
+          <Property Name="amount_due" Type="int" />
+          <Property Name="invoice" Type="varchar" MaxLength="20" />
+          <Property Name="stat" Type="varchar" MaxLength="50" />
+          <Property Name="note" Type="varchar" MaxLength="350" />
+          <Property Name="shop" Type="int" />
+        </EntityType>
+        <EntityType Name="Packaging">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="product" Type="int" />
+          <Property Name="ord" Type="int" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tip" Type="int" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="size" Type="int" Nullable="false" />
+          <Property Name="color" Type="int" Nullable="false" />
+          <Property Name="price" Type="int" Nullable="false" />
+          <Property Name="quantity" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Shops">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="manager" Type="int" Nullable="false" />
+          <Property Name="link" Type="varchar" MaxLength="80" />
+        </EntityType>
+        <EntityType Name="Sizes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Supply">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dday" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tips">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Colors__material__4BAC3F29">
+          <End Role="Materials" Type="Self.Materials" Multiplicity="0..1" />
+          <End Role="Colors" Type="Self.Colors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Materials">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Colors">
+              <PropertyRef Name="material" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Delivery__adress__05D8E0BE">
+          <End Role="Adress" Type="Self.Adress" Multiplicity="1" />
+          <End Role="Delivery" Type="Self.Delivery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adress">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Delivery">
+              <PropertyRef Name="adress" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Delivery__buyer__04E4BC85">
+          <End Role="Buyers" Type="Self.Buyers" Multiplicity="1" />
+          <End Role="Delivery" Type="Self.Delivery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Buyers">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Delivery">
+              <PropertyRef Name="buyer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Making__prod__5EBF139D">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="Making" Type="Self.Making" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Making">
+              <PropertyRef Name="prod" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Making__sup__5DCAEF64">
+          <End Role="Supply" Type="Self.Supply" Multiplicity="1" />
+          <End Role="Making" Type="Self.Making" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supply">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Making">
+              <PropertyRef Name="sup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__del__0F624AF8">
+          <End Role="Delivery" Type="Self.Delivery" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Delivery">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="del" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__discount__10566F31">
+          <End Role="Discounts" Type="Self.Discounts" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Discounts">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="discount" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__shop__114A936A">
+          <End Role="Shops" Type="Self.Shops" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shops">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="shop" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Packaging__ord__151B244E">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
+          <End Role="Packaging" Type="Self.Packaging" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Packaging">
+              <PropertyRef Name="ord" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Packaging__produ__14270015">
+          <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+          <End Role="Packaging" Type="Self.Packaging" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Packaging">
+              <PropertyRef Name="product" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Products__color__5441852A">
+          <End Role="Colors" Type="Self.Colors" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Colors">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="color" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Products__size__534D60F1">
+          <End Role="Sizes" Type="Self.Sizes" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sizes">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="size" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Products__tip__52593CB8">
+          <End Role="Tips" Type="Self.Tips" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tips">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="tip" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Shops__manager__0C85DE4D">
+          <End Role="Managers" Type="Self.Managers" Multiplicity="1" />
+          <End Role="Shops" Type="Self.Shops" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Managers">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Shops">
+              <PropertyRef Name="manager" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище InfoSystemDBModelContainer">
+          <EntitySet Name="Adress" EntityType="Self.Adress" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Buyers" EntityType="Self.Buyers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Colors" EntityType="Self.Colors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Delivery" EntityType="Self.Delivery" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Discounts" EntityType="Self.Discounts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Making" EntityType="Self.Making" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Managers" EntityType="Self.Managers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Materials" EntityType="Self.Materials" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Packaging" EntityType="Self.Packaging" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Shops" EntityType="Self.Shops" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sizes" EntityType="Self.Sizes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Supply" EntityType="Self.Supply" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tips" EntityType="Self.Tips" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Colors__material__4BAC3F29" Association="Self.FK__Colors__material__4BAC3F29">
+            <End Role="Materials" EntitySet="Materials" />
+            <End Role="Colors" EntitySet="Colors" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Delivery__adress__05D8E0BE" Association="Self.FK__Delivery__adress__05D8E0BE">
+            <End Role="Adress" EntitySet="Adress" />
+            <End Role="Delivery" EntitySet="Delivery" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Delivery__buyer__04E4BC85" Association="Self.FK__Delivery__buyer__04E4BC85">
+            <End Role="Buyers" EntitySet="Buyers" />
+            <End Role="Delivery" EntitySet="Delivery" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Making__prod__5EBF139D" Association="Self.FK__Making__prod__5EBF139D">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Making" EntitySet="Making" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Making__sup__5DCAEF64" Association="Self.FK__Making__sup__5DCAEF64">
+            <End Role="Supply" EntitySet="Supply" />
+            <End Role="Making" EntitySet="Making" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__del__0F624AF8" Association="Self.FK__Orders__del__0F624AF8">
+            <End Role="Delivery" EntitySet="Delivery" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__discount__10566F31" Association="Self.FK__Orders__discount__10566F31">
+            <End Role="Discounts" EntitySet="Discounts" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__shop__114A936A" Association="Self.FK__Orders__shop__114A936A">
+            <End Role="Shops" EntitySet="Shops" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Packaging__ord__151B244E" Association="Self.FK__Packaging__ord__151B244E">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="Packaging" EntitySet="Packaging" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Packaging__produ__14270015" Association="Self.FK__Packaging__produ__14270015">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Packaging" EntitySet="Packaging" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Products__color__5441852A" Association="Self.FK__Products__color__5441852A">
+            <End Role="Colors" EntitySet="Colors" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Products__size__534D60F1" Association="Self.FK__Products__size__534D60F1">
+            <End Role="Sizes" EntitySet="Sizes" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Products__tip__52593CB8" Association="Self.FK__Products__tip__52593CB8">
+            <End Role="Tips" EntitySet="Tips" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Shops__manager__0C85DE4D" Association="Self.FK__Shops__manager__0C85DE4D">
+            <End Role="Managers" EntitySet="Managers" />
+            <End Role="Shops" EntitySet="Shops" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="InfoSystemDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Adress">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="city" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dep" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="note" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Delivery" Relationship="Self.FK__Delivery__adress__05D8E0BE" FromRole="Adress" ToRole="Delivery" />
+        </EntityType>
+        <EntityType Name="Buyers">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nickname" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="nname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="surname" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tel" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Delivery" Relationship="Self.FK__Delivery__buyer__04E4BC85" FromRole="Buyers" ToRole="Delivery" />
+        </EntityType>
+        <EntityType Name="Colors">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="material" Type="Int32" />
+          <Property Name="code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Materials" Relationship="Self.FK__Colors__material__4BAC3F29" FromRole="Colors" ToRole="Materials" />
+          <NavigationProperty Name="Products" Relationship="Self.FK__Products__color__5441852A" FromRole="Colors" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="Delivery">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="buyer" Type="Int32" Nullable="false" />
+          <Property Name="adress" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Adress1" Relationship="Self.FK__Delivery__adress__05D8E0BE" FromRole="Delivery" ToRole="Adress" />
+          <NavigationProperty Name="Buyers" Relationship="Self.FK__Delivery__buyer__04E4BC85" FromRole="Delivery" ToRole="Buyers" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__del__0F624AF8" FromRole="Delivery" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="Discounts">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="per" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__discount__10566F31" FromRole="Discounts" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="Making">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sup" Type="Int32" Nullable="false" />
+          <Property Name="prod" Type="Int32" Nullable="false" />
+          <Property Name="amount" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Products" Relationship="Self.FK__Making__prod__5EBF139D" FromRole="Making" ToRole="Products" />
+          <NavigationProperty Name="Supply" Relationship="Self.FK__Making__sup__5DCAEF64" FromRole="Making" ToRole="Supply" />
+        </EntityType>
+        <EntityType Name="Managers">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nname" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="surname" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="llogin" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="pass" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Shops" Relationship="Self.FK__Shops__manager__0C85DE4D" FromRole="Managers" ToRole="Shops" />
+        </EntityType>
+        <EntityType Name="Materials">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Colors" Relationship="Self.FK__Colors__material__4BAC3F29" FromRole="Materials" ToRole="Colors" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ddate" Type="DateTime" Precision="0" />
+          <Property Name="del" Type="Int32" />
+          <Property Name="amount" Type="Int32" />
+          <Property Name="discount" Type="Int32" />
+          <Property Name="prepay" Type="Int32" />
+          <Property Name="amount_due" Type="Int32" />
+          <Property Name="invoice" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="stat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="note" Type="String" MaxLength="350" FixedLength="false" Unicode="false" />
+          <Property Name="shop" Type="Int32" />
+          <NavigationProperty Name="Delivery" Relationship="Self.FK__Orders__del__0F624AF8" FromRole="Orders" ToRole="Delivery" />
+          <NavigationProperty Name="Discounts" Relationship="Self.FK__Orders__discount__10566F31" FromRole="Orders" ToRole="Discounts" />
+          <NavigationProperty Name="Shops" Relationship="Self.FK__Orders__shop__114A936A" FromRole="Orders" ToRole="Shops" />
+          <NavigationProperty Name="Packaging" Relationship="Self.FK__Packaging__ord__151B244E" FromRole="Orders" ToRole="Packaging" />
+        </EntityType>
+        <EntityType Name="Packaging">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="product" Type="Int32" />
+          <Property Name="ord" Type="Int32" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__Packaging__ord__151B244E" FromRole="Packaging" ToRole="Orders" />
+          <NavigationProperty Name="Products" Relationship="Self.FK__Packaging__produ__14270015" FromRole="Packaging" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tip" Type="Int32" Nullable="false" />
+          <Property Name="title" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="size" Type="Int32" Nullable="false" />
+          <Property Name="color" Type="Int32" Nullable="false" />
+          <Property Name="price" Type="Int32" Nullable="false" />
+          <Property Name="quantity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Colors" Relationship="Self.FK__Products__color__5441852A" FromRole="Products" ToRole="Colors" />
+          <NavigationProperty Name="Making" Relationship="Self.FK__Making__prod__5EBF139D" FromRole="Products" ToRole="Making" />
+          <NavigationProperty Name="Packaging" Relationship="Self.FK__Packaging__produ__14270015" FromRole="Products" ToRole="Packaging" />
+          <NavigationProperty Name="Sizes" Relationship="Self.FK__Products__size__534D60F1" FromRole="Products" ToRole="Sizes" />
+          <NavigationProperty Name="Tips" Relationship="Self.FK__Products__tip__52593CB8" FromRole="Products" ToRole="Tips" />
+        </EntityType>
+        <EntityType Name="Shops">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="manager" Type="Int32" Nullable="false" />
+          <Property Name="link" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Managers" Relationship="Self.FK__Shops__manager__0C85DE4D" FromRole="Shops" ToRole="Managers" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__shop__114A936A" FromRole="Shops" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="Sizes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Products" Relationship="Self.FK__Products__size__534D60F1" FromRole="Sizes" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="Supply">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dday" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Making" Relationship="Self.FK__Making__sup__5DCAEF64" FromRole="Supply" ToRole="Making" />
+        </EntityType>
+        <EntityType Name="Tips">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Products" Relationship="Self.FK__Products__tip__52593CB8" FromRole="Tips" ToRole="Products" />
+        </EntityType>
+        <Association Name="FK__Delivery__adress__05D8E0BE">
+          <End Role="Adress" Type="Self.Adress" Multiplicity="1" />
+          <End Role="Delivery" Type="Self.Delivery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adress">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Delivery">
+              <PropertyRef Name="adress" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Delivery__buyer__04E4BC85">
+          <End Role="Buyers" Type="Self.Buyers" Multiplicity="1" />
+          <End Role="Delivery" Type="Self.Delivery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Buyers">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Delivery">
+              <PropertyRef Name="buyer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Colors__material__4BAC3F29">
+          <End Role="Materials" Type="Self.Materials" Multiplicity="0..1" />
+          <End Role="Colors" Type="Self.Colors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Materials">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Colors">
+              <PropertyRef Name="material" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Products__color__5441852A">
+          <End Role="Colors" Type="Self.Colors" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Colors">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="color" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__del__0F624AF8">
+          <End Role="Delivery" Type="Self.Delivery" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Delivery">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="del" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__discount__10566F31">
+          <End Role="Discounts" Type="Self.Discounts" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Discounts">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="discount" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Making__prod__5EBF139D">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="Making" Type="Self.Making" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Making">
+              <PropertyRef Name="prod" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Making__sup__5DCAEF64">
+          <End Role="Supply" Type="Self.Supply" Multiplicity="1" />
+          <End Role="Making" Type="Self.Making" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supply">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Making">
+              <PropertyRef Name="sup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Shops__manager__0C85DE4D">
+          <End Role="Managers" Type="Self.Managers" Multiplicity="1" />
+          <End Role="Shops" Type="Self.Shops" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Managers">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Shops">
+              <PropertyRef Name="manager" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__shop__114A936A">
+          <End Role="Shops" Type="Self.Shops" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shops">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="shop" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Packaging__ord__151B244E">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
+          <End Role="Packaging" Type="Self.Packaging" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Packaging">
+              <PropertyRef Name="ord" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Packaging__produ__14270015">
+          <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+          <End Role="Packaging" Type="Self.Packaging" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Packaging">
+              <PropertyRef Name="product" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Products__size__534D60F1">
+          <End Role="Sizes" Type="Self.Sizes" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sizes">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="size" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Products__tip__52593CB8">
+          <End Role="Tips" Type="Self.Tips" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tips">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="tip" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="InfoSystemDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Adress" EntityType="Self.Adress" />
+          <EntitySet Name="Buyers" EntityType="Self.Buyers" />
+          <EntitySet Name="Colors" EntityType="Self.Colors" />
+          <EntitySet Name="Delivery" EntityType="Self.Delivery" />
+          <EntitySet Name="Discounts" EntityType="Self.Discounts" />
+          <EntitySet Name="Making" EntityType="Self.Making" />
+          <EntitySet Name="Managers" EntityType="Self.Managers" />
+          <EntitySet Name="Materials" EntityType="Self.Materials" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" />
+          <EntitySet Name="Packaging" EntityType="Self.Packaging" />
+          <EntitySet Name="Products" EntityType="Self.Products" />
+          <EntitySet Name="Shops" EntityType="Self.Shops" />
+          <EntitySet Name="Sizes" EntityType="Self.Sizes" />
+          <EntitySet Name="Supply" EntityType="Self.Supply" />
+          <EntitySet Name="Tips" EntityType="Self.Tips" />
+          <AssociationSet Name="FK__Delivery__adress__05D8E0BE" Association="Self.FK__Delivery__adress__05D8E0BE">
+            <End Role="Adress" EntitySet="Adress" />
+            <End Role="Delivery" EntitySet="Delivery" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Delivery__buyer__04E4BC85" Association="Self.FK__Delivery__buyer__04E4BC85">
+            <End Role="Buyers" EntitySet="Buyers" />
+            <End Role="Delivery" EntitySet="Delivery" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Colors__material__4BAC3F29" Association="Self.FK__Colors__material__4BAC3F29">
+            <End Role="Materials" EntitySet="Materials" />
+            <End Role="Colors" EntitySet="Colors" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Products__color__5441852A" Association="Self.FK__Products__color__5441852A">
+            <End Role="Colors" EntitySet="Colors" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__del__0F624AF8" Association="Self.FK__Orders__del__0F624AF8">
+            <End Role="Delivery" EntitySet="Delivery" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__discount__10566F31" Association="Self.FK__Orders__discount__10566F31">
+            <End Role="Discounts" EntitySet="Discounts" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Making__prod__5EBF139D" Association="Self.FK__Making__prod__5EBF139D">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Making" EntitySet="Making" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Making__sup__5DCAEF64" Association="Self.FK__Making__sup__5DCAEF64">
+            <End Role="Supply" EntitySet="Supply" />
+            <End Role="Making" EntitySet="Making" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Shops__manager__0C85DE4D" Association="Self.FK__Shops__manager__0C85DE4D">
+            <End Role="Managers" EntitySet="Managers" />
+            <End Role="Shops" EntitySet="Shops" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__shop__114A936A" Association="Self.FK__Orders__shop__114A936A">
+            <End Role="Shops" EntitySet="Shops" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Packaging__ord__151B244E" Association="Self.FK__Packaging__ord__151B244E">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="Packaging" EntitySet="Packaging" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Packaging__produ__14270015" Association="Self.FK__Packaging__produ__14270015">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Packaging" EntitySet="Packaging" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Products__size__534D60F1" Association="Self.FK__Products__size__534D60F1">
+            <End Role="Sizes" EntitySet="Sizes" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Products__tip__52593CB8" Association="Self.FK__Products__tip__52593CB8">
+            <End Role="Tips" EntitySet="Tips" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище InfoSystemDBModelContainer" CdmEntityContainer="InfoSystemDBEntities">
+          <EntitySetMapping Name="Adress">
+            <EntityTypeMapping TypeName="InfoSystemDBModel.Adress">
+              <MappingFragment StoreEntitySet="Adress">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="dep" ColumnName="dep" />
+                <ScalarProperty Name="note" ColumnName="note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Buyers">
+            <EntityTypeMapping TypeName="InfoSystemDBModel.Buyers">
+              <MappingFragment StoreEntitySet="Buyers">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nickname" ColumnName="nickname" />
+                <ScalarProperty Name="nname" ColumnName="nname" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="tel" ColumnName="tel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Colors">
+            <EntityTypeMapping TypeName="InfoSystemDBModel.Colors">
+              <MappingFragment StoreEntitySet="Colors">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="material" ColumnName="material" />
+                <ScalarProperty Name="code" ColumnName="code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Delivery">
+            <EntityTypeMapping TypeName="InfoSystemDBModel.Delivery">
+              <MappingFragment StoreEntitySet="Delivery">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="buyer" ColumnName="buyer" />
+                <ScalarProperty Name="adress" ColumnName="adress" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Discounts">
+            <EntityTypeMapping TypeName="InfoSystemDBModel.Discounts">
+              <MappingFragment StoreEntitySet="Discounts">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="per" ColumnName="per" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Making">
+            <EntityTypeMapping TypeName="InfoSystemDBModel.Making">
+              <MappingFragment StoreEntitySet="Making">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="sup" ColumnName="sup" />
+                <ScalarProperty Name="prod" ColumnName="prod" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Managers">
+            <EntityTypeMapping TypeName="InfoSystemDBModel.Managers">
+              <MappingFragment StoreEntitySet="Managers">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nname" ColumnName="nname" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="llogin" ColumnName="llogin" />
+                <ScalarProperty Name="pass" ColumnName="pass" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Materials">
+            <EntityTypeMapping TypeName="InfoSystemDBModel.Materials">
+              <MappingFragment StoreEntitySet="Materials">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="InfoSystemDBModel.Orders">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ddate" ColumnName="ddate" />
+                <ScalarProperty Name="del" ColumnName="del" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="discount" ColumnName="discount" />
+                <ScalarProperty Name="prepay" ColumnName="prepay" />
+                <ScalarProperty Name="amount_due" ColumnName="amount_due" />
+                <ScalarProperty Name="invoice" ColumnName="invoice" />
+                <ScalarProperty Name="stat" ColumnName="stat" />
+                <ScalarProperty Name="note" ColumnName="note" />
+                <ScalarProperty Name="shop" ColumnName="shop" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Packaging">
+            <EntityTypeMapping TypeName="InfoSystemDBModel.Packaging">
+              <MappingFragment StoreEntitySet="Packaging">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="product" ColumnName="product" />
+                <ScalarProperty Name="ord" ColumnName="ord" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="InfoSystemDBModel.Products">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="tip" ColumnName="tip" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="size" ColumnName="size" />
+                <ScalarProperty Name="color" ColumnName="color" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Shops">
+            <EntityTypeMapping TypeName="InfoSystemDBModel.Shops">
+              <MappingFragment StoreEntitySet="Shops">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="manager" ColumnName="manager" />
+                <ScalarProperty Name="link" ColumnName="link" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sizes">
+            <EntityTypeMapping TypeName="InfoSystemDBModel.Sizes">
+              <MappingFragment StoreEntitySet="Sizes">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Supply">
+            <EntityTypeMapping TypeName="InfoSystemDBModel.Supply">
+              <MappingFragment StoreEntitySet="Supply">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="dday" ColumnName="dday" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tips">
+            <EntityTypeMapping TypeName="InfoSystemDBModel.Tips">
+              <MappingFragment StoreEntitySet="Tips">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
