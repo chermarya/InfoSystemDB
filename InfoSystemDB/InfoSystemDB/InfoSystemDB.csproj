@@ -89,7 +89,6 @@
     <Compile Include="Discounts.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="library\ItemSetting.cs" />
     <Compile Include="library\ItemSettings.cs" />
     <Compile Include="library\ListItem.cs" />
     <Compile Include="Making.cs">

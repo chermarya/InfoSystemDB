@@ -19,7 +19,7 @@ namespace InfoSystemDB
 
         private void Add(object sender, RoutedEventArgs e)
         {
-            new ProductSettings(DGridProducts, 0).Show();
+            new ProductSettings(DGridProducts).Show();
         }
 
         private void Edit(object sender, RoutedEventArgs e)
@@ -30,8 +30,10 @@ namespace InfoSystemDB
             int rowInd = DGridProducts.SelectedIndex;
             if (rowInd != -1)
                 selected_id = selected[rowInd].id;
+            else
+                return;
 
-            //new EditProduct(DGridProducts, selected_id).Show();
+            new ProductSettings(DGridProducts, selected_id).Show();
         }
 
         private void Delete(object sender, RoutedEventArgs e)
@@ -42,9 +44,11 @@ namespace InfoSystemDB
             int rowIndex = DGridProducts.SelectedIndex;
             if (rowIndex != -1)
                 id = selected[rowIndex].id;
+            else
+                return;
 
             string sqlExpression = "DELETE FROM Products WHERE id = @id";
-            using (SqlConnection connection = new SqlConnection("Data Source=WIN-FSJH44K4B7V;Initial Catalog=lab1DB;Integrated Security=true;"))
+            using (SqlConnection connection = new SqlConnection("Data Source=WIN-FSJH44K4B7V;Initial Catalog=InfoSystemDB;Integrated Security=true;"))
             {
                 connection.Open();
                 using (SqlCommand cmd = new SqlCommand(sqlExpression, connection))
