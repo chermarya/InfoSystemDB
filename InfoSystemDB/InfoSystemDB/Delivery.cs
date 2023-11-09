@@ -17,16 +17,16 @@ namespace InfoSystemDB
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Delivery()
         {
-            this.Orders = new HashSet<Orders>();
+            this.SetOrder = new HashSet<SetOrder>();
         }
     
-        public int id { get; set; }
-        public int buyer { get; set; }
-        public int adress { get; set; }
+        public int delivery_id { get; set; }
+        public Nullable<int> buyer_id { get; set; }
+        public Nullable<int> address_id { get; set; }
     
-        public virtual Adress Adress1 { get; set; }
-        public virtual Buyers Buyers { get; set; }
+        public virtual Buyer Buyer { get; set; }
+        public virtual DelAddress DelAddress { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Orders> Orders { get; set; }
+        public virtual ICollection<SetOrder> SetOrder { get; set; }
     }
 }

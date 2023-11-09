@@ -5,30 +5,26 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:InfoSystemDB"
       mc:Ignorable="d"
-      Title="AdminMenuPage" Height="540" Width="960">
+      Title="AdminMenuPage" Height="700" Width="1200">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition />
             <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
+            <RowDefinition Height="150" />
         </Grid.RowDefinitions>
         
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition />
-            <ColumnDefinition />
         </Grid.ColumnDefinitions>
         
-        <Button Content="Товари" Grid.Column="1" Grid.Row="1" FontSize="20" Click="ProdShow" />
-        <Button Content="Менеджери" Grid.Column="1" Grid.Row="3" FontSize="20" Click="ManagersShow" />
-        <Button Content="Кольори" Grid.Column="1" Grid.Row="5" FontSize="20" Click="ColorsShow" />
-        <Button Content="Вийти" Grid.Column="1" Grid.Row="7" FontSize="20" Click="Exit" />
+        <Button Grid.Column="0" Grid.Row="0" FontSize="25" Margin="20" Content="Перегляд замовлень" Click="Orders" />
+        <Button Grid.Column="1" Grid.Row="0" FontSize="25" Margin="20" Content="Менеджери та магазини" Click="Managers" />
+        <Button Grid.Column="0" Grid.Row="1" FontSize="25" Margin="20" Content="База покупців" Click="Buyers" />
+        <Button Grid.Column="1" Grid.Row="1" FontSize="25" Margin="20" Content="Доступні вироби" Click="Products" />
+        <Button Grid.Column="0" Grid.Row="2" FontSize="25" Margin="20" Content="Управління партіями" Click="Supplies" />
+        <Button Grid.Column="1" Grid.Row="2" FontSize="25" Margin="20" Content="Управління таблицями" Click="Tables" />
+        <Button Grid.Column="1" Grid.Row="3" FontSize="25" Margin="20" Content="Вийти" Width="150" HorizontalAlignment="Right" Click="Exit" />
     </Grid>
 </Page>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a5addf52637b40568b083b58251c54c2" Name="Diagram1">
+        <EntityTypeShape EntityType="VsInsideDBModel.Buyer" Width="1.5" PointX="0.75" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="VsInsideDBModel.Color" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="VsInsideDBModel.DelAddress" Width="1.5" PointX="0.75" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="VsInsideDBModel.Delivery" Width="1.5" PointX="3" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VsInsideDBModel.Discount" Width="1.5" PointX="3" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="VsInsideDBModel.Making" Width="1.5" PointX="7.5" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="VsInsideDBModel.Manager" Width="1.5" PointX="0.75" PointY="18.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="VsInsideDBModel.Material" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="VsInsideDBModel.Packaging" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VsInsideDBModel.ProdType" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VsInsideDBModel.Product" Width="1.5" PointX="5.25" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="VsInsideDBModel.SetOrder" Width="1.5" PointX="5.25" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="VsInsideDBModel.Shop" Width="1.5" PointX="3.625" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VsInsideDBModel.Size" Width="1.5" PointX="3" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="VsInsideDBModel.Supply" Width="1.5" PointX="5.25" PointY="9" IsExpanded="true" />
+        <AssociationConnector Association="VsInsideDBModel.FK__Delivery__buyer___5629CD9C" ManuallyRouted="false" />
+        <AssociationConnector Association="VsInsideDBModel.FK__Color__material___3B75D760" ManuallyRouted="false" />
+        <AssociationConnector Association="VsInsideDBModel.FK__Product__color_i__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="VsInsideDBModel.FK__Delivery__addres__571DF1D5" ManuallyRouted="false" />
+        <AssociationConnector Association="VsInsideDBModel.FK__SetOrder__delive__6477ECF3" ManuallyRouted="false" />
+        <AssociationConnector Association="VsInsideDBModel.FK__SetOrder__discou__656C112C" ManuallyRouted="false" />
+        <AssociationConnector Association="VsInsideDBModel.FK__Making__product___4D94879B" ManuallyRouted="false" />
+        <AssociationConnector Association="VsInsideDBModel.FK__Making__supply_i__4CA06362" ManuallyRouted="false" />
+        <AssociationConnector Association="VsInsideDBModel.FK__Shop__manager_id__5EBF139D" ManuallyRouted="false" />
+        <AssociationConnector Association="VsInsideDBModel.FK__Packaging__order__6B24EA82" ManuallyRouted="false" />
+        <AssociationConnector Association="VsInsideDBModel.FK__Packaging__produ__6C190EBB" ManuallyRouted="false" />
+        <AssociationConnector Association="VsInsideDBModel.FK__Product__prodtyp__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="VsInsideDBModel.FK__Product__size_id__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="VsInsideDBModel.FK__SetOrder__shop_i__66603565" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

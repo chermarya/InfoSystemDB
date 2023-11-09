@@ -13,25 +13,25 @@ namespace InfoSystemDB
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class InfoSystemDBEntities : DbContext
+    public partial class VsInsideDBEntities : DbContext
     {
-        private static InfoSystemDBEntities content;
+        private static VsInsideDBEntities content;
         
-        public InfoSystemDBEntities()
-            : base("name=InfoSystemDBEntities")
+        public VsInsideDBEntities()
+            : base("name=VsInsideDBEntities")
         {
         }
 
-        public static InfoSystemDBEntities GetContent()
+        public static VsInsideDBEntities GetContent()
         {
             if (content == null)
-                content = new InfoSystemDBEntities();
+                content = new VsInsideDBEntities();
             return content;
         }
 
-        public static InfoSystemDBEntities Reload()
+        public static VsInsideDBEntities Reload()
         {
-            return content = new InfoSystemDBEntities();
+            return content = new VsInsideDBEntities();
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -39,20 +39,20 @@ namespace InfoSystemDB
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Adress> Adress { get; set; }
-        public virtual DbSet<Buyers> Buyers { get; set; }
-        public virtual DbSet<Colors> Colors { get; set; }
+        public virtual DbSet<Buyer> Buyer { get; set; }
+        public virtual DbSet<Color> Color { get; set; }
+        public virtual DbSet<DelAddress> DelAddress { get; set; }
         public virtual DbSet<Delivery> Delivery { get; set; }
-        public virtual DbSet<Discounts> Discounts { get; set; }
+        public virtual DbSet<Discount> Discount { get; set; }
         public virtual DbSet<Making> Making { get; set; }
-        public virtual DbSet<Managers> Managers { get; set; }
-        public virtual DbSet<Materials> Materials { get; set; }
-        public virtual DbSet<Orders> Orders { get; set; }
+        public virtual DbSet<Manager> Manager { get; set; }
+        public virtual DbSet<Material> Material { get; set; }
         public virtual DbSet<Packaging> Packaging { get; set; }
-        public virtual DbSet<Products> Products { get; set; }
-        public virtual DbSet<Shops> Shops { get; set; }
-        public virtual DbSet<Sizes> Sizes { get; set; }
+        public virtual DbSet<ProdType> ProdType { get; set; }
+        public virtual DbSet<Product> Product { get; set; }
+        public virtual DbSet<SetOrder> SetOrder { get; set; }
+        public virtual DbSet<Shop> Shop { get; set; }
+        public virtual DbSet<Size> Size { get; set; }
         public virtual DbSet<Supply> Supply { get; set; }
-        public virtual DbSet<Tips> Tips { get; set; }
     }
 }

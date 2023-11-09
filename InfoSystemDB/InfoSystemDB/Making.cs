@@ -14,12 +14,12 @@ namespace InfoSystemDB
     
     public partial class Making
     {
-        public int id { get; set; }
-        public int sup { get; set; }
-        public int prod { get; set; }
-        public int amount { get; set; }
+        public int making_id { get; set; }
+        public Nullable<int> supply_id { get; set; }
+        public Nullable<int> product_id { get; set; }
+        public int quantity { get; set; }
     
-        public virtual Products Products { get; set; }
+        public virtual Product Product { get; set; }
         public virtual Supply Supply { get; set; }
     }
 }

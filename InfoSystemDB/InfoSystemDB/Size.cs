@@ -12,29 +12,18 @@ namespace InfoSystemDB
     using System;
     using System.Collections.Generic;
     
-    public partial class Products
+    public partial class Size
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Products()
+        public Size()
         {
-            this.Making = new HashSet<Making>();
-            this.Packaging = new HashSet<Packaging>();
+            this.Product = new HashSet<Product>();
         }
     
-        public int id { get; set; }
-        public int tip { get; set; }
+        public int size_id { get; set; }
         public string title { get; set; }
-        public int size { get; set; }
-        public int color { get; set; }
-        public int price { get; set; }
-        public int quantity { get; set; }
     
-        public virtual Colors Colors { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Making> Making { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Packaging> Packaging { get; set; }
-        public virtual Sizes Sizes { get; set; }
-        public virtual Tips Tips { get; set; }
+        public virtual ICollection<Product> Product { get; set; }
     }
 }

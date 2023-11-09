@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace InfoSystemDB
@@ -14,24 +15,41 @@ namespace InfoSystemDB
             InitializeComponent();
         }
 
-        private void ProdShow(object sender, RoutedEventArgs e)
+        private void Orders(object sender, RoutedEventArgs e)
         {
-            MainFrame.Content = new ProductsPage();
+            MainFrame.Content = new ProductsPage(MainFrame);
         }
         
-        private void ManagersShow(object sender, RoutedEventArgs e)
+        private void Managers(object sender, RoutedEventArgs e)
         {
             MainFrame.Content = new ManagersPage();
         }
         
-        private void ColorsShow(object sender, RoutedEventArgs e)
+        private void Buyers(object sender, RoutedEventArgs e)
         {
             MainFrame.Content = new ColorsPage();
         }
         
+        private void Products(object sender, RoutedEventArgs e)
+        {
+            //MainFrame.Content = new QueryPage(MainFrame);
+        }
+        
+        private void Supplies(object sender, RoutedEventArgs e)
+        {
+            //MainFrame.Content = new QueryPage(MainFrame);
+        }
+        
+        private void Tables(object sender, RoutedEventArgs e)
+        {
+            //MainFrame.Content = new QueryPage(MainFrame);
+        }
+        
         private void Exit(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            Window wind = Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive);
+            new MainWindow().Show();
+            wind.Close();
         }
     }
 }

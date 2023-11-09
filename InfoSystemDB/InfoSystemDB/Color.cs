@@ -12,18 +12,21 @@ namespace InfoSystemDB
     using System;
     using System.Collections.Generic;
     
-    public partial class Materials
+    public partial class Color
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Materials()
+        public Color()
         {
-            this.Colors = new HashSet<Colors>();
+            this.Product = new HashSet<Product>();
         }
     
-        public int id { get; set; }
+        public int color_id { get; set; }
         public string title { get; set; }
+        public string code { get; set; }
+        public Nullable<int> material_id { get; set; }
     
+        public virtual Material Material { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Colors> Colors { get; set; }
+        public virtual ICollection<Product> Product { get; set; }
     }
 }

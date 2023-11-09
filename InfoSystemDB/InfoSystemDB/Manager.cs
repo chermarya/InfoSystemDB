@@ -12,21 +12,21 @@ namespace InfoSystemDB
     using System;
     using System.Collections.Generic;
     
-    public partial class Managers
+    public partial class Manager
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Managers()
+        public Manager()
         {
-            this.Shops = new HashSet<Shops>();
+            this.Shop = new HashSet<Shop>();
         }
     
-        public int id { get; set; }
+        public int manager_id { get; set; }
         public string nname { get; set; }
         public string surname { get; set; }
         public string llogin { get; set; }
         public string pass { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Shops> Shops { get; set; }
+        public virtual ICollection<Shop> Shop { get; set; }
     }
 }

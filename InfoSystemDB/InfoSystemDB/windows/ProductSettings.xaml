@@ -28,10 +28,10 @@
         </Grid.RowDefinitions>
         
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="90"/>
             <ColumnDefinition Width="70"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="90"/>
         </Grid.ColumnDefinitions>
         
         <Label Grid.Column="1" Grid.Row="1">Тип</Label>

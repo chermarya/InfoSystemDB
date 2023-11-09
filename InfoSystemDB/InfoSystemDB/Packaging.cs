@@ -14,11 +14,11 @@ namespace InfoSystemDB
     
     public partial class Packaging
     {
-        public int id { get; set; }
-        public Nullable<int> product { get; set; }
-        public Nullable<int> ord { get; set; }
+        public int packaging_id { get; set; }
+        public Nullable<int> order_id { get; set; }
+        public Nullable<int> product_id { get; set; }
     
-        public virtual Orders Orders { get; set; }
-        public virtual Products Products { get; set; }
+        public virtual SetOrder SetOrder { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

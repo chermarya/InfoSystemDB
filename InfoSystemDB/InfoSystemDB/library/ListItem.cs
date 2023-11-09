@@ -4,9 +4,9 @@
     {
         public int Id { get; }
         public string Title { get; }
-        public string AddInfo { get; }
+        public ListItem AddInfo { get; }
 
-        public ListItem(int id, string title, string add)
+        public ListItem(int id, string title, ListItem add)
         {
             Id = id;
             Title = title;

@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Linq;
+using System.Windows.Controls;
 
 namespace InfoSystemDB
 {
@@ -7,6 +8,9 @@ namespace InfoSystemDB
         public ColorsPage()
         {
             InitializeComponent();
+            
+            DGridColours.ItemsSource = VsInsideDBEntities.GetContent().Color.ToList();
+            DGridMaterials.ItemsSource = VsInsideDBEntities.GetContent().Material.ToList();
         }
     }
 }

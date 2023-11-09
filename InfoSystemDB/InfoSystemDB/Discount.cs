@@ -12,30 +12,19 @@ namespace InfoSystemDB
     using System;
     using System.Collections.Generic;
     
-    public partial class Orders
+    public partial class Discount
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Orders()
+        public Discount()
         {
-            this.Packaging = new HashSet<Packaging>();
+            this.SetOrder = new HashSet<SetOrder>();
         }
     
-        public int id { get; set; }
-        public Nullable<System.DateTime> ddate { get; set; }
-        public Nullable<int> del { get; set; }
-        public Nullable<int> amount { get; set; }
-        public Nullable<int> discount { get; set; }
-        public Nullable<int> prepay { get; set; }
-        public Nullable<int> amount_due { get; set; }
-        public string invoice { get; set; }
-        public string stat { get; set; }
-        public string note { get; set; }
-        public Nullable<int> shop { get; set; }
+        public int discount_id { get; set; }
+        public string title { get; set; }
+        public int per { get; set; }
     
-        public virtual Delivery Delivery { get; set; }
-        public virtual Discounts Discounts { get; set; }
-        public virtual Shops Shops { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Packaging> Packaging { get; set; }
+        public virtual ICollection<SetOrder> SetOrder { get; set; }
     }
 }
