@@ -17,32 +17,32 @@ namespace InfoSystemDB
 
         private void Orders(object sender, RoutedEventArgs e)
         {
-            MainFrame.Content = new ProductsPage(MainFrame);
+            MainFrame.Content = new OrderListPage();
         }
         
         private void Managers(object sender, RoutedEventArgs e)
         {
-            MainFrame.Content = new ManagersPage();
+            MainFrame.Content = new ManagersPage(MainFrame);
         }
         
         private void Buyers(object sender, RoutedEventArgs e)
         {
-            MainFrame.Content = new ColorsPage();
+            MainFrame.Content = new BuyerListPage(MainFrame);
         }
         
         private void Products(object sender, RoutedEventArgs e)
         {
-            //MainFrame.Content = new QueryPage(MainFrame);
+            MainFrame.Content = new ProductsPage(MainFrame);
         }
         
         private void Supplies(object sender, RoutedEventArgs e)
         {
-            //MainFrame.Content = new QueryPage(MainFrame);
+            MainFrame.Content = new SupplyListPage(MainFrame);
         }
         
         private void Tables(object sender, RoutedEventArgs e)
         {
-            //MainFrame.Content = new QueryPage(MainFrame);
+            MainFrame.Content = new TableManagmentPage(MainFrame);
         }
         
         private void Exit(object sender, RoutedEventArgs e)

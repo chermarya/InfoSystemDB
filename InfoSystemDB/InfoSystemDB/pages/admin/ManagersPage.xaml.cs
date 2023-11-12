@@ -11,9 +11,12 @@ namespace InfoSystemDB
     {
         private List<Manager> managers_list = VsInsideDBEntities.GetContent().Manager.ToList();
         private int pos = 0;
-
-        public ManagersPage()
+        private Frame MainFrame;
+        
+        public ManagersPage(Frame MainFrame)
         {
+            this.MainFrame = MainFrame;
+            
             InitializeComponent();
 
             CountLabel.Content = pos + 1 + "/" + managers_list.Count;
@@ -51,12 +54,12 @@ namespace InfoSystemDB
             {
                 SqlConnection connection =
                     new SqlConnection(
-                        "Data Source=WIN-FSJH44K4B7V;Initial Catalog=InfoSystemDB;Integrated Security=true;");
+                        "Data Source=WIN-FSJH44K4B7V;Initial Catalog=VsInsideDB;Integrated Security=true;");
                 SqlCommand cmd = new SqlCommand();
                 connection.Open();
 
                 cmd.Connection = connection;
-                cmd.CommandText = "SELECT * FROM Shop WHERE manager = @id";
+                cmd.CommandText = "SELECT * FROM Shop WHERE manager_id = @id";
                 cmd.Parameters.AddWithValue("@id", id);
 
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -86,6 +89,11 @@ namespace InfoSystemDB
         private void RAction(object sender, RoutedEventArgs e)
         {
             FillGaps(++pos);
+        }
+
+        private void Edit(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new EditManager(MainFrame, pos);
         }
     }
 }

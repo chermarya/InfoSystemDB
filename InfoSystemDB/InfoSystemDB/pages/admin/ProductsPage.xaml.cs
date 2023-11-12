@@ -19,8 +19,6 @@ namespace InfoSystemDB
             InitializeComponent();
 
             DGridProducts.ItemsSource = VsInsideDBEntities.GetContent().Product.ToList();
-
-            DGridProducts.SelectionChanged += Selected;
         }
 
         private void Add(object sender, RoutedEventArgs e)
@@ -59,7 +57,7 @@ namespace InfoSystemDB
                 
                 SqlConnection connection =
                     new SqlConnection(
-                        "Data Source=WIN-FSJH44K4B7V;Initial Catalog=InfoSystemDB;Integrated Security=true;");
+                        "Data Source=WIN-FSJH44K4B7V;Initial Catalog=VsInsideDB;Integrated Security=true;");
                 SqlCommand cmd = new SqlCommand(sqlExpression, connection);
                 connection.Open();
 
@@ -79,13 +77,6 @@ namespace InfoSystemDB
         private void ViewTips(object sender, RoutedEventArgs e)
         {
             MainFrame.Content = new ViewTipsPage();
-        }
-        
-        private void Selected(object sender, RoutedEventArgs e)
-        {
-            List<Product> sel = VsInsideDBEntities.GetContent().Product.ToList();
-            int rowInd = DGridProducts.SelectedIndex;
-            BoxOutput.Text = sel[rowInd].product_id.ToString();
         }
     }
 }

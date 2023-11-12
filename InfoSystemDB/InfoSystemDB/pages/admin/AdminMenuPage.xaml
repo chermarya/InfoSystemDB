@@ -19,7 +19,7 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         
-        <Button Grid.Column="0" Grid.Row="0" FontSize="25" Margin="20" Content="Перегляд замовлень" Click="Orders" />
+        <Button Grid.Column="0" Grid.Row="0" FontSize="25" Margin="20" Content="Перегляд замовлень" Click="Orders" FontFamily="Verdana" />
         <Button Grid.Column="1" Grid.Row="0" FontSize="25" Margin="20" Content="Менеджери та магазини" Click="Managers" />
         <Button Grid.Column="0" Grid.Row="1" FontSize="25" Margin="20" Content="База покупців" Click="Buyers" />
         <Button Grid.Column="1" Grid.Row="1" FontSize="25" Margin="20" Content="Доступні вироби" Click="Products" />

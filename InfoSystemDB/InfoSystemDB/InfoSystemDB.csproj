@@ -76,6 +76,7 @@
     </Compile>
     <Compile Include="library\ItemSettings.cs" />
     <Compile Include="library\ListItem.cs" />
+    <Compile Include="library\Order.cs" />
     <Compile Include="Making.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
@@ -103,19 +104,34 @@
     <Compile Include="Packaging.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="pages\AdminMenuPage.xaml.cs">
+    <Compile Include="pages\admin\AdminMenuPage.xaml.cs">
       <DependentUpon>AdminMenuPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="pages\ColorsPage.xaml.cs">
+    <Compile Include="pages\admin\BuyerListPage.xaml.cs">
+      <DependentUpon>BuyerListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\admin\ColorsPage.xaml.cs">
       <DependentUpon>ColorsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="pages\ManagersPage.xaml.cs">
+    <Compile Include="pages\admin\EditManager.xaml.cs">
+      <DependentUpon>EditManager.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\admin\ManagersPage.xaml.cs">
       <DependentUpon>ManagersPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="pages\ProductsPage.xaml.cs">
+    <Compile Include="pages\admin\OrderListPage.xaml.cs">
+      <DependentUpon>OrderListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\admin\ProductsPage.xaml.cs">
       <DependentUpon>ProductsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="pages\ViewTipsPage.xaml.cs">
+    <Compile Include="pages\admin\SupplyListPage.xaml.cs">
+      <DependentUpon>SupplyListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\admin\TableManagmentPage.xaml.cs">
+      <DependentUpon>TableManagmentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\admin\ViewTipsPage.xaml.cs">
       <DependentUpon>ViewTipsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ProdType.cs">
@@ -154,11 +170,16 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="pages\AdminMenuPage.xaml" />
-    <Page Include="pages\ColorsPage.xaml" />
-    <Page Include="pages\ManagersPage.xaml" />
-    <Page Include="pages\ProductsPage.xaml" />
-    <Page Include="pages\ViewTipsPage.xaml" />
+    <Page Include="pages\admin\AdminMenuPage.xaml" />
+    <Page Include="pages\admin\BuyerListPage.xaml" />
+    <Page Include="pages\admin\ColorsPage.xaml" />
+    <Page Include="pages\admin\EditManager.xaml" />
+    <Page Include="pages\admin\ManagersPage.xaml" />
+    <Page Include="pages\admin\OrderListPage.xaml" />
+    <Page Include="pages\admin\ProductsPage.xaml" />
+    <Page Include="pages\admin\SupplyListPage.xaml" />
+    <Page Include="pages\admin\TableManagmentPage.xaml" />
+    <Page Include="pages\admin\ViewTipsPage.xaml" />
     <Page Include="windows\BaseWindow.xaml" />
     <Page Include="windows\ProductSettings.xaml" />
   </ItemGroup>

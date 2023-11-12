@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:InfoSystemDB"
       mc:Ignorable="d"
-      Title="ViewTipsPage" Height="540" Width="960">
+      Title="ViewTipsPage" Height="700" Width="1200">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -16,13 +16,13 @@
         
         <DataGrid Grid.Row="0" x:Name="DGridProductsTips" AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding product_id}" Width="40"></DataGridTextColumn>
-                <DataGridTextColumn Header="Тип" Binding="{Binding ProdType.title}" Width="*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Назва" Binding="{Binding title}" Width="*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Колір" Binding="{Binding Color.title}" Width="*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Розмір" Binding="{Binding Size.title}" Width="100"></DataGridTextColumn>
-                <DataGridTextColumn Header="Матеріал" Binding="{Binding Material.title}" Width="*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Ціна" Binding="{Binding price}" Width="100"></DataGridTextColumn>
+                <DataGridTextColumn FontSize="17" Width="40" Header="ID" Binding="{Binding product_id}" />
+                <DataGridTextColumn FontSize="17" Width="*" Header="Тип" Binding="{Binding ProdType.title}" />
+                <DataGridTextColumn FontSize="17" Width="*" Header="Назва" Binding="{Binding title}" />
+                <DataGridTextColumn FontSize="17" Width="*" Header="Колір" Binding="{Binding Color.title}" />
+                <DataGridTextColumn FontSize="17" Width="100" Header="Розмір" Binding="{Binding Size.title}" />
+                <DataGridTextColumn FontSize="17" Width="*" Header="Матеріал" Binding="{Binding Material.title}" />
+                <DataGridTextColumn FontSize="17" Width="100" Header="Ціна" Binding="{Binding price}" />
             </DataGrid.Columns>
         </DataGrid>
         
@@ -35,10 +35,10 @@
                 <ColumnDefinition Width="70"/>
             </Grid.ColumnDefinitions>
             
-            <StackPanel Grid.Column="1" Grid.Row="2">
-                <ComboBox x:Name="TipList" />
+            <StackPanel Grid.Column="1" Grid.Row="2" VerticalAlignment="Center">
+                <ComboBox x:Name="TypeList" FontSize="20" />
             </StackPanel>
-            <Button Grid.Column="3" Grid.Row="2" Click="Select">Обрати</Button>
+            <Button Grid.Column="3" Grid.Row="2" Click="Select" FontSize="20" Content="Обрати" />
         </Grid>
     </Grid>
 </Page>

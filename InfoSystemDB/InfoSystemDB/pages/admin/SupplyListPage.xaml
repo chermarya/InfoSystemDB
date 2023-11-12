@@ -1,0 +1,33 @@
+﻿<Page x:Class="InfoSystemDB.SupplyListPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:InfoSystemDB"
+      mc:Ignorable="d"
+      Title="SupplyListPage" Height="700" Width="1200">
+    <Border CornerRadius="150, 150, 150, 150">
+        <Border.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                <GradientStop Color="White" Offset="0.0" />
+                <GradientStop Color="Transparent" Offset="1.0" />
+            </LinearGradientBrush>
+        </Border.Background>
+
+        <Grid>
+            <DataGrid x:Name="DGridSupplies" AutoGenerateColumns="False" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn FontSize="17" Width="40" Header="ID" Binding="{Binding product_id}" />
+                    <DataGridTextColumn FontSize="17" Width="*" Header="Тип" Binding="{Binding ProdType.title}" />
+                    <DataGridTextColumn FontSize="17" Width="*" Header="Назва" Binding="{Binding title}" />
+                    <DataGridTextColumn FontSize="17" Width="*" Header="Колір" Binding="{Binding Color.title}" />
+                    <DataGridTextColumn FontSize="17" Width="80" Header="Розмір" Binding="{Binding Size.title}" />
+                    <DataGridTextColumn FontSize="17" Width="*" Header="Матеріал"
+                                        Binding="{Binding Color.Material.title}" />
+                    <DataGridTextColumn FontSize="17" Width="90" Header="Ціна" Binding="{Binding price}" />
+                    <DataGridTextColumn FontSize="17" Width="80" Header="Залишок" Binding="{Binding quantity}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Border>
+</Page>
