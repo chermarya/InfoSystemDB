@@ -9,14 +9,14 @@ namespace InfoSystemDB
 {
     public class ItemSettings
     {
-        private string sqlQuery;
+        //private string sqlQuery;
         private int mode;
-        private string conStr = "Data Source=WIN-FSJH44K4B7V;Initial Catalog=InfoSystemDB;Integrated Security=true;";
+        //private string conStr = "Data Source=WIN-FSJH44K4B7V;Initial Catalog=VsInsideDB;Integrated Security=true;";
         private DataGrid DGridProducts;
         private Product curr_element = new Product();
 
         private int id;
-        private int tip_id;
+        private int type_id;
         private string title;
         private int size_id;
         private int color_id;
@@ -59,34 +59,26 @@ namespace InfoSystemDB
             {
                 SetValues();
 
+                string sqlQuery;
+                
                 if (mode == 0)
-                    sqlQuery = "INSERT INTO Products (tip, title, size, color, price, quantity) VALUES (@tip, " +
+                    sqlQuery = "INSERT INTO Product (prodtype_id, title, size_id, color_id, price, quantity) VALUES (@prodtype, " +
                                "@title, @size, @color, @price, @quantity)";
                 else
-                    sqlQuery = "UPDATE Products SET tip = @tip, title = @title, size = @size, color = " +
-                               "@color, price = @price, quantity = @quantity WHERE id = @id";
+                    sqlQuery = "UPDATE Product SET prodtype_id = @prodtype, title = @title, size_id = @size, color_id = " +
+                               "@color, price = @price, quantity = @quantity WHERE product_id = @id";
 
-                try
+                new DoSql(sqlQuery, 
+                    new SqlParameter[]
                 {
-                    SqlConnection connection = new SqlConnection(conStr);
-                    SqlCommand cmd = new SqlCommand(sqlQuery, connection);
-                    connection.Open();
-
-                    cmd.Parameters.Add(new SqlParameter("@tip", tip_id));
-                    cmd.Parameters.Add(new SqlParameter("@title", title));
-                    cmd.Parameters.Add(new SqlParameter("@size", size_id));
-                    cmd.Parameters.Add(new SqlParameter("@color", color_id));
-                    cmd.Parameters.Add(new SqlParameter("@price", price));
-                    cmd.Parameters.Add(new SqlParameter("@quantity", quantity));
-                    cmd.Parameters.Add(new SqlParameter("@id", id));
-
-                    cmd.ExecuteNonQuery();
-                    connection.Close();
-                }
-                catch (Exception e)
-                {
-                    MessageBox.Show(e.Message);
-                }
+                    new SqlParameter("@prodtype", type_id),
+                    new SqlParameter("@title", title),
+                    new SqlParameter("@size", size_id),
+                    new SqlParameter("@color", color_id),
+                    new SqlParameter("@price", price),
+                    new SqlParameter("@quantity", quantity),
+                    new SqlParameter("@id", id)
+                }).ToExecuteQuery();
 
                 DGridProducts.ItemsSource = VsInsideDBEntities.Reload().Product.ToList();
                 Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive).Close();
@@ -117,7 +109,7 @@ namespace InfoSystemDB
                 sizeInd--;
             }
 
-            tip_id = tips[tipInd].Id;
+            type_id = tips[tipInd].Id;
             size_id = sizes[sizeInd].Id;
             title = TitleInput.Text;
             price = Convert.ToInt32(PriceInput.Text);
@@ -237,43 +229,70 @@ namespace InfoSystemDB
             if (MaterialList.SelectedIndex != 0)
                 mat = materials[MaterialList.SelectedIndex - 1].Id;
 
-            try
-            {
-                SqlConnection connection = new SqlConnection(conStr);
-                SqlCommand cmd = new SqlCommand(sqlQuery, connection);
-                connection.Open();
+            ColorList.Items.Clear();
 
-                cmd.Connection = connection;
+            ColorList.Items.Add("Обрати");
+            ColorList.SelectedIndex = 0;
 
-                ColorList.Items.Clear();
-
-                ColorList.Items.Add("Обрати");
-                ColorList.SelectedIndex = 0;
-
-                if (MaterialList.SelectedIndex == 0)
-                    cmd.CommandText = "SELECT id FROM Colors ORDER BY title";
-                else
-                    cmd.CommandText = "SELECT id FROM Colors WHERE material = @mat ORDER BY title";
-
-                cmd.Parameters.AddWithValue("@mat", mat);
-
-                SqlDataReader reader = cmd.ExecuteReader();
-
-                while (reader.Read())
+            string sql;
+            
+            if (MaterialList.SelectedIndex == 0)
+                sql = "SELECT color_id FROM Color ORDER BY title";
+            else
+                sql = "SELECT color_id FROM Color WHERE material_id = @mat ORDER BY title";
+            
+            SqlDataReader reader = new DoSql(sql, 
+                new SqlParameter[]
                 {
-                    for (int i = 0; i < colors.Length; i++)
-                    {
-                        if (reader.GetInt32(0) == colors[i].Id)
-                            ColorList.Items.Add($"{colors[i].Title}\t\t{colors[i].AddInfo.Title}");
-                    }
-                }
-
-                connection.Close();
-            }
-            catch (Exception e)
+                    new SqlParameter("@mat", mat)
+                }).ToReadQuery();
+            
+            while (reader.Read())
             {
-                MessageBox.Show(e.Message);
+                for (int i = 0; i < colors.Length; i++)
+                {
+                    if (reader.GetInt32(0) == colors[i].Id)
+                        ColorList.Items.Add($"{colors[i].Title}\t\t{colors[i].AddInfo.Title}");
+                }
             }
+            
+            // try
+            // {
+            //     SqlConnection connection = new SqlConnection(conStr);
+            //     SqlCommand cmd = new SqlCommand(sqlQuery, connection);
+            //     connection.Open();
+            //
+            //     cmd.Connection = connection;
+            //
+            //     ColorList.Items.Clear();
+            //
+            //     ColorList.Items.Add("Обрати");
+            //     ColorList.SelectedIndex = 0;
+            //
+            //     if (MaterialList.SelectedIndex == 0)
+            //         cmd.CommandText = "SELECT color_id FROM Color ORDER BY title";
+            //     else
+            //         cmd.CommandText = "SELECT color_id FROM Color WHERE material_id = @mat ORDER BY title";
+            //
+            //     cmd.Parameters.AddWithValue("@mat", mat);
+            //
+            //     SqlDataReader reader = cmd.ExecuteReader();
+            //
+            //     while (reader.Read())
+            //     {
+            //         for (int i = 0; i < colors.Length; i++)
+            //         {
+            //             if (reader.GetInt32(0) == colors[i].Id)
+            //                 ColorList.Items.Add($"{colors[i].Title}\t\t{colors[i].AddInfo.Title}");
+            //         }
+            //     }
+            //
+            //     connection.Close();
+            // }
+            // catch (Exception e)
+            // {
+            //     MessageBox.Show(e.Message);
+            // }
         }
     }
 }

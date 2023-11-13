@@ -40,40 +40,23 @@ namespace InfoSystemDB
             List<SetOrder> orders = VsInsideDBEntities.GetContent().SetOrder.ToList();
             List<Order> newList = new List<Order>();
 
-            try
+            SqlDataReader reader = new DoSql(sql, new SqlParameter[]{}).ToReadQuery();
+
+            while (reader.Read())
             {
-                SqlConnection connection =
-                    new SqlConnection(
-                        "Data Source=WIN-FSJH44K4B7V;Initial Catalog=VsInsideDB;Integrated Security=true;");
-                SqlCommand cmd = new SqlCommand(sql, connection);
-                connection.Open();
-
-                //cmd.Parameters.Add(new SqlParameter("@id", id));
-
-                SqlDataReader reader = cmd.ExecuteReader();
-
-                while (reader.Read())
+                foreach (SetOrder el in orders)
                 {
-                    foreach (SetOrder el in orders)
+                    if (el.order_id == reader.GetInt32(0))
                     {
-                        if (el.order_id == reader.GetInt32(0))
-                        {
-                            Order item = new Order(reader.GetInt32(0), reader.GetString(1), reader.GetString(2),
-                                reader.GetString(3), reader.GetString(4), reader.GetString(5), reader.GetString(6),
-                                reader.GetString(7), reader.GetInt32(8), reader.GetInt32(9), reader.GetInt32(10),
-                                reader.GetString(11), reader.GetString(12), reader.GetString(13), reader.GetString(14),
-                                reader.GetString(15));
+                        Order item = new Order(reader.GetInt32(0), reader.GetString(1), reader.GetString(2),
+                            reader.GetString(3), reader.GetString(4), reader.GetString(5), reader.GetString(6),
+                            reader.GetString(7), reader.GetInt32(8), reader.GetInt32(9), reader.GetInt32(10),
+                            reader.GetString(11), reader.GetString(12), reader.GetString(13), reader.GetString(14),
+                            reader.GetString(15));
 
-                            newList.Add(item);
-                        }
+                        newList.Add(item);
                     }
                 }
-
-                connection.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
             }
 
             return newList;

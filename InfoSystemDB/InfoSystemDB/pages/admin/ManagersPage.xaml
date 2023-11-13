@@ -40,6 +40,9 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
+                <Button Grid.Row="1" Grid.Column="0" Width="100" VerticalAlignment="Top" FontSize="30"
+                        Content="🢘" Click="Exit" />
+                
                 <Label Grid.Row="1" Grid.Column="1" FontSize="17" Content="Ім'я" />
                 <TextBox Grid.Row="1" Grid.Column="2" FontSize="17" IsReadOnly="True" x:Name="NameOutput"
                          Padding="10, 5" />
@@ -67,7 +70,7 @@
             </Grid>
 
             <Grid Grid.Row="1" Margin="0, 0, 0, 20">
-                <DataGrid x:Name="DGridShops" Margin="60, 0, 60, 60" AutoGenerateColumns="False" IsReadOnly="True">
+                <DataGrid x:Name="DGridShops" Margin="120, 0, 120, 60" AutoGenerateColumns="False" IsReadOnly="True">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="ID" Binding="{Binding shop_id}" Width="40" />
                         <DataGridTextColumn Header="Назва" Binding="{Binding title}" Width="200" />

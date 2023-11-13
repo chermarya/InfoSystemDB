@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace InfoSystemDB
@@ -12,6 +13,21 @@ namespace InfoSystemDB
             InitializeComponent();
 
             DGridBuyers.ItemsSource = VsInsideDBEntities.GetContent().Buyer.ToList();
+        }
+
+        private void Add(object sender, RoutedEventArgs e)
+        {
+            
+        }
+        
+        private void Edit(object sender, RoutedEventArgs e)
+        {
+            
+        }
+        
+        private void Delete(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

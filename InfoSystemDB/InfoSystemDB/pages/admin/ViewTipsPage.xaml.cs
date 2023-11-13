@@ -18,7 +18,7 @@ namespace InfoSystemDB
             DGridProductsTips.ItemsSource = VsInsideDBEntities.GetContent().Product.ToList();
 
             List<ProdType> type_list = VsInsideDBEntities.GetContent().ProdType.ToList();
-            TypeList.Items.Add("Всі");
+            TypeList.Items.Add("Усі");
             TypeList.SelectedIndex = selected_id;
             
             for (var i = 0; i < type_list.Count; i++)
@@ -34,43 +34,30 @@ namespace InfoSystemDB
             List<Product> list = VsInsideDBEntities.GetContent().Product.ToList();
             List<Product> newList = new List<Product>();
 
-            try
+            string sql;
+            
+            if (pos == 0)
+                sql = "SELECT * FROM Product";
+            else
+                sql = "SELECT * FROM Product WHERE prodtype_id = @type";
+            
+            
+            SqlDataReader reader = new DoSql(sql, 
+                new SqlParameter[]
             {
-                SqlConnection connection =
-                    new SqlConnection(
-                        "Data Source=WIN-FSJH44K4B7V;Initial Catalog=VsInsideDB;Integrated Security=true;");
-                SqlCommand cmd = new SqlCommand();
-                connection.Open();
-                
-                cmd.Connection = connection;
-                
-                if (pos == 0)
-                    cmd.CommandText = "SELECT * FROM Product";
-                else
-                {
-                    cmd.CommandText = "SELECT * FROM Product WHERE prodtype_id = @type";
-                    cmd.Parameters.AddWithValue("@type", pos);
-                }
+                new SqlParameter("@type", pos)
+            }).ToReadQuery();
 
-                SqlDataReader reader = cmd.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    foreach (Product el in list)
-                    {
-                        if (el.product_id == reader.GetInt32(0))
-                            newList.Add(el);
-                    }
-
-                    DGridProductsTips.ItemsSource = newList.ToList();
-                }
-                
-                connection.Close();
-            }
-            catch (Exception ex)
+            while (reader.Read())
             {
-                MessageBox.Show(ex.Message);
+                foreach (Product el in list)
+                {
+                    if (el.product_id == reader.GetInt32(0))
+                        newList.Add(el);
+                }
             }
+            
+            DGridProductsTips.ItemsSource = newList.ToList();
         }
     }
 }

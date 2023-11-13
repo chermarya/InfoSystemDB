@@ -50,34 +50,27 @@ namespace InfoSystemDB
             List<Shop> list = VsInsideDBEntities.GetContent().Shop.ToList();
             List<Shop> newList = new List<Shop>();
 
-            try
+            new DoSql("SELECT * FROM Shop WHERE manager_id = @id", 
+                new SqlParameter[]
             {
-                SqlConnection connection =
-                    new SqlConnection(
-                        "Data Source=WIN-FSJH44K4B7V;Initial Catalog=VsInsideDB;Integrated Security=true;");
-                SqlCommand cmd = new SqlCommand();
-                connection.Open();
-
-                cmd.Connection = connection;
-                cmd.CommandText = "SELECT * FROM Shop WHERE manager_id = @id";
-                cmd.Parameters.AddWithValue("@id", id);
-
-                SqlDataReader reader = cmd.ExecuteReader();
-
-                while (reader.Read())
+                new SqlParameter("@id", id)
+            }).ToExecuteQuery();
+            
+            SqlDataReader reader = new DoSql("SELECT * FROM Shop WHERE manager_id = @id",
+                new SqlParameter[]
                 {
-                    foreach (Shop el in list)
-                    {
-                        if (el.shop_id == reader.GetInt32(0))
-                            newList.Add(el);
-                    }
-
-                    DGridShops.ItemsSource = newList.ToList();
-                }
-            }
-            catch (Exception ex)
+                    new SqlParameter("@id", id)
+                }).ToReadQuery();
+            
+            while (reader.Read())
             {
-                MessageBox.Show(ex.Message);
+                foreach (Shop el in list)
+                {
+                    if (el.shop_id == reader.GetInt32(0))
+                        newList.Add(el);
+                }
+            
+                DGridShops.ItemsSource = newList.ToList();
             }
         }
 
@@ -94,6 +87,11 @@ namespace InfoSystemDB
         private void Edit(object sender, RoutedEventArgs e)
         {
             MainFrame.Content = new EditManager(MainFrame, pos);
+        }
+
+        private void Exit(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new AdminMenuPage(MainFrame);
         }
     }
 }

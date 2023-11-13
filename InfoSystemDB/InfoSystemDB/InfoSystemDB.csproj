@@ -74,6 +74,7 @@
     <Compile Include="Discount.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="library\DoSql.cs" />
     <Compile Include="library\ItemSettings.cs" />
     <Compile Include="library\ListItem.cs" />
     <Compile Include="library\Order.cs" />
@@ -113,11 +114,17 @@
     <Compile Include="pages\admin\ColorsPage.xaml.cs">
       <DependentUpon>ColorsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="pages\admin\DiscountPade.xaml.cs">
+      <DependentUpon>DiscountPade.xaml</DependentUpon>
+    </Compile>
     <Compile Include="pages\admin\EditManager.xaml.cs">
       <DependentUpon>EditManager.xaml</DependentUpon>
     </Compile>
     <Compile Include="pages\admin\ManagersPage.xaml.cs">
       <DependentUpon>ManagersPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\admin\MaterialsPage.xaml.cs">
+      <DependentUpon>MaterialsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="pages\admin\OrderListPage.xaml.cs">
       <DependentUpon>OrderListPage.xaml</DependentUpon>
@@ -173,8 +180,10 @@
     <Page Include="pages\admin\AdminMenuPage.xaml" />
     <Page Include="pages\admin\BuyerListPage.xaml" />
     <Page Include="pages\admin\ColorsPage.xaml" />
+    <Page Include="pages\admin\DiscountPade.xaml" />
     <Page Include="pages\admin\EditManager.xaml" />
     <Page Include="pages\admin\ManagersPage.xaml" />
+    <Page Include="pages\admin\MaterialsPage.xaml" />
     <Page Include="pages\admin\OrderListPage.xaml" />
     <Page Include="pages\admin\ProductsPage.xaml" />
     <Page Include="pages\admin\SupplyListPage.xaml" />

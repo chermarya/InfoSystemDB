@@ -50,26 +50,12 @@ namespace InfoSystemDB
                 id = selected[rowIndex].product_id;
             else
                 return;
-            
-            try
-            {
-                string sqlExpression = "DELETE FROM Product WHERE id = @id";
-                
-                SqlConnection connection =
-                    new SqlConnection(
-                        "Data Source=WIN-FSJH44K4B7V;Initial Catalog=VsInsideDB;Integrated Security=true;");
-                SqlCommand cmd = new SqlCommand(sqlExpression, connection);
-                connection.Open();
 
-                cmd.Parameters.Add(new SqlParameter("@id", id));
-                
-                cmd.ExecuteNonQuery();
-                connection.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            new DoSql("DELETE FROM Product WHERE product_id = @id",
+                new SqlParameter[]
+                {
+                    new SqlParameter("@id", id)
+                }).ToExecuteQuery();
 
             DGridProducts.ItemsSource = VsInsideDBEntities.Reload().Product.ToList();
         }

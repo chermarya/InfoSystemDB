@@ -6,28 +6,40 @@
       xmlns:local="clr-namespace:InfoSystemDB"
       mc:Ignorable="d"
       Title="BuyerListPage" Height="700" Width="1200">
-    <Border CornerRadius="150, 150, 150, 150">
+    <Border CornerRadius="50, 50, 50, 50">
         <Border.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                <GradientStop Color="White" Offset="0.0" />
-                <GradientStop Color="Transparent" Offset="1.0" />
+                <GradientStop Color="Black" Offset="0.0" />
+                <GradientStop Color="White" Offset="1.0" />
             </LinearGradientBrush>
         </Border.Background>
 
         <Grid>
-            <DataGrid x:Name="DGridBuyers" AutoGenerateColumns="False" IsReadOnly="True">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="550" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            
+            <DataGrid Grid.Row="0" Margin="60, 30, 60, 0" x:Name="DGridBuyers" AutoGenerateColumns="False" IsReadOnly="True">
                 <DataGrid.Columns>
-                    <DataGridTextColumn FontSize="17" Width="40" Header="ID" Binding="{Binding product_id}" />
-                    <DataGridTextColumn FontSize="17" Width="*" Header="Тип" Binding="{Binding ProdType.title}" />
-                    <DataGridTextColumn FontSize="17" Width="*" Header="Назва" Binding="{Binding title}" />
-                    <DataGridTextColumn FontSize="17" Width="*" Header="Колір" Binding="{Binding Color.title}" />
-                    <DataGridTextColumn FontSize="17" Width="80" Header="Розмір" Binding="{Binding Size.title}" />
-                    <DataGridTextColumn FontSize="17" Width="*" Header="Матеріал"
-                                        Binding="{Binding Color.Material.title}" />
-                    <DataGridTextColumn FontSize="17" Width="90" Header="Ціна" Binding="{Binding price}" />
-                    <DataGridTextColumn FontSize="17" Width="80" Header="Залишок" Binding="{Binding quantity}" />
+                    <DataGridTextColumn FontSize="17" Width="200" Header="Нік" Binding="{Binding nick}" />
+                    <DataGridTextColumn FontSize="17" Width="*" Header="Прізвище" Binding="{Binding surname}" />
+                    <DataGridTextColumn FontSize="17" Width="*" Header="Ім'я" Binding="{Binding nname}" />
+                    <DataGridTextColumn FontSize="17" Width="250" Header="Номер телефону" Binding="{Binding tel}" />
                 </DataGrid.Columns>
             </DataGrid>
+            
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                
+                <Button Grid.Column="0" FontSize="20" Click="Add" Content="Додати" Margin="60, 30, 15, 30" />
+                <Button Grid.Column="1" FontSize="20" Click="Edit" Content="Редагувати" Margin="30" />
+                <Button Grid.Column="2" FontSize="20" Click="Delete" Content="Видалити" Margin="15, 30, 60, 30" />
+            </Grid>
         </Grid>
     </Border>
 </Page>
