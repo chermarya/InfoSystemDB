@@ -55,7 +55,7 @@ namespace InfoSystemDB
                 }
 
                 SqlDataReader reader = cmd.ExecuteReader();
-
+                
                 return reader;
             }
             catch (Exception ex)

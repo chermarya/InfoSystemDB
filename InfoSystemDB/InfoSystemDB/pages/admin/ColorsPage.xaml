@@ -14,40 +14,30 @@
             </LinearGradientBrush>
         </Border.Background>
 
-        <Grid>
+        <Grid Margin="30">
             <Grid.RowDefinitions>
-                <RowDefinition Height="60" />
+                <RowDefinition Height="80" />
                 <RowDefinition />
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition />
+                <ColumnDefinition Width="750" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <Label Grid.Row="0" Grid.Column="0" Margin="10" HorizontalAlignment="Center" Content="Кольори"
-                   FontSize="20" />
+            <Label Grid.Row="0" Grid.Column="0" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                   Content="Кольори" FontSize="30" />
 
-            <DataGrid Grid.Row="1" Grid.Column="0" x:Name="DGridColours" AutoGenerateColumns="False" IsReadOnly="True"
-                      Margin="15">
+            <DataGrid Grid.Row="1" Grid.Column="0" x:Name="DGridColours" AutoGenerateColumns="False" IsReadOnly="True">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID" Binding="{Binding color_id}" Width="40" />
                     <DataGridTextColumn Header="Назва" Binding="{Binding title}" Width="*" />
                     <DataGridTextColumn Header="Матеріал" Binding="{Binding Materials.title}" Width="*" />
                     <DataGridTextColumn Header="Код" Binding="{Binding code}" Width="70" />
                 </DataGrid.Columns>
             </DataGrid>
-
-            <Label Grid.Row="0" Grid.Column="1" Margin="10" HorizontalAlignment="Center" Content="Матеріали"
-                   FontSize="20" />
-
-            <DataGrid Grid.Row="1" Grid.Column="1" x:Name="DGridMaterials" AutoGenerateColumns="False"
-                      IsReadOnly="True" Margin="15">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID" Binding="{Binding material_id}" Width="40" />
-                    <DataGridTextColumn Header="Назва" Binding="{Binding title}" Width="*" />
-                </DataGrid.Columns>
-            </DataGrid>
+            
+            <ListBox Grid.Row="1" Grid.Column="1" HorizontalContentAlignment="Center" x:Name="MaterialList" />
+            
         </Grid>
     </Border>
 </Page>

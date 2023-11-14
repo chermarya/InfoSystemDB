@@ -55,7 +55,7 @@
             <Button Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Height="70" Content="Зберегти" FontSize="20"
                     Margin="0, 0, 0, 0" VerticalAlignment="Bottom" />
             
-            <Button Grid.Row="6" Grid.Column="3" Width="100" Height="60" VerticalAlignment="Top" FontSize="40"
+            <Button Grid.Row="5" Grid.Column="3" Width="100" Height="60" VerticalAlignment="Center" FontSize="40"
                     Content="🢘" Click="Exit" />
             
             <Label Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4" Height="100"

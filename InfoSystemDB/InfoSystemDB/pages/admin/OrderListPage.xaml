@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:InfoSystemDB"
       mc:Ignorable="d"
       Title="OrderListPage">
-    <Border CornerRadius="150, 150, 150, 150">
+    <Border>
         <Border.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
                 <GradientStop Color="White" Offset="0.0" />
@@ -14,13 +14,13 @@
             </LinearGradientBrush>
         </Border.Background>
 
-        <Grid>
+        <Grid Margin="20">
             <Grid.RowDefinitions>
                 <RowDefinition />
-                <RowDefinition />
+                <RowDefinition Height="60" />
             </Grid.RowDefinitions>
 
-            <DataGrid Grid.Row="0" x:Name="DGridOrders" AutoGenerateColumns="False" IsReadOnly="True" Margin="40">
+            <DataGrid Grid.Row="0" x:Name="DGridOrders" AutoGenerateColumns="False" IsReadOnly="True" Margin="0, 0, 0, 20">
                 <DataGrid.Columns>
                     <DataGridTextColumn FontSize="12" Width="50" Header="Дата" Binding="{Binding Date}" />
                     <DataGridTextColumn FontSize="12" Width="70" Header="Нік" Binding="{Binding Nick}" />
@@ -90,10 +90,9 @@
                     <ColumnDefinition />
                     <ColumnDefinition />
                     <ColumnDefinition />
-                    <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
-                <Button Grid.Column="0" FontSize="17" Content="" />
+                <Button Grid.Column="1" FontSize="17" Content="Редагувати" HorizontalAlignment="Center" Width="200" />
             </Grid>
         </Grid>
     </Border>

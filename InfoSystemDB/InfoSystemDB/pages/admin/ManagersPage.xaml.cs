@@ -91,7 +91,7 @@ namespace InfoSystemDB
 
         private void Exit(object sender, RoutedEventArgs e)
         {
-            MainFrame.Content = new AdminMenuPage(MainFrame);
+            NavigationService.GoBack();
         }
     }
 }

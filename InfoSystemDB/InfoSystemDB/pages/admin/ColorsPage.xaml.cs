@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Data.SqlClient;
+using System.Linq;
 using System.Windows.Controls;
 
 namespace InfoSystemDB
@@ -10,7 +11,13 @@ namespace InfoSystemDB
             InitializeComponent();
             
             DGridColours.ItemsSource = VsInsideDBEntities.GetContent().Color.ToList();
-            DGridMaterials.ItemsSource = VsInsideDBEntities.GetContent().Material.ToList();
+
+            SqlDataReader reader = new DoSql("SELECT title FROM Material", new SqlParameter[]{}).ToReadQuery();
+
+            while (reader.Read())
+            {
+                MaterialList.Items.Add(reader.GetString(0));
+            }
         }
     }
 }

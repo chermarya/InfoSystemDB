@@ -28,7 +28,7 @@ namespace InfoSystemDB
 
         private void Exit(object sender, RoutedEventArgs e)
         {
-            MainFrame.Content = new ManagersPage(MainFrame);
+            NavigationService.GoBack();
         }
     }
 }
