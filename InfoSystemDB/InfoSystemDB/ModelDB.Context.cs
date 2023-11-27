@@ -22,14 +22,7 @@ namespace InfoSystemDB
         {
         }
 
-        public static VsInsideDBEntities GetContent()
-        {
-            if (content == null)
-                content = new VsInsideDBEntities();
-            return content;
-        }
-
-        public static VsInsideDBEntities Reload()
+        public static VsInsideDBEntities Content()
         {
             return content = new VsInsideDBEntities();
         }

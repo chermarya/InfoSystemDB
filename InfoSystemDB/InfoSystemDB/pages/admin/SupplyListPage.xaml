@@ -15,19 +15,21 @@
         </Border.Background>
 
         <Grid>
-            <DataGrid x:Name="DGridSupplies" AutoGenerateColumns="False" IsReadOnly="True">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="80" />
+            </Grid.RowDefinitions>
+            
+            <DataGrid Grid.Row="0" x:Name="DGridSupplies" AutoGenerateColumns="False" IsReadOnly="True">
                 <DataGrid.Columns>
-                    <DataGridTextColumn FontSize="17" Width="40" Header="ID" Binding="{Binding product_id}" />
-                    <DataGridTextColumn FontSize="17" Width="*" Header="Тип" Binding="{Binding ProdType.title}" />
-                    <DataGridTextColumn FontSize="17" Width="*" Header="Назва" Binding="{Binding title}" />
-                    <DataGridTextColumn FontSize="17" Width="*" Header="Колір" Binding="{Binding Color.title}" />
-                    <DataGridTextColumn FontSize="17" Width="80" Header="Розмір" Binding="{Binding Size.title}" />
-                    <DataGridTextColumn FontSize="17" Width="*" Header="Матеріал"
-                                        Binding="{Binding Color.Material.title}" />
-                    <DataGridTextColumn FontSize="17" Width="90" Header="Ціна" Binding="{Binding price}" />
-                    <DataGridTextColumn FontSize="17" Width="80" Header="Залишок" Binding="{Binding quantity}" />
+                    <DataGridTextColumn FontSize="17" Width="150" Header="Дата" Binding="{Binding Date}" />
+                    <DataGridTextColumn FontSize="17" Width="*" Header="Виріб" Binding="{Binding Product}" />
+                    <DataGridTextColumn FontSize="17" Width="100" Header="Кількість" Binding="{Binding Quantity}" />
                 </DataGrid.Columns>
             </DataGrid>
+            
+            <!-- <Calendar Grid.Column="1" x:Name="Calendar" FirstDayOfWeek="Monday" SelectedDatesChanged="DateChanged" Width="350" Height="500"/> -->
+                <DatePicker Grid.Row="1" x:Name="Calendar" SelectedDateChanged="DateChanged" FontSize="20" />
         </Grid>
     </Border>
 </Page>

@@ -36,28 +36,24 @@
                    HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
 
             <Label Grid.Row="1" Grid.Column="1" FontSize="20" Margin="10" Content="Ім'я" HorizontalAlignment="Left" />
-            <TextBox Grid.Row="1" Grid.Column="2" FontSize="20" Margin="10" IsReadOnly="True" x:Name="NameOutput"
-                     Padding="10, 5" />
+            <TextBox Grid.Row="1" Grid.Column="2" FontSize="20" Margin="10" x:Name="NameOutput" Padding="10, 5" />
 
             <Label Grid.Row="2" Grid.Column="1" FontSize="20" Margin="10" Content="Прізвище" HorizontalAlignment="Left" />
-            <TextBox Grid.Row="2" Grid.Column="2" FontSize="20" Margin="10" IsReadOnly="True" x:Name="SurnameOutput"
-                     Padding="10, 5" />
+            <TextBox Grid.Row="2" Grid.Column="2" FontSize="20" Margin="10" x:Name="SurnameOutput" Padding="10, 5" />
 
             <Label Grid.Row="3" Grid.Column="1" FontSize="20" Margin="10" Content="Login" HorizontalAlignment="Left" />
-            <TextBox Grid.Row="3" Grid.Column="2" FontSize="20" Margin="10" IsReadOnly="True" x:Name="LoginOutput"
-                     Padding="10, 5" />
+            <TextBox Grid.Row="3" Grid.Column="2" FontSize="20" Margin="10" x:Name="LoginOutput" Padding="10, 5" />
 
             <Label Grid.Row="4" Grid.Column="1" FontSize="20" Margin="10" Content="Новий пароль"
                    HorizontalAlignment="Left" />
-            <TextBox Grid.Row="4" Grid.Column="2" FontSize="20" Margin="10" IsReadOnly="True" x:Name="PassInput"
-                     Padding="10, 5" />
+            <PasswordBox Grid.Row="4" Grid.Column="2" FontSize="20" Margin="10" x:Name="PassInput" Padding="10, 5" />
 
             <Button Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Height="70" Content="Зберегти" FontSize="20"
-                    Margin="0, 0, 0, 0" VerticalAlignment="Bottom" />
-            
+                    Margin="0, 0, 0, 0" VerticalAlignment="Bottom" Click="Save" />
+
             <Button Grid.Row="5" Grid.Column="3" Width="100" Height="60" VerticalAlignment="Center" FontSize="40"
                     Content="🢘" Click="Exit" />
-            
+
             <Label Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4" Height="100"
                    Content="Для того, щоб не змінювати пароль, залиште поле 'Новий пароль' пустим"
                    HorizontalContentAlignment="Center" VerticalContentAlignment="Top" FontSize="15" />

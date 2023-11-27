@@ -6,63 +6,54 @@
         xmlns:local="clr-namespace:InfoSystemDB.windows"
         mc:Ignorable="d"
         Title="ProductSettings" Height="600" Width="450" ResizeMode="NoResize">
-    <Grid>
+    <Grid Margin="0, 30 ,0 ,0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="50"/>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
         
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="90"/>
-            <ColumnDefinition Width="70"/>
+            <ColumnDefinition Width="30"/>
+            <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="90"/>
+            <ColumnDefinition Width="30"/>
         </Grid.ColumnDefinitions>
         
-        <Label Grid.Column="1" Grid.Row="1">Тип</Label>
-        <StackPanel Grid.Column="2" Grid.Row="1">
-            <ComboBox x:Name="TipList" />
+        <Label Grid.Column="1" Grid.Row="0" Content="Тип" FontSize="20" VerticalAlignment="Center" />
+        <StackPanel Grid.Column="2" Grid.Row="0" VerticalAlignment="Center" >
+            <ComboBox x:Name="TipList" FontSize="20" />
         </StackPanel>
         
-        <Label Grid.Column="1" Grid.Row="3">Назва</Label>
-        <TextBox Grid.Column="2" Grid.Row="3" x:Name="TitleInput"/>
+        <Label Grid.Column="1" Grid.Row="1" Content="Назва" FontSize="20" VerticalAlignment="Center" />
+        <TextBox Grid.Column="2" Grid.Row="1" x:Name="TitleInput" FontSize="20" VerticalAlignment="Center" Padding="0, 5" />
         
-        <Label Grid.Column="1" Grid.Row="5">Матеріал</Label>
-        <StackPanel Grid.Column="2" Grid.Row="5">
-            <ComboBox x:Name="MaterialList" />
+        <Label Grid.Column="1" Grid.Row="2" Content="Матеріал" FontSize="20" VerticalAlignment="Center" />
+        <StackPanel Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" >
+            <ComboBox x:Name="MaterialList" FontSize="20" />
         </StackPanel>
         
-        <Label Grid.Column="1" Grid.Row="7">Колір</Label>
-        <StackPanel Grid.Column="2" Grid.Row="7">
-            <ComboBox x:Name="ColorList" />
+        <Label Grid.Column="1" Grid.Row="3" Content="Колір" FontSize="20" VerticalAlignment="Center" />
+        <StackPanel Grid.Column="2" Grid.Row="3" VerticalAlignment="Center" >
+            <ComboBox x:Name="ColorList" FontSize="20" VerticalAlignment="Center"  />
         </StackPanel>
         
-        <Label Grid.Column="1" Grid.Row="9">Розмір</Label>
-        <StackPanel Grid.Column="2" Grid.Row="9">
-            <ComboBox x:Name="SizeList" />
+        <Label Grid.Column="1" Grid.Row="4" Content="Розмір" FontSize="20" VerticalAlignment="Center" />
+        <StackPanel Grid.Column="2" Grid.Row="4" VerticalAlignment="Center" >
+            <ComboBox x:Name="SizeList" FontSize="20" />
         </StackPanel>
         
-        <Label Grid.Column="1" Grid.Row="11">Ціна</Label>
-        <TextBox Grid.Column="2" Grid.Row="11" x:Name="PriceInput"/>
+        <Label Grid.Column="1" Grid.Row="5" Content="Ціна" FontSize="20" VerticalAlignment="Center" />
+        <TextBox Grid.Column="2" Grid.Row="5" x:Name="PriceInput" FontSize="20" VerticalAlignment="Center" Padding="0, 5"  />
         
-        <Label Grid.Column="1" Grid.Row="13">Залишок</Label>
-        <TextBox Grid.Column="2" Grid.Row="13" x:Name="QuantityInput"/>
+        <Label Grid.Column="1" Grid.Row="6" Content="Залишок" FontSize="20" VerticalAlignment="Center" />
+        <TextBox Grid.Column="2" Grid.Row="6" x:Name="QuantityInput" FontSize="20" VerticalAlignment="Center" Padding="0, 5"  />
         
-        <Button Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="15" Click="Save" Content="Зберегти" FontSize="15" />
+        <Button Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="7" Click="Save" Content="Зберегти" FontSize="20" Margin="0, 20" />
     </Grid>
 </Window>

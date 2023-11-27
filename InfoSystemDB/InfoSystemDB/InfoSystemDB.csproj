@@ -78,6 +78,7 @@
     <Compile Include="library\ItemSettings.cs" />
     <Compile Include="library\ListItem.cs" />
     <Compile Include="library\Order.cs" />
+    <Compile Include="library\SupplyItem.cs" />
     <Compile Include="Making.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
@@ -111,20 +112,11 @@
     <Compile Include="pages\admin\BuyerListPage.xaml.cs">
       <DependentUpon>BuyerListPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="pages\admin\ColorsPage.xaml.cs">
-      <DependentUpon>ColorsPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="pages\admin\DiscountPade.xaml.cs">
-      <DependentUpon>DiscountPade.xaml</DependentUpon>
-    </Compile>
     <Compile Include="pages\admin\EditManager.xaml.cs">
       <DependentUpon>EditManager.xaml</DependentUpon>
     </Compile>
     <Compile Include="pages\admin\ManagersPage.xaml.cs">
       <DependentUpon>ManagersPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="pages\admin\MaterialsPage.xaml.cs">
-      <DependentUpon>MaterialsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="pages\admin\OrderListPage.xaml.cs">
       <DependentUpon>OrderListPage.xaml</DependentUpon>
@@ -140,6 +132,18 @@
     </Compile>
     <Compile Include="pages\admin\ViewTipsPage.xaml.cs">
       <DependentUpon>ViewTipsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\BuyersByManager.xaml.cs">
+      <DependentUpon>BuyersByManager.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\InfoForManager.xaml.cs">
+      <DependentUpon>InfoForManager.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\OrdersByManager.xaml.cs">
+      <DependentUpon>OrdersByManager.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\UserMenuPage.xaml.cs">
+      <DependentUpon>UserMenuPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ProdType.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
@@ -159,11 +163,20 @@
     <Compile Include="Supply.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="windows\AddProductWindow.xaml.cs">
+      <DependentUpon>AddProductWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="windows\BaseWindow.xaml.cs">
       <DependentUpon>BaseWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="windows\OrderSettings.xaml.cs">
+      <DependentUpon>OrderSettings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="windows\ProductSettings.xaml.cs">
       <DependentUpon>ProductSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="windows\TableManagmentSettings.xaml.cs">
+      <DependentUpon>TableManagmentSettings.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -179,18 +192,22 @@
     </Compile>
     <Page Include="pages\admin\AdminMenuPage.xaml" />
     <Page Include="pages\admin\BuyerListPage.xaml" />
-    <Page Include="pages\admin\ColorsPage.xaml" />
-    <Page Include="pages\admin\DiscountPade.xaml" />
     <Page Include="pages\admin\EditManager.xaml" />
     <Page Include="pages\admin\ManagersPage.xaml" />
-    <Page Include="pages\admin\MaterialsPage.xaml" />
     <Page Include="pages\admin\OrderListPage.xaml" />
     <Page Include="pages\admin\ProductsPage.xaml" />
     <Page Include="pages\admin\SupplyListPage.xaml" />
     <Page Include="pages\admin\TableManagmentPage.xaml" />
     <Page Include="pages\admin\ViewTipsPage.xaml" />
+    <Page Include="pages\BuyersByManager.xaml" />
+    <Page Include="pages\InfoForManager.xaml" />
+    <Page Include="pages\OrdersByManager.xaml" />
+    <Page Include="pages\UserMenuPage.xaml" />
+    <Page Include="windows\AddProductWindow.xaml" />
     <Page Include="windows\BaseWindow.xaml" />
+    <Page Include="windows\OrderSettings.xaml" />
     <Page Include="windows\ProductSettings.xaml" />
+    <Page Include="windows\TableManagmentSettings.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

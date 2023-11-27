@@ -2,9 +2,9 @@
 
 namespace InfoSystemDB
 {
-    public partial class DiscountPade : Page
+    public partial class BuyersByManager : Page
     {
-        public DiscountPade()
+        public BuyersByManager()
         {
             InitializeComponent();
         }

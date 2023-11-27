@@ -12,7 +12,7 @@ namespace InfoSystemDB
         {
             InitializeComponent();
 
-            DGridBuyers.ItemsSource = VsInsideDBEntities.GetContent().Buyer.ToList();
+            DGridBuyers.ItemsSource = VsInsideDBEntities.Content().Buyer.ToList();
         }
 
         private void Add(object sender, RoutedEventArgs e)

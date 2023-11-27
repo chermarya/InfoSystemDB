@@ -18,7 +18,7 @@ namespace InfoSystemDB
 
             InitializeComponent();
 
-            DGridProducts.ItemsSource = VsInsideDBEntities.GetContent().Product.ToList();
+            DGridProducts.ItemsSource = VsInsideDBEntities.Content().Product.ToList();
         }
 
         private void Add(object sender, RoutedEventArgs e)
@@ -29,7 +29,7 @@ namespace InfoSystemDB
         private void Edit(object sender, RoutedEventArgs e)
         {
             int selected_id = 0;
-            List<Product> selected = VsInsideDBEntities.GetContent().Product.ToList();
+            List<Product> selected = VsInsideDBEntities.Content().Product.ToList();
 
             int rowInd = DGridProducts.SelectedIndex;
             if (rowInd != -1)
@@ -43,7 +43,7 @@ namespace InfoSystemDB
         private void Delete(object sender, RoutedEventArgs e)
         {
             int id = 0;
-            List<Product> selected = VsInsideDBEntities.GetContent().Product.ToList();
+            List<Product> selected = VsInsideDBEntities.Content().Product.ToList();
 
             int rowIndex = DGridProducts.SelectedIndex;
             if (rowIndex != -1)
@@ -57,7 +57,7 @@ namespace InfoSystemDB
                     new SqlParameter("@id", id)
                 }).ToExecuteQuery();
 
-            DGridProducts.ItemsSource = VsInsideDBEntities.Reload().Product.ToList();
+            DGridProducts.ItemsSource = VsInsideDBEntities.Content().Product.ToList();
         }
 
         private void ViewTips(object sender, RoutedEventArgs e)

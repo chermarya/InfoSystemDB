@@ -9,9 +9,7 @@ namespace InfoSystemDB
 {
     public class ItemSettings
     {
-        //private string sqlQuery;
         private int mode;
-        //private string conStr = "Data Source=WIN-FSJH44K4B7V;Initial Catalog=VsInsideDB;Integrated Security=true;";
         private DataGrid DGridProducts;
         private Product curr_element = new Product();
 
@@ -31,10 +29,10 @@ namespace InfoSystemDB
         private TextBox PriceInput;
         private TextBox QuantityInput;
 
-        private ListItem[] tips = new ListItem[VsInsideDBEntities.GetContent().ProdType.ToList().Count];
-        public ListItem[] colors = new ListItem[VsInsideDBEntities.GetContent().Color.ToList().Count];
-        private ListItem[] sizes = new ListItem[VsInsideDBEntities.GetContent().Size.ToList().Count];
-        public ListItem[] materials = new ListItem[VsInsideDBEntities.GetContent().Material.ToList().Count];
+        private ListItem[] tips = new ListItem[VsInsideDBEntities.Content().ProdType.ToList().Count];
+        public ListItem[] colors = new ListItem[VsInsideDBEntities.Content().Color.ToList().Count];
+        private ListItem[] sizes = new ListItem[VsInsideDBEntities.Content().Size.ToList().Count];
+        public ListItem[] materials = new ListItem[VsInsideDBEntities.Content().Material.ToList().Count];
 
         public ItemSettings(int m, int sel_id, DataGrid grid, ComboBox tip, TextBox title, ComboBox material,
             ComboBox color, ComboBox size, TextBox price, TextBox quantity)
@@ -80,7 +78,7 @@ namespace InfoSystemDB
                     new SqlParameter("@id", id)
                 }).ToExecuteQuery();
 
-                DGridProducts.ItemsSource = VsInsideDBEntities.Reload().Product.ToList();
+                DGridProducts.ItemsSource = VsInsideDBEntities.Content().Product.ToList();
                 Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive).Close();
             }
         }
@@ -117,17 +115,17 @@ namespace InfoSystemDB
 
             for (int i = 0; i < colors.Length; i++)
             {
-                if (ColorList.SelectedItem.ToString() == $"{colors[i].Title}\t\t{colors[i].AddInfo.Title}")
+                if (ColorList.SelectedItem.ToString() == $"{colors[i].Title}\t{colors[i].AddInfo.Title}")
                     color_id = colors[i].Id;
             }
         }
 
         public void Loader(int mode)
         {
-            List<ProdType> tip_list = VsInsideDBEntities.GetContent().ProdType.ToList();
-            List<Color> color_list = VsInsideDBEntities.GetContent().Color.ToList();
-            List<Size> size_list = VsInsideDBEntities.GetContent().Size.ToList();
-            List<Material> material_list = VsInsideDBEntities.GetContent().Material.ToList();
+            List<ProdType> tip_list = VsInsideDBEntities.Content().ProdType.ToList();
+            List<Color> color_list = VsInsideDBEntities.Content().Color.ToList();
+            List<Size> size_list = VsInsideDBEntities.Content().Size.ToList();
+            List<Material> material_list = VsInsideDBEntities.Content().Material.ToList();
 
             if (mode == 1)
                 SelectedItem();
@@ -168,7 +166,7 @@ namespace InfoSystemDB
             {
                 colors[i] = new ListItem(color_list[i].color_id, color_list[i].title,
                     new ListItem(color_list[i].Material.material_id, color_list[i].Material.title));
-                ColorList.Items.Add($"{colors[i].Title}\t\t{colors[i].AddInfo.Title}");
+                ColorList.Items.Add($"{colors[i].Title}\t{colors[i].AddInfo.Title}");
             }
 
             for (var i = 0; i < color_list.Count; i++)
@@ -187,7 +185,7 @@ namespace InfoSystemDB
 
                     for (int j = 0; j < ColorList.Items.Count; j++)
                     {
-                        if (ColorList.Items[j].Equals($"{colors[i].Title}\t\t{colors[i].AddInfo.Title}"))
+                        if (ColorList.Items[j].Equals($"{colors[i].Title}\t{colors[i].AddInfo.Title}"))
                         {
                             ColorList.SelectedIndex = j;
                             break;
@@ -211,7 +209,7 @@ namespace InfoSystemDB
 
         private void SelectedItem()
         {
-            List<Product> products_list = VsInsideDBEntities.GetContent().Product.ToList();
+            List<Product> products_list = VsInsideDBEntities.Content().Product.ToList();
             foreach (Product i in products_list)
             {
                 if (id == i.product_id)
@@ -252,47 +250,9 @@ namespace InfoSystemDB
                 for (int i = 0; i < colors.Length; i++)
                 {
                     if (reader.GetInt32(0) == colors[i].Id)
-                        ColorList.Items.Add($"{colors[i].Title}\t\t{colors[i].AddInfo.Title}");
+                        ColorList.Items.Add($"{colors[i].Title}\t{colors[i].AddInfo.Title}");
                 }
             }
-            
-            // try
-            // {
-            //     SqlConnection connection = new SqlConnection(conStr);
-            //     SqlCommand cmd = new SqlCommand(sqlQuery, connection);
-            //     connection.Open();
-            //
-            //     cmd.Connection = connection;
-            //
-            //     ColorList.Items.Clear();
-            //
-            //     ColorList.Items.Add("Обрати");
-            //     ColorList.SelectedIndex = 0;
-            //
-            //     if (MaterialList.SelectedIndex == 0)
-            //         cmd.CommandText = "SELECT color_id FROM Color ORDER BY title";
-            //     else
-            //         cmd.CommandText = "SELECT color_id FROM Color WHERE material_id = @mat ORDER BY title";
-            //
-            //     cmd.Parameters.AddWithValue("@mat", mat);
-            //
-            //     SqlDataReader reader = cmd.ExecuteReader();
-            //
-            //     while (reader.Read())
-            //     {
-            //         for (int i = 0; i < colors.Length; i++)
-            //         {
-            //             if (reader.GetInt32(0) == colors[i].Id)
-            //                 ColorList.Items.Add($"{colors[i].Title}\t\t{colors[i].AddInfo.Title}");
-            //         }
-            //     }
-            //
-            //     connection.Close();
-            // }
-            // catch (Exception e)
-            // {
-            //     MessageBox.Show(e.Message);
-            // }
         }
     }
 }

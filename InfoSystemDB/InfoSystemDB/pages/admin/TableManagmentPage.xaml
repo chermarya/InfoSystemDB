@@ -30,8 +30,14 @@
 
         <DataGrid Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="4" Margin="0, 30" x:Name="DGridOutput"
                   AutoGenerateColumns="False" IsReadOnly="True" ColumnWidth="*" />
-        
-        <Button Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Width="200" HorizontalAlignment="Left" />
-        <Button Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Width="200" HorizontalAlignment="Right" />
+
+        <StackPanel Grid.Column="0" Grid.Row="2" Width="200" VerticalAlignment="Center">
+            <ComboBox x:Name="MatList" Visibility="Hidden" SelectionChanged="SetFilter" FontSize="17" />
+        </StackPanel>
+
+        <Button Grid.Column="1" Grid.Row="2" Width="200" Margin="15, 0" FontSize="17" HorizontalAlignment="Right"
+                Content="Додати" Click="Add" />
+        <Button Grid.Column="2" Grid.Row="2" Width="200" Margin="15, 0" FontSize="17" HorizontalAlignment="Left"
+                Content="Видалити" Click="Delete" />
     </Grid>
 </Page>

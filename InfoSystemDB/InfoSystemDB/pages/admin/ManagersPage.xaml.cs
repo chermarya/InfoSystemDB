@@ -9,7 +9,7 @@ namespace InfoSystemDB
 {
     public partial class ManagersPage : Page
     {
-        private List<Manager> managers_list = VsInsideDBEntities.GetContent().Manager.ToList();
+        private List<Manager> managers_list = VsInsideDBEntities.Content().Manager.ToList();
         private int pos = 0;
         private Frame MainFrame;
         
@@ -47,7 +47,7 @@ namespace InfoSystemDB
 
         private void ShopFilter(int id)
         {
-            List<Shop> list = VsInsideDBEntities.GetContent().Shop.ToList();
+            List<Shop> list = VsInsideDBEntities.Content().Shop.ToList();
             List<Shop> newList = new List<Shop>();
 
             new DoSql("SELECT * FROM Shop WHERE manager_id = @id", 
@@ -86,9 +86,16 @@ namespace InfoSystemDB
 
         private void Edit(object sender, RoutedEventArgs e)
         {
-            MainFrame.Content = new EditManager(MainFrame, pos);
+            MainFrame.Content = new EditManager(pos, Update);
         }
 
+        private void Update()
+        {
+            managers_list = VsInsideDBEntities.Content().Manager.ToList();
+            CountLabel.Content = pos + 1 + "/" + managers_list.Count;
+            FillGaps(pos);
+        }
+        
         private void Exit(object sender, RoutedEventArgs e)
         {
             NavigationService.GoBack();

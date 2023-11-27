@@ -15,9 +15,9 @@ namespace InfoSystemDB
         {
             InitializeComponent();
 
-            DGridProductsTips.ItemsSource = VsInsideDBEntities.GetContent().Product.ToList();
+            DGridProductsTips.ItemsSource = VsInsideDBEntities.Content().Product.ToList();
 
-            List<ProdType> type_list = VsInsideDBEntities.GetContent().ProdType.ToList();
+            List<ProdType> type_list = VsInsideDBEntities.Content().ProdType.ToList();
             TypeList.Items.Add("Усі");
             TypeList.SelectedIndex = selected_id;
             
@@ -31,7 +31,7 @@ namespace InfoSystemDB
         {
             int pos = TypeList.SelectedIndex;
 
-            List<Product> list = VsInsideDBEntities.GetContent().Product.ToList();
+            List<Product> list = VsInsideDBEntities.Content().Product.ToList();
             List<Product> newList = new List<Product>();
 
             string sql;
@@ -58,6 +58,11 @@ namespace InfoSystemDB
             }
             
             DGridProductsTips.ItemsSource = newList.ToList();
+        }
+
+        private void Exit(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
         }
     }
 }

@@ -2,9 +2,9 @@
 
 namespace InfoSystemDB
 {
-    public partial class MaterialsPage : Page
+    public partial class InfoForManager : Page
     {
-        public MaterialsPage()
+        public InfoForManager()
         {
             InitializeComponent();
         }

@@ -4,10 +4,13 @@ namespace InfoSystemDB
 {
     public partial class BaseWindow : Window
     {
-        public BaseWindow()
+        public BaseWindow(string login)
         {
             InitializeComponent();
-            MainFrame.Content = new AdminMenuPage(MainFrame);
+            if (login == "admin")
+                MainFrame.Content = new AdminMenuPage(MainFrame);
+            else
+                MainFrame.Content = new UserMenuPage(MainFrame, login);
         }
     }
 }
