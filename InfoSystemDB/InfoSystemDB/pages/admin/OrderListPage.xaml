@@ -89,10 +89,10 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition />
-                    <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
-                <Button Grid.Column="1" FontSize="17" Content="Редагувати" HorizontalAlignment="Center" Width="200" />
+                <Button Grid.Column="0" FontSize="17" Content="Додати накладну" HorizontalAlignment="Center" Width="200" />
+                <Button Grid.Column="1" FontSize="17" Content="Змінити статус" HorizontalAlignment="Center" Width="200" />
             </Grid>
         </Grid>
     </Border>

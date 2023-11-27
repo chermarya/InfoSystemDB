@@ -16,26 +16,50 @@
 
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="550" />
                 <RowDefinition />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="120" />
             </Grid.RowDefinitions>
-            
-            <DataGrid Grid.Row="0" Margin="60, 30, 60, 0" x:Name="DGridBuyers" AutoGenerateColumns="False" IsReadOnly="True">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="470" />
+            </Grid.ColumnDefinitions>
+
+            <DataGrid Grid.Row="0" Grid.Column="0" Margin="60, 30, 30, 20" x:Name="DGridBuyers"
+                      AutoGenerateColumns="False" IsReadOnly="True">
                 <DataGrid.Columns>
-                    <DataGridTextColumn FontSize="17" Width="200" Header="Нік" Binding="{Binding nick}" />
+                    <DataGridTextColumn FontSize="17" Width="100" Header="Нік" Binding="{Binding nick}" />
                     <DataGridTextColumn FontSize="17" Width="*" Header="Прізвище" Binding="{Binding surname}" />
                     <DataGridTextColumn FontSize="17" Width="*" Header="Ім'я" Binding="{Binding nname}" />
-                    <DataGridTextColumn FontSize="17" Width="250" Header="Номер телефону" Binding="{Binding tel}" />
+                    <DataGridTextColumn FontSize="17" Width="*" Header="Номер телефону" Binding="{Binding tel}" />
                 </DataGrid.Columns>
             </DataGrid>
-            
-            <Grid Grid.Row="1">
+
+            <DataGrid Grid.Row="0" Grid.Column="1" Margin="0,30, 60, 20" x:Name="DGridAddresses"
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn FontSize="17" Width="*" Header="Місто" Binding="{Binding city}" />
+                    <DataGridTextColumn FontSize="17" Width="*" Header="Відділення" Binding="{Binding dep}" />
+                    <DataGridTextColumn FontSize="17" Width="*" Header="Примітка" Binding="{Binding note}" />
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <Button Grid.Column="1" Grid.Row="1" Content="+" FontSize="30" Margin="120, 0, 180, 0" Click="AddAddress" />
+
+            <Button Grid.Column="0" Grid.Row="1" Content="▲" FontSize="30" Margin="250, 0, 0 ,0" Width="60"
+                    HorizontalAlignment="Left" x:Name="UpBtn" Click="UpBtnClick" />
+            <Button Grid.Column="0" Grid.Row="1" Content="▼" FontSize="30" Margin="0, 0, 250 ,0" Width="60"
+                    HorizontalAlignment="Right" x:Name="DownBtn" Click="DownBtnClick" />
+
+            <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                
+
                 <Button Grid.Column="0" FontSize="20" Click="Add" Content="Додати" Margin="60, 30, 15, 30" />
                 <Button Grid.Column="1" FontSize="20" Click="Edit" Content="Редагувати" Margin="30" />
                 <Button Grid.Column="2" FontSize="20" Click="Delete" Content="Видалити" Margin="15, 30, 60, 30" />

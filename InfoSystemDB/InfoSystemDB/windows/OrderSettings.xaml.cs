@@ -11,6 +11,7 @@ namespace InfoSystemDB
     public partial class OrderSettings : Window
     {
         private int manager_id;
+        private Action func;
 
         private List<Product> selectedList = new List<Product>();
         private ListItem[] discounts = new ListItem[VsInsideDBEntities.Content().Discount.ToList().Count];
@@ -24,8 +25,9 @@ namespace InfoSystemDB
 
         private Buyer selectedBuyer;
 
-        public OrderSettings(int id)
+        public OrderSettings(int id, Action function)
         {
+            func = function;
             manager_id = id;
 
             InitializeComponent();
@@ -75,7 +77,8 @@ namespace InfoSystemDB
                 SetProducts();
 
                 MessageBox.Show("Замовлення сформовано успішно.");
-                
+
+                func();
                 Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive).Close();
             }
         }
@@ -237,20 +240,6 @@ namespace InfoSystemDB
         private void PrepayChanged(object sender, RoutedEventArgs e)
         {
             AmountDueCounter();
-        }
-
-        private void CDSchecked(object sender, RoutedEventArgs e)
-        {
-            CBNew.IsChecked = false;
-            ChooseGrid.Visibility = Visibility.Visible;
-            NewGrid.Visibility = Visibility.Collapsed;
-        }
-
-        private void CDNchecked(object sender, RoutedEventArgs e)
-        {
-            CBSelect.IsChecked = false;
-            ChooseGrid.Visibility = Visibility.Collapsed;
-            NewGrid.Visibility = Visibility.Visible;
         }
 
         private void SelectBtn(object sender, RoutedEventArgs e)

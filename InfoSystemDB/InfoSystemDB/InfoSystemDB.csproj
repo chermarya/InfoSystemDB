@@ -133,9 +133,6 @@
     <Compile Include="pages\admin\ViewTipsPage.xaml.cs">
       <DependentUpon>ViewTipsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="pages\BuyersByManager.xaml.cs">
-      <DependentUpon>BuyersByManager.xaml</DependentUpon>
-    </Compile>
     <Compile Include="pages\InfoForManager.xaml.cs">
       <DependentUpon>InfoForManager.xaml</DependentUpon>
     </Compile>
@@ -166,8 +163,14 @@
     <Compile Include="windows\AddProductWindow.xaml.cs">
       <DependentUpon>AddProductWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="windows\AddressSetings.xaml.cs">
+      <DependentUpon>AddressSetings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="windows\BaseWindow.xaml.cs">
       <DependentUpon>BaseWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="windows\BuyerSettings.xaml.cs">
+      <DependentUpon>BuyerSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="windows\OrderSettings.xaml.cs">
       <DependentUpon>OrderSettings.xaml</DependentUpon>
@@ -199,12 +202,13 @@
     <Page Include="pages\admin\SupplyListPage.xaml" />
     <Page Include="pages\admin\TableManagmentPage.xaml" />
     <Page Include="pages\admin\ViewTipsPage.xaml" />
-    <Page Include="pages\BuyersByManager.xaml" />
     <Page Include="pages\InfoForManager.xaml" />
     <Page Include="pages\OrdersByManager.xaml" />
     <Page Include="pages\UserMenuPage.xaml" />
     <Page Include="windows\AddProductWindow.xaml" />
+    <Page Include="windows\AddressSetings.xaml" />
     <Page Include="windows\BaseWindow.xaml" />
+    <Page Include="windows\BuyerSettings.xaml" />
     <Page Include="windows\OrderSettings.xaml" />
     <Page Include="windows\ProductSettings.xaml" />
     <Page Include="windows\TableManagmentSettings.xaml" />

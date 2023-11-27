@@ -9,37 +9,38 @@ namespace InfoSystemDB
     public partial class OrdersByManager : Page
     {
         private int manager_id;
+        private List<Order> orderList;
+
+        private string sql =
+            "SELECT so.order_id, FORMAT(so.ddate, 'dd.MM.yy' ), br.nick," +
+            "br.surname + ' ' + br.nname, br.tel, STRING_AGG(pt.title + ' ' + pr.title + ' ' + cl.title + ' ' + " +
+            "sz.title, ', '), da.city + ' ' + da.dep + ' (' + ISNULL(da.note, '') + ')', ds.title AS discount, so.summ, " +
+            "so.prepay, so.amount_due, so.invoice, ISNULL(so.stat, ''), ISNULL(so.note, ''), sp.title AS shop, mg.nname " +
+            "+ ' ' + mg.surname FROM SetOrder so JOIN Delivery dl ON so.delivery_id = dl.delivery_id JOIN Buyer br " +
+            "ON dl.buyer_id = br.buyer_id JOIN DelAddress da ON dl.address_id = da.address_id JOIN Discount ds ON " +
+            "so.discount_id = ds.discount_id JOIN Shop sp ON so.shop_id = sp.shop_id JOIN Manager mg ON sp.manager_id " +
+            "= mg.manager_id JOIN Packaging pck ON pck.order_id = so.order_id JOIN Product pr ON pck.product_id = " +
+            "pr.product_id JOIN ProdType pt ON pr.prodtype_id = pt.prodtype_id JOIN Size sz ON pr.size_id = sz.size_id " +
+            "JOIN Color cl ON pr.color_id = cl.color_id WHERE mg.manager_id = @id GROUP BY so.order_id, so.ddate, br.nick, " +
+            "br.surname + ' ' + br.nname, br.tel, da.city + ' ' + da.dep + ' (' + ISNULL(da.note, '') + ')', ds.title, " +
+            "so.summ, so.prepay, so.amount_due, so.invoice, ISNULL(so.stat, ''), ISNULL(so.note, ''), sp.title, mg.nname + ' ' + mg.surname";
+
         public OrdersByManager(int id)
         {
             manager_id = id;
-            
-            InitializeComponent();
-            
-            string sql =
-                "SELECT so.order_id, FORMAT(so.ddate, 'dd.MM.yy' ), br.nick," +
-                "br.surname + ' ' + br.nname, br.tel, STRING_AGG(pt.title + ' ' + pr.title + ' ' + cl.title + ' ' + " +
-                "sz.title, ', '), da.city + ' ' + da.dep + ' (' + ISNULL(da.note, '') + ')', ds.title AS discount, so.summ, " +
-                "so.prepay, so.amount_due, so.invoice, ISNULL(so.stat, ''), ISNULL(so.note, ''), sp.title AS shop, mg.nname " +
-                "+ ' ' + mg.surname FROM SetOrder so JOIN Delivery dl ON so.delivery_id = dl.delivery_id JOIN Buyer br " +
-                "ON dl.buyer_id = br.buyer_id JOIN DelAddress da ON dl.address_id = da.address_id JOIN Discount ds ON " +
-                "so.discount_id = ds.discount_id JOIN Shop sp ON so.shop_id = sp.shop_id JOIN Manager mg ON sp.manager_id " +
-                "= mg.manager_id JOIN Packaging pck ON pck.order_id = so.order_id JOIN Product pr ON pck.product_id = " +
-                "pr.product_id JOIN ProdType pt ON pr.prodtype_id = pt.prodtype_id JOIN Size sz ON pr.size_id = sz.size_id " +
-                "JOIN Color cl ON pr.color_id = cl.color_id WHERE mg.manager_id = @id GROUP BY so.order_id, so.ddate, br.nick, " +
-                "br.surname + ' ' + br.nname, br.tel, da.city + ' ' + da.dep + ' (' + ISNULL(da.note, '') + ')', ds.title, " +
-                "so.summ, so.prepay, so.amount_due, so.invoice, ISNULL(so.stat, ''), ISNULL(so.note, ''), sp.title, mg.nname + ' ' + mg.surname";
 
-            DGridOrders.ItemsSource = OutputList(sql);
+            InitializeComponent();
+            OutputList();
 
             amount_due.Header = "Сума до\nсплати";
             summ.Header = "Сума\nзамов.";
             prepay.Header = "Перед\nоплата";
         }
-        
-        public List<Order> OutputList(string sql)
+
+        public void OutputList()
         {
             List<SetOrder> orders = VsInsideDBEntities.Content().SetOrder.ToList();
-            List<Order> newList = new List<Order>();
+            orderList = new List<Order>();
 
             SqlDataReader reader = new DoSql(sql, new SqlParameter[]
             {
@@ -58,17 +59,17 @@ namespace InfoSystemDB
                             reader.GetString(11), reader.GetString(12), reader.GetString(13), reader.GetString(14),
                             reader.GetString(15));
 
-                        newList.Add(item);
+                        orderList.Add(item);
                     }
                 }
             }
 
-            return newList;
+            DGridOrders.ItemsSource = orderList;
         }
 
         private void Add(object sender, RoutedEventArgs e)
         {
-            new OrderSettings(manager_id).Show();
+            new OrderSettings(manager_id, OutputList).Show();
         }
     }
 }

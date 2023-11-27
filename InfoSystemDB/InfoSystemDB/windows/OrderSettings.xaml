@@ -16,7 +16,6 @@
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="40" />
-                <RowDefinition Height="50" />
                 <RowDefinition />
                 <RowDefinition Height="50" />
                 <RowDefinition Height="60" />
@@ -33,28 +32,7 @@
             <Label Grid.Row="0" Grid.Column="0" FontSize="17" Content="Дата" />
             <DatePicker Grid.Row="0" Grid.Column="1" FontSize="17" VerticalContentAlignment="Center" x:Name="DateInput" />
 
-            <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-
-                    <StackPanel Grid.Column="0" Height="20" Name="StackPanel1" Orientation="Horizontal">
-                        <Viewbox Height="{Binding Path=ActualHeight, ElementName=StackPanel1}">
-                            <CheckBox Content="Обрати покупця" IsChecked="True" x:Name="CBSelect" Click="CDSchecked" />
-                        </Viewbox>
-                    </StackPanel>
-
-                    <StackPanel Grid.Column="1" Height="20" Name="StackPanel2" Orientation="Horizontal">
-                        <Viewbox Height="{Binding Path=ActualHeight, ElementName=StackPanel1}">
-                            <CheckBox Content="Створити нового" x:Name="CBNew" Click="CDNchecked" />
-                        </Viewbox>
-                    </StackPanel>
-                </Grid>
-            </StackPanel>
-
-            <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="0, 15" x:Name="ChooseGrid">
+            <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="0, 15" x:Name="ChooseGrid">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50" />
                     <RowDefinition />
@@ -105,70 +83,23 @@
                 </StackPanel>
             </Grid>
 
-            <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="0, 15" x:Name="NewGrid"
-                  Visibility="Collapsed">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="35" />
-                    <RowDefinition Height="40" />
-                    <RowDefinition Height="40" />
-                    <RowDefinition Height="40" />
-                    <RowDefinition Height="40" />
-                    <RowDefinition Height="35" />
-                    <RowDefinition Height="40" />
-                    <RowDefinition Height="40" />
-                    <RowDefinition Height="40" />
-                </Grid.RowDefinitions>
-
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="150" />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-
-                <Label Grid.Row="0" Grid.Column="0" FontSize="17" Grid.ColumnSpan="2" HorizontalAlignment="Center"
-                       Content="Дані покупця" />
-
-                <Label Grid.Row="1" Grid.Column="0" FontSize="17" Content="Прізвище" />
-                <TextBox Grid.Row="1" Grid.Column="1" FontSize="17" />
-
-                <Label Grid.Row="2" Grid.Column="0" FontSize="17" Content="Ім'я" />
-                <TextBox Grid.Row="2" Grid.Column="1" FontSize="17" />
-
-                <Label Grid.Row="3" Grid.Column="0" FontSize="17" Content="Номер телефону" />
-                <TextBox Grid.Row="3" Grid.Column="1" FontSize="17" />
-
-                <Label Grid.Row="4" Grid.Column="0" FontSize="17" Content="Нікнейм" />
-                <TextBox Grid.Row="4" Grid.Column="1" FontSize="17" />
-
-                <Label Grid.Row="5" Grid.Column="0" FontSize="17" Grid.ColumnSpan="2" HorizontalAlignment="Center"
-                       Content="Адреса" />
-
-                <Label Grid.Row="6" Grid.Column="0" FontSize="17" Content="Місто" />
-                <TextBox Grid.Row="6" Grid.Column="1" FontSize="17" />
-
-                <Label Grid.Row="7" Grid.Column="0" FontSize="17" Content="Відділення" />
-                <TextBox Grid.Row="7" Grid.Column="1" FontSize="17" />
-
-                <Label Grid.Row="8" Grid.Column="0" FontSize="17" Content="Примітка" />
-                <TextBox Grid.Row="8" Grid.Column="1" FontSize="17" />
-            </Grid>
-
-            <Label Grid.Row="3" Grid.Column="0" FontSize="17" Content="Знижка" VerticalAlignment="Center" />
-            <StackPanel Grid.Row="3" Grid.Column="1" VerticalAlignment="Center">
+            <Label Grid.Row="2" Grid.Column="0" FontSize="17" Content="Знижка" VerticalAlignment="Center" />
+            <StackPanel Grid.Row="2" Grid.Column="1" VerticalAlignment="Center">
                 <ComboBox x:Name="DiscountList" FontSize="17" />
             </StackPanel>
 
-            <Label Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" FontSize="17" Content="Сума передоплати"
+            <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" FontSize="17" Content="Сума передоплати"
                    VerticalAlignment="Center" HorizontalAlignment="Left" />
-            <TextBox Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Height="40" HorizontalAlignment="Right"
+            <TextBox Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Height="40" HorizontalAlignment="Right"
                      Width="120" VerticalAlignment="Center" TextAlignment="Right" Text="0" FontSize="25"
                      x:Name="PrepayInput" />
 
-            <Label Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" FontSize="17" Content="Примітка"
+            <Label Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" FontSize="17" Content="Примітка"
                    HorizontalAlignment="Center" VerticalAlignment="Center" />
-            <TextBox Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" x:Name="NoteInput" />
+            <TextBox Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" x:Name="NoteInput" />
 
-            <Label Grid.Row="7" Grid.Column="0" FontSize="17" Content="Магазин" VerticalAlignment="Center" />
-            <StackPanel Grid.Row="7" Grid.Column="1" VerticalAlignment="Center">
+            <Label Grid.Row="6" Grid.Column="0" FontSize="17" Content="Магазин" VerticalAlignment="Center" />
+            <StackPanel Grid.Row="6" Grid.Column="1" VerticalAlignment="Center">
                 <ComboBox x:Name="ShopList" FontSize="17" />
             </StackPanel>
         </Grid>
