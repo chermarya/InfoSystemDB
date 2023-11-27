@@ -31,7 +31,7 @@
             </Grid.ColumnDefinitions>
 
             <Label Grid.Row="0" Grid.Column="0" FontSize="17" Content="Дата" />
-            <DatePicker Grid.Row="0" Grid.Column="1" FontSize="17" VerticalContentAlignment="Center" />
+            <DatePicker Grid.Row="0" Grid.Column="1" FontSize="17" VerticalContentAlignment="Center" x:Name="DateInput" />
 
             <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center">
                 <Grid>
@@ -189,6 +189,7 @@
             </Grid.ColumnDefinitions>
 
             <Label Grid.Row="0" Grid.Column="0" FontSize="20" Content="Обрані товари" />
+            <Button Grid.Row="0" Grid.Column="1" FontSize="20" Content="Видалити" Width="170" HorizontalAlignment="Right" Click="DeleteBtn" />
 
             <DataGrid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="0, 15" AutoGenerateColumns="False"
                       IsReadOnly="True" x:Name="DGSelectedProducts" LoadingRow="DGContextChanged">
@@ -214,7 +215,7 @@
             <TextBlock Grid.Row="4" Grid.Column="1" Margin="15, 0" TextAlignment="Center" Text="0" FontSize="25"
                        x:Name="PaySumOutput" />
 
-            <Button Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Content="Додати замовлення" FontSize="17" />
+            <Button Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Content="Додати замовлення" FontSize="17" Click="Save" />
         </Grid>
     </Grid>
 </Window>
