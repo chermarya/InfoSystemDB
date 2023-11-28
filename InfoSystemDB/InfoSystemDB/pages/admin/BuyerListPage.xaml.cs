@@ -8,8 +8,6 @@ namespace InfoSystemDB
 {
     public partial class BuyerListPage : Page
     {
-        //private Buyer selectedBuyer;
-
         public BuyerListPage()
         {
             InitializeComponent();
@@ -17,6 +15,9 @@ namespace InfoSystemDB
             DGridBuyers.ItemsSource = VsInsideDBEntities.Content().Buyer.ToList();
             DGridBuyers.SelectionChanged += AddressLoad;
             DGridBuyers.SelectedIndex = 0;
+
+            DeleteBtn.Click += Delete;
+            AddBtn.Click += Add;
 
             UpBtn.Visibility = Visibility.Hidden;
         }
@@ -41,8 +42,13 @@ namespace InfoSystemDB
                     DownBtn.Visibility = Visibility.Visible;
                 }
             }
-            
-            int buyer_id = ((Buyer)DGridBuyers.SelectedItem).buyer_id;
+
+            int buyer_id = 0;
+            try
+            {
+                buyer_id = ((Buyer)DGridBuyers.SelectedItem).buyer_id;
+            }
+            catch{}
 
             List<DelAddress> addr = new List<DelAddress>();
             string expr = "SELECT da.address_id, city, dep, note FROM DelAddress da JOIN Delivery d ON d.address_id " +
@@ -116,6 +122,11 @@ namespace InfoSystemDB
         private void AddAddress(object sender, RoutedEventArgs e)
         {
             new AddressSetings().Show();
+        }
+        
+        private void Exit(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
         }
     }
 }

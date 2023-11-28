@@ -33,7 +33,7 @@ namespace InfoSystemDB
             prepay.Header = "Перед\nоплата";
         }
 
-        public List<Order> OutputList(string sql)
+        private List<Order> OutputList(string sql)
         {
             List<SetOrder> orders = VsInsideDBEntities.Content().SetOrder.ToList();
             List<Order> newList = new List<Order>();
@@ -58,6 +58,11 @@ namespace InfoSystemDB
             }
 
             return newList;
+        }
+        
+        private void Exit(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
         }
     }
 }

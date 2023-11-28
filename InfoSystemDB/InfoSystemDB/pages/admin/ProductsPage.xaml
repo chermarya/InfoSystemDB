@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:InfoSystemDB"
       mc:Ignorable="d"
-      Title="ProductsPage" Height="700" Width="1200">
+      Title="Products" Height="700" Width="1200">
     <Border CornerRadius="150, 150, 150, 150">
         <Border.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
@@ -17,12 +17,11 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
-                <RowDefinition Height="80" />
+                <RowDefinition Height="100" />
             </Grid.RowDefinitions>
 
             <DataGrid Grid.Row="0" x:Name="DGridProducts" AutoGenerateColumns="False" IsReadOnly="True">
                 <DataGrid.Columns>
-                    <DataGridTextColumn FontSize="17" Width="40" Header="ID" Binding="{Binding product_id}" />
                     <DataGridTextColumn FontSize="17" Width="*" Header="Тип" Binding="{Binding ProdType.title}" />
                     <DataGridTextColumn FontSize="17" Width="*" Header="Назва" Binding="{Binding title}" />
                     <DataGridTextColumn FontSize="17" Width="*" Header="Колір" Binding="{Binding Color.title}" />
@@ -43,12 +42,14 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="40" />
                     <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="170" />
                 </Grid.ColumnDefinitions>
 
                 <Button Grid.Column="0" FontSize="23" Content="Додати" Click="Add" />
                 <Button Grid.Column="2" FontSize="23" Content="Редагувати" Click="Edit" />
                 <Button Grid.Column="4" FontSize="23" Content="Видалити" Click="Delete" />
-                <Button Grid.Column="6" FontSize="23" Content="Переглянути по типам" Click="ViewTips" />
+                <Button Grid.Column="6" FontSize="23" Content="Переглянути&#x0a;по типам" Click="ViewTips" />
+                <Button Grid.Column="7" FontSize="40" Content="🢘" Width="120" HorizontalAlignment="Right" Click="Exit" />
             </Grid>
         </Grid>
     </Border>

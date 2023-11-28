@@ -71,5 +71,10 @@ namespace InfoSystemDB
         {
             new OrderSettings(manager_id, OutputList).Show();
         }
+        
+        private void Exit(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
     }
 }

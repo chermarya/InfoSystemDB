@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:InfoSystemDB"
       mc:Ignorable="d"
-      Title="BuyerListPage" Height="700" Width="1200">
+      Title="Buyers" Height="700" Width="1200">
     <Border CornerRadius="50, 50, 50, 50">
         <Border.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
@@ -48,9 +48,12 @@
 
             <Button Grid.Column="1" Grid.Row="1" Content="+" FontSize="30" Margin="120, 0, 180, 0" Click="AddAddress" />
 
-            <Button Grid.Column="0" Grid.Row="1" Content="▲" FontSize="30" Margin="250, 0, 0 ,0" Width="60"
+            <Button Grid.Column="0" Grid.Row="1" x:Name="AddBtn" FontSize="20" Content="Додати" Margin="60, 0, 0, 0"
+                    HorizontalAlignment="Left" Width="150" />
+            
+            <Button Grid.Column="0" Grid.Row="1" Content="▲" FontSize="30" Margin="350, 0, 0 ,0" Width="60"
                     HorizontalAlignment="Left" x:Name="UpBtn" Click="UpBtnClick" />
-            <Button Grid.Column="0" Grid.Row="1" Content="▼" FontSize="30" Margin="0, 0, 250 ,0" Width="60"
+            <Button Grid.Column="0" Grid.Row="1" Content="▼" FontSize="30" Margin="0, 0, 200 ,0" Width="60"
                     HorizontalAlignment="Right" x:Name="DownBtn" Click="DownBtnClick" />
 
             <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
@@ -59,10 +62,10 @@
                     <ColumnDefinition />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-
-                <Button Grid.Column="0" FontSize="20" Click="Add" Content="Додати" Margin="60, 30, 15, 30" />
-                <Button Grid.Column="1" FontSize="20" Click="Edit" Content="Редагувати" Margin="30" />
-                <Button Grid.Column="2" FontSize="20" Click="Delete" Content="Видалити" Margin="15, 30, 60, 30" />
+                
+                <Button Grid.Column="0" FontSize="20" Click="Edit" Content="Редагувати" Margin="30" />
+                <Button Grid.Column="1" x:Name="DeleteBtn" FontSize="20" Content="Видалити" Margin="15, 30, 60, 30" />
+                <Button Grid.Column="2" Margin="60, 30" Width="100" Content="🢘" FontSize="40" HorizontalAlignment="Right" Click="Exit" />
             </Grid>
         </Grid>
     </Border>

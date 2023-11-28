@@ -148,6 +148,23 @@ namespace InfoSystemDB
                     new SqlParameter("@order", order_id),
                     new SqlParameter("@prod", i.product_id)
                 }).ToExecuteQuery();
+
+                SqlDataReader rd = new DoSql("SELECT quantity FROM Product WHERE product_id = @prod", new SqlParameter[]
+                {
+                    new SqlParameter("@prod", i.product_id)
+                }).ToReadQuery();
+                
+                int quan = 0;
+                while (rd.Read())
+                {
+                    quan = rd.GetInt32(0);
+                }
+                
+                new DoSql("UPDATE Product SET quantity = @quantity WHERE product_id = @prod", new SqlParameter[]
+                {
+                    new SqlParameter("@quantity", --quan),
+                    new SqlParameter("@prod", i.product_id)
+                }).ToExecuteQuery();
             }
         }
 
@@ -263,6 +280,7 @@ namespace InfoSystemDB
 
         private void DeleteBtn(object sender, RoutedEventArgs e)
         {
+            
             if (DGSelectedProducts.SelectedIndex == -1)
                 return;
 

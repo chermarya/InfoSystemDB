@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:InfoSystemDB"
       mc:Ignorable="d"
-      Title="OrderListPage">
+      Title="Orders">
     <Border>
         <Border.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
@@ -22,17 +22,17 @@
 
             <DataGrid Grid.Row="0" x:Name="DGridOrders" AutoGenerateColumns="False" IsReadOnly="True" Margin="0, 0, 0, 20">
                 <DataGrid.Columns>
-                    <DataGridTextColumn FontSize="12" Width="60" Header="Дата" Binding="{Binding Date}" />
-                    <DataGridTextColumn FontSize="12" Width="70" Header="Нік" Binding="{Binding Nick}" />
-                    <DataGridTextColumn FontSize="12" MinWidth="120" Header="Ім'я" Binding="{Binding Name}">
+                    <DataGridTextColumn FontSize="15" Width="80" Header="Дата" Binding="{Binding Date}" />
+                    <DataGridTextColumn FontSize="15" Width="100" Header="Нік" Binding="{Binding Nick}" />
+                    <DataGridTextColumn FontSize="15" MinWidth="150" Header="Ім'я" Binding="{Binding Name}">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
                                 <Setter Property="TextWrapping" Value="Wrap" />
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
-                    <DataGridTextColumn FontSize="12" Width="100" Header="Телефон" Binding="{Binding Phone}" />
-                    <DataGridTextColumn FontSize="12" MinWidth="180" Width="*" Header="Вироби"
+                    <DataGridTextColumn FontSize="15" Width="130" Header="Телефон" Binding="{Binding Phone}" />
+                    <DataGridTextColumn FontSize="15" MinWidth="180" Width="*" Header="Вироби"
                                         Binding="{Binding Products}">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
@@ -40,7 +40,7 @@
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
-                    <DataGridTextColumn FontSize="12" MinWidth="100" Width="*" Header="Адреса"
+                    <DataGridTextColumn FontSize="15" MinWidth="100" Width="*" Header="Адреса"
                                         Binding="{Binding Address}">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
@@ -48,7 +48,7 @@
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
-                    <DataGridTextColumn FontSize="12" MinWidth="65" Width="*" Header="Знижка"
+                    <DataGridTextColumn FontSize="15" MinWidth="65" MaxWidth="170" Width="*" Header="Знижка"
                                         Binding="{Binding Discount}">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
@@ -56,26 +56,26 @@
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
-                    <DataGridTextColumn FontSize="12" Width="55" Binding="{Binding Sum}" x:Name="summ" />
-                    <DataGridTextColumn FontSize="12" Width="55" Binding="{Binding Prepay}" x:Name="prepay" />
-                    <DataGridTextColumn FontSize="12" Width="55" Binding="{Binding Amount_due}" x:Name="amount_due" />
-                    <DataGridTextColumn FontSize="12" Width="100" Header="Накладна" Binding="{Binding Invoice}" />
-                    <DataGridTextColumn FontSize="12" Width="65" Header="Статус" Binding="{Binding Status}">
+                    <DataGridTextColumn FontSize="15" Width="55" Binding="{Binding Sum}" x:Name="summ" />
+                    <DataGridTextColumn FontSize="15" Width="55" Binding="{Binding Prepay}" x:Name="prepay" />
+                    <DataGridTextColumn FontSize="15" Width="55" Binding="{Binding Amount_due}" x:Name="amount_due" />
+                    <DataGridTextColumn FontSize="15" Width="150" Header="Накладна" Binding="{Binding Invoice}" />
+                    <DataGridTextColumn FontSize="15" Width="90" Header="Статус" Binding="{Binding Status}">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
                                 <Setter Property="TextWrapping" Value="Wrap" />
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
-                    <DataGridTextColumn FontSize="12" Width="60" Header="Прим." Binding="{Binding Note}">
+                    <DataGridTextColumn FontSize="15" Width="80" Header="Прим." Binding="{Binding Note}">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
                                 <Setter Property="TextWrapping" Value="Wrap" />
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
-                    <DataGridTextColumn FontSize="12" MinWidth="65" Header="Магазин" Binding="{Binding Shop}" />
-                    <DataGridTextColumn FontSize="12" MinWidth="70" Header="Менеджер" Binding="{Binding Manager}">
+                    <DataGridTextColumn FontSize="17" MinWidth="65" Header="Магазин" Binding="{Binding Shop}" />
+                    <DataGridTextColumn FontSize="17" MinWidth="120" Header="Менеджер" Binding="{Binding Manager}">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
                                 <Setter Property="TextWrapping" Value="Wrap" />
@@ -91,8 +91,9 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
-                <Button Grid.Column="0" FontSize="17" Content="Додати накладну" HorizontalAlignment="Center" Width="200" />
-                <Button Grid.Column="1" FontSize="17" Content="Змінити статус" HorizontalAlignment="Center" Width="200" />
+                <Button Grid.Column="0" FontSize="17" Content="Додати накладну" HorizontalAlignment="Right" Width="200" Margin="50, 0" />
+                <Button Grid.Column="1" FontSize="17" Content="Змінити статус" HorizontalAlignment="Left" Width="200" Margin="50, 0" />
+                <Button Grid.Column="1" FontSize="40" Content="🢘" Width="120" HorizontalAlignment="Right" Click="Exit" />
             </Grid>
         </Grid>
     </Border>

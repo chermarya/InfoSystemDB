@@ -64,5 +64,10 @@ namespace InfoSystemDB
         {
             MainFrame.Content = new ViewTipsPage();
         }
+        
+        private void Exit(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
     }
 }

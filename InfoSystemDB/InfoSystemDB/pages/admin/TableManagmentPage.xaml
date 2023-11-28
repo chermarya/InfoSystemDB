@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:InfoSystemDB"
       mc:Ignorable="d"
-      Title="TableManagmentPage" Height="700" Width="1200">
+      Title="Tables" Height="700" Width="1200">
     <Grid Margin="30">
         <Grid.RowDefinitions>
             <RowDefinition Height="70" />

@@ -4,8 +4,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:InfoSystemDB"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="OrderSettings" Height="800" Width="1000" ResizeMode="NoResize">
+        Title="Order Settings" Height="800" Width="1000" ResizeMode="NoResize">
     <Grid Margin="15">
 
         <Grid.ColumnDefinitions>
@@ -30,7 +31,7 @@
             </Grid.ColumnDefinitions>
 
             <Label Grid.Row="0" Grid.Column="0" FontSize="17" Content="Дата" />
-            <DatePicker Grid.Row="0" Grid.Column="1" FontSize="17" VerticalContentAlignment="Center" x:Name="DateInput" />
+            <DatePicker Grid.Row="0" Grid.Column="1" FontSize="17" VerticalContentAlignment="Center" x:Name="DateInput" SelectedDate="{x:Static sys:DateTime.Now}" />
 
             <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="0, 15" x:Name="ChooseGrid">
                 <Grid.RowDefinitions>
