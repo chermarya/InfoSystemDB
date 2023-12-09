@@ -41,7 +41,7 @@ namespace InfoSystemDB
                 MessageBox.Show("Incorrect login or password.");
             }
         }
-
+        
         private bool Validate()
         {
             if (logInput.Text == "" || PassInput.Password == "")
@@ -52,10 +52,10 @@ namespace InfoSystemDB
             
             if (managers.ContainsKey(login) && managers[login] == pass)
                 return true;
-
+        
             return false;
         }
-
+        
         private string GetHash(string input)
         {
             byte[] hash = MD5.Create().ComputeHash(Encoding.UTF8.GetBytes(input));

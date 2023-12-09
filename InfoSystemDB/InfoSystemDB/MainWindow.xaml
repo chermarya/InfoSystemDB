@@ -25,13 +25,13 @@
         
         <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="7" Source="img/bc_login.jpg" Stretch="UniformToFill" HorizontalAlignment="Center" />
         
-        <StackPanel Grid.Row="1" Grid.Column="1">  
+        <StackPanel Grid.Row="1" Grid.Column="1">
             <TextBox x:Name="logInput" Width="250" Padding="10, 7, 10, 7" MaxLength="16" FontSize="25" FontFamily="Book Antiqua" />
         </StackPanel>
         
-        <StackPanel Grid.Row="3" Grid.Column="1">  
+        <StackPanel Grid.Row="3" Grid.Column="1">
             <PasswordBox x:Name="PassInput" Width="250" Padding="10, 7, 10, 7" MaxLength="16" FontSize="25" />
-        </StackPanel> 
+        </StackPanel>
         
         <Button Grid.Row="5" Grid.Column="1" Click="Login" FontSize="25" Content="Увійти" FontFamily="Book Antiqua" />
     </Grid>
