@@ -11,39 +11,111 @@
             <RowDefinition Height="50" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        
+
         <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-        
-                <StackPanel Grid.Column="0" Height="20" Name="StackPanel1" Orientation="Horizontal" HorizontalAlignment="Center">
+
+                <StackPanel Grid.Column="0" Height="20" Name="StackPanel1" Orientation="Horizontal"
+                            HorizontalAlignment="Center">
                     <Viewbox Height="{Binding Path=ActualHeight, ElementName=StackPanel1}">
                         <CheckBox Content="Обрати адресу" IsChecked="True" x:Name="CBSelect" Click="CDSchecked" />
                     </Viewbox>
                 </StackPanel>
-        
-                <StackPanel Grid.Column="1" Height="20" Name="StackPanel2" Orientation="Horizontal" HorizontalAlignment="Center">
+
+                <StackPanel Grid.Column="1" Height="20" Name="StackPanel2" Orientation="Horizontal"
+                            HorizontalAlignment="Center">
                     <Viewbox Height="{Binding Path=ActualHeight, ElementName=StackPanel1}">
                         <CheckBox Content="Додати нову" x:Name="CBNew" Click="CDNchecked" />
                     </Viewbox>
                 </StackPanel>
             </Grid>
         </StackPanel>
-        
+
         <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" x:Name="ChooseGrid">
-            <Label Content="sfgdfg" />
+            <Grid.RowDefinitions>
+                <RowDefinition Height="290" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <DataGrid Grid.Row="0" AutoGenerateColumns="False" IsReadOnly="True" x:Name="DGAddress">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="*" FontSize="15" Header="Місто" Binding="{Binding city}" />
+                    <DataGridTextColumn Width="*" FontSize="15" Header="Відділення" Binding="{Binding dep}" />
+                    <DataGridTextColumn Width="*" FontSize="15" Header="Примітка" Binding="{Binding note}" />
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Content="Місто" FontSize="17" Margin="40, 10"
+                       VerticalContentAlignment="Center" />
+                <TextBox Grid.Row="0" Grid.Column="1" Margin="0, 10, 40, 10" VerticalContentAlignment="Center"
+                         x:Name="CityInput" FontSize="17" />
+
+                <Label Grid.Row="1" Grid.Column="0" Content="Відділення" FontSize="17" Margin="40, 10"
+                       VerticalContentAlignment="Center" />
+                <TextBox Grid.Row="1" Grid.Column="1" Margin="0, 10, 40, 10" VerticalContentAlignment="Center"
+                         x:Name="DepInput" FontSize="17" />
+
+                <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Content="Обрати" FontSize="20"
+                        Margin="60, 20, 60, 0" Click="Choose" />
+            </Grid>
         </Grid>
-        
+
         <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" x:Name="NewGrid" Visibility="Collapsed">
-            <Label Content="jjjjjjjj" />
+
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition Height="40" />
+                <RowDefinition />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="120" />
+                <RowDefinition Height="40" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="1" Grid.Column="0" Content="Місто" FontSize="17" Margin="40, 10"
+                   VerticalContentAlignment="Center" />
+            <TextBox Grid.Row="1" Grid.Column="1" Margin="0, 10, 40, 10" VerticalContentAlignment="Center"
+                     x:Name="NewCityInput" FontSize="17" />
+
+            <Label Grid.Row="3" Grid.Column="0" Content="Відділення" FontSize="17" Margin="40, 10"
+                   VerticalContentAlignment="Center" />
+            <TextBox Grid.Row="3" Grid.Column="1" Margin="0, 10, 40, 10" VerticalContentAlignment="Center"
+                     x:Name="NewDepInput" FontSize="17" />
+            
+            <Label Grid.Row="5" Grid.Column="0" Content="Примітка" FontSize="17" Margin="40, 10"
+                   VerticalContentAlignment="Top" />
+            <TextBox Grid.Row="5" Grid.Column="1" Margin="0, 10, 40, 10" VerticalContentAlignment="Center"
+                     x:Name="NoteInput" FontSize="17" />
+
+            <Button Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Content="Додати" FontSize="20"
+                    Margin="60, 20, 60, 0" Click="Save" />
         </Grid>
     </Grid>
 </Window>

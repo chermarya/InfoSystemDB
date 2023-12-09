@@ -72,6 +72,19 @@ namespace InfoSystemDB
             new OrderSettings(manager_id, OutputList).Show();
         }
         
+        private void Delete(object sender, RoutedEventArgs e)
+        {
+            int order_id = ((Order)DGridOrders.SelectedItem).ID;
+            
+            new DoSql("DELETE FROM SetOrder WHERE order_id = @id",
+                new SqlParameter[]
+                {
+                    new SqlParameter("@id", order_id)
+                }).ToExecuteQuery();
+
+            OutputList();
+        }
+        
         private void Exit(object sender, RoutedEventArgs e)
         {
             NavigationService.GoBack();

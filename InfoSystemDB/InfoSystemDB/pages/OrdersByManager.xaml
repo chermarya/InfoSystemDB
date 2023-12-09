@@ -84,9 +84,9 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
-                <Button Grid.Column="0" FontSize="20" Content="Додати" HorizontalAlignment="Right" Width="300" Margin="50, 0" Click="Add" />
-                <Button Grid.Column="1" FontSize="20" Content="Видалити" HorizontalAlignment="Left" Width="300" Margin="50, 0" />
-                <Button Grid.Column="1" FontSize="40" Content="🢘" Width="120" HorizontalAlignment="Right" Click="Exit" />
+                <Button Grid.Column="0" FontSize="20" Width="300" Content="Додати" Click="Add" HorizontalAlignment="Right" Margin="50, 0" />
+                <Button Grid.Column="1" FontSize="20" Width="300" Content="Видалити" Click="Delete" HorizontalAlignment="Left" Margin="50, 0" />
+                <Button Grid.Column="1" FontSize="40" Width="120" Content="🢘" Click="Exit" HorizontalAlignment="Right" />
             </Grid>
         </Grid>
     </Border>

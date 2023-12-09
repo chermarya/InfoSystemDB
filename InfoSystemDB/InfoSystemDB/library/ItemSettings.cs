@@ -58,25 +58,27 @@ namespace InfoSystemDB
                 SetValues();
 
                 string sqlQuery;
-                
-                if (mode == 0)
-                    sqlQuery = "INSERT INTO Product (prodtype_id, title, size_id, color_id, price, quantity) VALUES (@prodtype, " +
-                               "@title, @size, @color, @price, @quantity)";
-                else
-                    sqlQuery = "UPDATE Product SET prodtype_id = @prodtype, title = @title, size_id = @size, color_id = " +
-                               "@color, price = @price, quantity = @quantity WHERE product_id = @id";
 
-                new DoSql(sqlQuery, 
+                if (mode == 0)
+                    sqlQuery =
+                        "INSERT INTO Product (prodtype_id, title, size_id, color_id, price, quantity) VALUES (@prodtype, " +
+                        "@title, @size, @color, @price, @quantity)";
+                else
+                    sqlQuery =
+                        "UPDATE Product SET prodtype_id = @prodtype, title = @title, size_id = @size, color_id = " +
+                        "@color, price = @price, quantity = @quantity WHERE product_id = @id";
+
+                new DoSql(sqlQuery,
                     new SqlParameter[]
-                {
-                    new SqlParameter("@prodtype", type_id),
-                    new SqlParameter("@title", title),
-                    new SqlParameter("@size", size_id),
-                    new SqlParameter("@color", color_id),
-                    new SqlParameter("@price", price),
-                    new SqlParameter("@quantity", quantity),
-                    new SqlParameter("@id", id)
-                }).ToExecuteQuery();
+                    {
+                        new SqlParameter("@prodtype", type_id),
+                        new SqlParameter("@title", title),
+                        new SqlParameter("@size", size_id),
+                        new SqlParameter("@color", color_id),
+                        new SqlParameter("@price", price),
+                        new SqlParameter("@quantity", quantity),
+                        new SqlParameter("@id", id)
+                    }).ToExecuteQuery();
 
                 DGridProducts.ItemsSource = VsInsideDBEntities.Content().Product.ToList();
                 Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive).Close();
@@ -86,13 +88,50 @@ namespace InfoSystemDB
         private bool Validate(int mode)
         {
             if (mode == 0)
-                if (TipList.SelectedIndex == 0 || ColorList.SelectedIndex == 0 || SizeList.SelectedIndex == 0)
+            {
+                if (TipList.SelectedIndex == 0)
+                {
+                    MessageBox.Show("Тип виробу не обрано.");
                     return false;
+                }
 
-            if (TitleInput.Text == "" || PriceInput.Text == "" || QuantityInput.Text == "" ||
-                ColorList.SelectedIndex <= 0 ||
-                !int.TryParse(PriceInput.Text, out price) || !int.TryParse(QuantityInput.Text, out quantity))
+                if (ColorList.SelectedIndex == 0)
+                {
+                    MessageBox.Show("Колір не обрано.");
+                    return false;
+                }
+
+                if (SizeList.SelectedIndex == 0)
+                {
+                    MessageBox.Show("Розмір не обрано.");
+                    return false;
+                }
+            }
+
+            if (TitleInput.Text == "")
+            {
+                MessageBox.Show("Назва не може бути пустою.");
                 return false;
+            }
+
+            if (PriceInput.Text == "" || !int.TryParse(PriceInput.Text, out price))
+            {
+                MessageBox.Show("Невірно введена ціна.");
+                return false;
+            }
+
+            if (QuantityInput.Text == "" || !int.TryParse(QuantityInput.Text, out quantity))
+            {
+                MessageBox.Show("Невірно введений залишок.");
+                return false;
+            }
+
+            if (ColorList.SelectedIndex <= 0)
+            {
+                MessageBox.Show("Колір не обрано.");
+                return false;
+            }
+
             return true;
         }
 
@@ -233,18 +272,18 @@ namespace InfoSystemDB
             ColorList.SelectedIndex = 0;
 
             string sql;
-            
+
             if (MaterialList.SelectedIndex == 0)
                 sql = "SELECT color_id FROM Color ORDER BY title";
             else
                 sql = "SELECT color_id FROM Color WHERE material_id = @mat ORDER BY title";
-            
-            SqlDataReader reader = new DoSql(sql, 
+
+            SqlDataReader reader = new DoSql(sql,
                 new SqlParameter[]
                 {
                     new SqlParameter("@mat", mat)
                 }).ToReadQuery();
-            
+
             while (reader.Read())
             {
                 for (int i = 0; i < colors.Length; i++)

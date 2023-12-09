@@ -15,7 +15,7 @@ namespace InfoSystemDB
             string sql =
 	            "SELECT so.order_id, FORMAT(so.ddate, 'dd.MM.yy' ), br.nick," +
 	            "br.surname + ' ' + br.nname, br.tel, STRING_AGG(pt.title + ' ' + pr.title + ' ' + cl.title + ' ' + " +
-	            "sz.title, ', '), da.city + ' ' + da.dep + ' (' + ISNULL(da.note, '') + ')', ds.title AS discount, so.summ, " +
+	            "sz.title, ','), da.city + ' ' + da.dep + ' (' + ISNULL(da.note, '') + ')', ds.title AS discount, so.summ, " +
 	            "so.prepay, so.amount_due, so.invoice, ISNULL(so.stat, ''), ISNULL(so.note, ''), sp.title AS shop, mg.nname " +
 	            "+ ' ' + mg.surname FROM SetOrder so JOIN Delivery dl ON so.delivery_id = dl.delivery_id JOIN Buyer br " +
 	            "ON dl.buyer_id = br.buyer_id JOIN DelAddress da ON dl.address_id = da.address_id JOIN Discount ds ON " +

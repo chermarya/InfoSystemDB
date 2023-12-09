@@ -8,6 +8,7 @@ namespace InfoSystemDB
 {
     public partial class AddProductWindow : Window
     {
+        private int mode;
         private DataGrid grid;
         private List<Product> selectedList;
 
@@ -19,8 +20,9 @@ namespace InfoSystemDB
         private ListItem[] types = new ListItem[VsInsideDBEntities.Content().ProdType.ToList().Count];
         private ListItem[] sizes = new ListItem[VsInsideDBEntities.Content().Size.ToList().Count];
 
-        public AddProductWindow(DataGrid gr, List<Product> selList)
+        public AddProductWindow(DataGrid gr, List<Product> selList, int m)
         {
+            mode = m;
             selectedList = selList;
             grid = gr;
             InitializeComponent();
@@ -42,6 +44,8 @@ namespace InfoSystemDB
 
             foreach (Product i in selectedList)
             {
+                if (mode == 1)
+                    i.quantity = 0;
                 newL.Add(i);
             }
 

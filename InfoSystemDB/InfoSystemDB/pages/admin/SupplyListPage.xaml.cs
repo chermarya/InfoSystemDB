@@ -13,19 +13,26 @@ namespace InfoSystemDB
         public SupplyListPage(Frame MainFrame)
         {
             InitializeComponent();
-            FillGrid();
+            FillGrid("");
         }
-
-        private void FillGrid()
+        
+        private void FillGrid(string where)
         {
             List<SupplyItem> list = new List<SupplyItem>();
 
-            string sqlExpr = "SELECT FORMAT(s.dday, 'dd.MM.yy' ) AS sup_day, pt.title + ' ' + pr.title AS product, " +
-                             "m.quantity FROM Supply s JOIN  Making m ON s.supply_id = m.supply_id JOIN Product pr " +
-                             "ON m.product_id = pr.product_id JOIN ProdType pt ON pr.prodtype_id = pt.prodtype_id " +
-                             "GROUP BY s.dday, pt.title + ' ' + pr.title, m.quantity";
+            string select = "SELECT FORMAT(s.dday, 'dd.MM.yy' ) AS sup_day, pt.title + ' ' + pr.title + ' ' + cl.title" +
+                            " + ' ' + sz.title AS product, m.quantity FROM Supply s JOIN  Making m ON s.supply_id = " +
+                            "m.supply_id JOIN Product pr ON m.product_id = pr.product_id JOIN ProdType pt ON " +
+                            "pr.prodtype_id = pt.prodtype_id JOIN Size sz ON pr.size_id = sz.size_id JOIN Color cl " +
+                            "ON pr.color_id = cl.color_id ";
+
+            if (where != "")
+                where = $"WHERE s.dday = '{where}'";
             
-            SqlDataReader reader = new DoSql(sqlExpr, new SqlParameter[] { }).ToReadQuery();
+            string group = " GROUP BY s.dday, pt.title + ' ' + pr.title + ' ' + cl.title + ' ' + sz.title, m.quantity " +
+                           "ORDER BY s.dday DESC";
+            
+            SqlDataReader reader = new DoSql(select + where + group, new SqlParameter[] { }).ToReadQuery();
             
             while (reader.Read())
             {
@@ -41,7 +48,24 @@ namespace InfoSystemDB
 
         private void DateChanged(object sender, SelectionChangedEventArgs e)
         {
-            //MessageBox.Show(Calendar.SelectedDate.Value.ToString());
+            string[] d = DPSelected.Text.Split('.');
+            string data = d[2] + "/" + d[1] + "/" + d[0];
+            FillGrid(data);
+        }
+        
+        private void All(object sender, RoutedEventArgs e)
+        {
+            FillGrid("");
+        }
+
+        private void Add(object sender, RoutedEventArgs e)
+        {
+            new SupplySettings().Show();
+        }
+        
+        private void Edit(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

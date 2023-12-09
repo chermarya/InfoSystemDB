@@ -23,9 +23,9 @@ namespace InfoSystemDB
         {
             loadMode = 1;
             MatList.Visibility = Visibility.Hidden;
-            
+
             DGridOutput.Columns.Clear();
-            
+
             DGridOutput.Columns.Add(new DataGridTextColumn()
             {
                 Header = "Назва",
@@ -35,14 +35,14 @@ namespace InfoSystemDB
 
             DGridOutput.ItemsSource = VsInsideDBEntities.Content().Material.ToList();
         }
-        
+
         private void Discounts(object sender, RoutedEventArgs e)
         {
             loadMode = 2;
             MatList.Visibility = Visibility.Hidden;
-            
+
             DGridOutput.Columns.Clear();
-            
+
             DGridOutput.Columns.Add(new DataGridTextColumn()
             {
                 Header = "Назва",
@@ -59,14 +59,14 @@ namespace InfoSystemDB
 
             DGridOutput.ItemsSource = VsInsideDBEntities.Content().Discount.ToList();
         }
-        
+
         private void Prodtypes(object sender, RoutedEventArgs e)
         {
             loadMode = 3;
             MatList.Visibility = Visibility.Hidden;
-            
+
             DGridOutput.Columns.Clear();
-            
+
             DGridOutput.Columns.Add(new DataGridTextColumn()
             {
                 Header = "Назва",
@@ -76,7 +76,7 @@ namespace InfoSystemDB
 
             DGridOutput.ItemsSource = VsInsideDBEntities.Content().ProdType.ToList();
         }
-        
+
         private void Colors(object sender, RoutedEventArgs e)
         {
             loadMode = 0;
@@ -86,10 +86,10 @@ namespace InfoSystemDB
             SetColorGrid(VsInsideDBEntities.Content().Color.ToList());
 
             MatList.Visibility = Visibility.Visible;
-            
+
             MatList.Items.Add("Усі");
             MatList.SelectedIndex = 0;
-            
+
             for (var i = 0; i < material_list.Count; i++)
             {
                 materials[i] = new ListItem(material_list[i].material_id, material_list[i].title);
@@ -117,12 +117,12 @@ namespace InfoSystemDB
                 sql = "SELECT * FROM Color WHERE material_id = @mat ORDER BY title";
             }
 
-            SqlDataReader reader = new DoSql(sql, 
+            SqlDataReader reader = new DoSql(sql,
                 new SqlParameter[]
                 {
                     new SqlParameter("@mat", mat)
                 }).ToReadQuery();
-            
+
             while (reader.Read())
             {
                 foreach (var i in list)
@@ -138,7 +138,7 @@ namespace InfoSystemDB
         private void SetColorGrid(List<Color> list)
         {
             DGridOutput.Columns.Clear();
-            
+
             DGridOutput.Columns.Add(new DataGridTextColumn()
             {
                 Header = "Матеріал",
@@ -161,7 +161,7 @@ namespace InfoSystemDB
 
             DGridOutput.ItemsSource = list;
         }
-        
+
         private void Exit(object sender, RoutedEventArgs e)
         {
             NavigationService.GoBack();
@@ -171,10 +171,12 @@ namespace InfoSystemDB
         {
             Dictionary<int, Action> func = new Dictionary<int, Action>()
             {
-                {0, ColorFilter},
-                {1, MatAction}
+                { 0, ColorFilter },
+                { 1, MatAction },
+                { 2, DiscountAction },
+                { 3, TypeAction },
             };
-            
+
             new TableManagmentSettings(loadMode, func[loadMode]).Show();
         }
 
@@ -182,22 +184,66 @@ namespace InfoSystemDB
         {
             DGridOutput.ItemsSource = VsInsideDBEntities.Content().Material.ToList();
         }
-        
+
+        private void DiscountAction()
+        {
+            DGridOutput.ItemsSource = VsInsideDBEntities.Content().Discount.ToList();
+        }
+
+        private void TypeAction()
+        {
+            DGridOutput.ItemsSource = VsInsideDBEntities.Content().ProdType.ToList();
+        }
+
         private void Delete(object sender, RoutedEventArgs e)
         {
             if (DGridOutput.SelectedIndex == -1)
                 return;
+
+            int id = 0;
+            Action func = ColorFilter;
+            string[] tab = new string[2];
+
+            switch (loadMode)
+            {
+                case 0:
+                    id = ((Color)DGridOutput.SelectedItem).color_id;
+                    func = ColorFilter;
+                    tab = new[] { "Color", "color_id" };
+                    break;
+                
+                case 1:
+                    id = ((Material)DGridOutput.SelectedItem).material_id;
+                    func = MatAction;
+                    tab = new[] { "Material", "material_id" };
+                    break;
+                
+                case 2:
+                    id = ((Discount)DGridOutput.SelectedItem).discount_id;
+                    func = DiscountAction;
+                    tab = new[] { "Discount", "discount_id" };
+                    break;
+                
+                case 3:
+                    id = ((ProdType)DGridOutput.SelectedItem).prodtype_id;
+                    func = TypeAction;
+                    tab = new[] { "ProdType", "prodtype_id" };
+                    break;
+            }
             
-            Color item = (Color)DGridOutput.SelectedItem;
-            int id = item.color_id;
-            
-            new DoSql("DELETE FROM Color WHERE color_id = @id",
+            Del(id, func, tab);
+        }
+
+        private void Del(int id, Action func, string[] tabl)
+        {
+            new DoSql($"DELETE FROM {tabl[0]} WHERE {tabl[1]} = @id",
                 new SqlParameter[]
                 {
                     new SqlParameter("@id", id)
-                }).ToExecuteQuery();
+                }
+            ).ToExecuteQuery();
 
-            ColorFilter();
+            func();
         }
     }
 }

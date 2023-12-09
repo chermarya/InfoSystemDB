@@ -28,7 +28,6 @@
             Nick = nick;
             Name = name;
             Phone = phone;
-            Products = products;
             Address = address;
             Discount = discount;
             Sum = sum;
@@ -39,6 +38,15 @@
             Note = note;
             Shop = shop;
             Manager = manager;
+
+            string[] prod = products.Split(',');
+            string prodStr = "";
+            foreach (var i in prod)
+            {
+                prodStr += "⦿ " + i + "\n";
+            }
+
+            Products = prodStr;
         }
     }
 }

@@ -170,8 +170,29 @@ namespace InfoSystemDB
 
         private bool Validate()
         {
-            if (DateInput.Text == "" || ShopList.SelectedItem == null || AddressList.SelectedItem == null)
+            if (DateInput.Text == "")
+            {
+                MessageBox.Show("Не вказана дата.");
                 return false;
+            }
+            
+            if (ShopList.SelectedItem == null)
+            {
+                MessageBox.Show("Магазин не обрано.");
+                return false;
+            }
+            
+            if (AddressList.SelectedItem == null)
+            {
+                MessageBox.Show("Не обрано покупця.");
+                return false;
+            }
+
+            if (selectedList.Count == 0)
+            {
+                MessageBox.Show("Список товарів пуст.");
+                return false;
+            }
 
             return true;
         }
@@ -210,6 +231,8 @@ namespace InfoSystemDB
                 shops[i] = new ListItem(newShops[i].shop_id, newShops[i].title);
                 ShopList.Items.Add(shops[i].Title);
             }
+
+            ShopList.SelectedIndex = 0;
         }
 
         private void DiscountSelected(object sender, RoutedEventArgs e)
@@ -292,6 +315,9 @@ namespace InfoSystemDB
 
             DGSelectedProducts.ItemsSource = selectedList;
 
+            if (selectedList.Count == 0)
+                DGSelectedProducts.ItemsSource = new List<Product>();
+
             int sum = 0;
 
             foreach (Product i in selectedList)
@@ -323,7 +349,6 @@ namespace InfoSystemDB
                         addressList.Add(i);
                 }
             }
-
 
             addresses = new ListItem[addressList.Count];
 
@@ -369,7 +394,7 @@ namespace InfoSystemDB
 
         private void AddProduct(object sender, RoutedEventArgs e)
         {
-            new AddProductWindow(DGSelectedProducts, selectedList).Show();
+            new AddProductWindow(DGSelectedProducts, selectedList, 0).Show();
         }
     }
 }

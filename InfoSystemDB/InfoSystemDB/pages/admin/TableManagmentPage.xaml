@@ -10,7 +10,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="70" />
             <RowDefinition />
-            <RowDefinition Height="45" />
+            <RowDefinition Height="60" />
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -35,9 +35,9 @@
             <ComboBox x:Name="MatList" Visibility="Hidden" SelectionChanged="SetFilter" FontSize="17" />
         </StackPanel>
 
-        <Button Grid.Column="1" Grid.Row="2" Width="200" Margin="15, 0" FontSize="17" HorizontalAlignment="Right"
+        <Button Grid.Column="1" Grid.Row="2" Width="250" Margin="15, 0" FontSize="25" HorizontalAlignment="Right"
                 Content="Додати" Click="Add" />
-        <Button Grid.Column="2" Grid.Row="2" Width="200" Margin="15, 0" FontSize="17" HorizontalAlignment="Left"
+        <Button Grid.Column="2" Grid.Row="2" Width="250" Margin="15, 0" FontSize="25" HorizontalAlignment="Left"
                 Content="Видалити" Click="Delete" />
     </Grid>
 </Page>

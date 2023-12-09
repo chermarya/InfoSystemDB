@@ -42,30 +42,39 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn FontSize="17" Width="*" Header="Місто" Binding="{Binding city}" />
                     <DataGridTextColumn FontSize="17" Width="*" Header="Відділення" Binding="{Binding dep}" />
-                    <DataGridTextColumn FontSize="17" Width="*" Header="Примітка" Binding="{Binding note}" />
+                    <DataGridTextColumn FontSize="14" Width="*" Header="Примітка" Binding="{Binding note}" />
                 </DataGrid.Columns>
             </DataGrid>
 
-            <Button Grid.Column="1" Grid.Row="1" Content="+" FontSize="30" Margin="120, 0, 180, 0" Click="AddAddress" />
+            <Label Grid.Column="0" Grid.Row="1" FontSize="19" VerticalContentAlignment="Center" Margin="60, 0"
+                   Content="Прізвище" />
+            <TextBox Grid.Column="0" Grid.Row="1" Margin="175, 0, 265, 0" x:Name="SurnameInput" FontSize="19"
+                     VerticalContentAlignment="Center" />
 
-            <Button Grid.Column="0" Grid.Row="1" x:Name="AddBtn" FontSize="20" Content="Додати" Margin="60, 0, 0, 0"
-                    HorizontalAlignment="Left" Width="150" />
-            
-            <Button Grid.Column="0" Grid.Row="1" Content="▲" FontSize="30" Margin="350, 0, 0 ,0" Width="60"
+            <Button Grid.Column="0" Grid.Row="1" Content="▲" FontSize="30" Margin="500, 0, 0 ,0" Width="60"
                     HorizontalAlignment="Left" x:Name="UpBtn" Click="UpBtnClick" />
-            <Button Grid.Column="0" Grid.Row="1" Content="▼" FontSize="30" Margin="0, 0, 200 ,0" Width="60"
+            <Button Grid.Column="0" Grid.Row="1" Content="▼" FontSize="30" Margin="0, 0, 80,0" Width="60"
                     HorizontalAlignment="Right" x:Name="DownBtn" Click="DownBtnClick" />
+
+
+            <Button Grid.Column="1" Grid.Row="1" Content="+" FontSize="30" Margin="30, 0" Click="AddAddress"
+                    HorizontalAlignment="Left" Width="150" />
+            <Button Grid.Column="1" Grid.Row="1" Content="Прибрати" FontSize="20" Margin=" 90, 0" Click="DelAddress"
+                    HorizontalAlignment="Right" Width="150" />
 
             <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition />
                     <ColumnDefinition />
+                    <ColumnDefinition Width="220" />
                 </Grid.ColumnDefinitions>
-                
-                <Button Grid.Column="0" FontSize="20" Click="Edit" Content="Редагувати" Margin="30" />
-                <Button Grid.Column="1" x:Name="DeleteBtn" FontSize="20" Content="Видалити" Margin="15, 30, 60, 30" />
-                <Button Grid.Column="2" Margin="60, 30" Width="100" Content="🢘" FontSize="40" HorizontalAlignment="Right" Click="Exit" />
+
+                <Button Grid.Column="0" Grid.Row="1" x:Name="AddBtn" FontSize="20" Content="Додати" Margin="60, 30" />
+                <Button Grid.Column="1" FontSize="20" Click="Edit" Content="Редагувати" Margin="45, 30" />
+                <Button Grid.Column="2" x:Name="DeleteBtn" FontSize="20" Content="Видалити" Margin="45, 30" />
+                <Button Grid.Column="3" Margin="60, 30" Width="100" Content="🢘" FontSize="40"
+                        HorizontalAlignment="Right" Click="Exit" />
             </Grid>
         </Grid>
     </Border>

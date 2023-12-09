@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:InfoSystemDB"
       mc:Ignorable="d"
       Title="Supplies" Height="700" Width="1200">
-    <Border CornerRadius="150, 150, 150, 150">
+    <Border CornerRadius="50, 50, 50, 50">
         <Border.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
                 <GradientStop Color="White" Offset="0.0" />
@@ -14,22 +14,39 @@
             </LinearGradientBrush>
         </Border.Background>
 
-        <Grid>
+        <Grid Margin="30">
             <Grid.RowDefinitions>
+                <RowDefinition Height="20" />
+                <RowDefinition Height="50" />
                 <RowDefinition />
-                <RowDefinition Height="80" />
             </Grid.RowDefinitions>
-            
-            <DataGrid Grid.Row="0" x:Name="DGridSupplies" AutoGenerateColumns="False" IsReadOnly="True">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="300" />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="1" Grid.Column="0" FontSize="20" Content="Дата: " VerticalAlignment="Center" />
+            <DatePicker Grid.Row="1" Grid.Column="1" x:Name="DPSelected" SelectedDateChanged="DateChanged"
+                        FontSize="20" VerticalAlignment="Center" />
+
+            <Button Grid.Row="1" Grid.Column="2" FontSize="20" Width="200" Content="Переглянути всі" Click="All" />
+            <Button Grid.Row="1" Grid.Column="3" FontSize="30" Width="180" Content="+" Click="Add" />
+            <Button Grid.Row="1" Grid.Column="4" FontSize="20" Width="180" Content="Редагувати" Click="Edit" />
+
+            <DataGrid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5" x:Name="DGridSupplies"
+                      AutoGenerateColumns="False" IsReadOnly="True" Margin="0, 20">
                 <DataGrid.Columns>
                     <DataGridTextColumn FontSize="17" Width="150" Header="Дата" Binding="{Binding Date}" />
                     <DataGridTextColumn FontSize="17" Width="*" Header="Виріб" Binding="{Binding Product}" />
                     <DataGridTextColumn FontSize="17" Width="100" Header="Кількість" Binding="{Binding Quantity}" />
                 </DataGrid.Columns>
             </DataGrid>
-            
-            <!-- <Calendar Grid.Column="1" x:Name="Calendar" FirstDayOfWeek="Monday" SelectedDatesChanged="DateChanged" Width="350" Height="500"/> -->
-                <DatePicker Grid.Row="1" x:Name="Calendar" SelectedDateChanged="DateChanged" FontSize="20" />
+
+
         </Grid>
     </Border>
 </Page>

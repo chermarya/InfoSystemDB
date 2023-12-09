@@ -178,6 +178,9 @@
     <Compile Include="windows\ProductSettings.xaml.cs">
       <DependentUpon>ProductSettings.xaml</DependentUpon>
     </Compile>
+    <Compile Include="windows\SupplySettings.xaml.cs">
+      <DependentUpon>SupplySettings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="windows\TableManagmentSettings.xaml.cs">
       <DependentUpon>TableManagmentSettings.xaml</DependentUpon>
     </Compile>
@@ -211,6 +214,7 @@
     <Page Include="windows\BuyerSettings.xaml" />
     <Page Include="windows\OrderSettings.xaml" />
     <Page Include="windows\ProductSettings.xaml" />
+    <Page Include="windows\SupplySettings.xaml" />
     <Page Include="windows\TableManagmentSettings.xaml" />
   </ItemGroup>
   <ItemGroup>
