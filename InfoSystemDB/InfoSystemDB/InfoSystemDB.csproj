@@ -171,14 +171,14 @@
     <Compile Include="pages\admin\ProductsPage.xaml.cs">
       <DependentUpon>ProductsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="pages\admin\StatisticsPage.xaml.cs">
+      <DependentUpon>StatisticsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="pages\admin\SupplyListPage.xaml.cs">
       <DependentUpon>SupplyListPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="pages\admin\TableManagmentPage.xaml.cs">
       <DependentUpon>TableManagmentPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="pages\admin\ViewTipsPage.xaml.cs">
-      <DependentUpon>ViewTipsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="pages\InfoForManager.xaml.cs">
       <DependentUpon>InfoForManager.xaml</DependentUpon>
@@ -249,9 +249,9 @@
     <Page Include="pages\admin\ManagersPage.xaml" />
     <Page Include="pages\admin\OrderListPage.xaml" />
     <Page Include="pages\admin\ProductsPage.xaml" />
+    <Page Include="pages\admin\StatisticsPage.xaml" />
     <Page Include="pages\admin\SupplyListPage.xaml" />
     <Page Include="pages\admin\TableManagmentPage.xaml" />
-    <Page Include="pages\admin\ViewTipsPage.xaml" />
     <Page Include="pages\InfoForManager.xaml" />
     <Page Include="pages\OrdersByManager.xaml" />
     <Page Include="pages\UserMenuPage.xaml" />
@@ -297,6 +297,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="img\icon_delete.png" />
+    <Content Include="img\icon_edit.png" />
+    <Content Include="img\icon_plus.png" />
     <Content Include="ModelDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ModelDB.edmx</DependentUpon>

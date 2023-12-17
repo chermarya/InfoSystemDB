@@ -95,6 +95,15 @@ namespace InfoSystemDB
 
         private bool Validate()
         {
+            foreach (var i in SelProdList)
+            {
+                if (i.quantity <= 0)
+                {
+                    MessageBox.Show($"{i.ProdType.title} {i.title}: введена невірна кількість.");
+                    return false;
+                }
+            }
+            
             if (DateInput.Text == "")
             {
                 MessageBox.Show("Не вказана дата.");

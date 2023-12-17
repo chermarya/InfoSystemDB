@@ -22,9 +22,10 @@
         <Button Grid.Column="0" Grid.Row="0" FontSize="25" Margin="20" Content="Перегляд замовлень" Click="Orders" FontFamily="Verdana" />
         <Button Grid.Column="1" Grid.Row="0" FontSize="25" Margin="20" Content="Менеджери та магазини" Click="Managers" />
         <Button Grid.Column="0" Grid.Row="1" FontSize="25" Margin="20" Content="База покупців" Click="Buyers" />
-        <Button Grid.Column="1" Grid.Row="1" FontSize="25" Margin="20" Content="Доступні вироби" Click="Products" />
+        <Button Grid.Column="1" Grid.Row="1" FontSize="25" Margin="20" Content="Список виробів" Click="Products" />
         <Button Grid.Column="0" Grid.Row="2" FontSize="25" Margin="20" Content="Управління партіями" Click="Supplies" />
         <Button Grid.Column="1" Grid.Row="2" FontSize="25" Margin="20" Content="Управління таблицями" Click="Tables" />
-        <Button Grid.Column="1" Grid.Row="3" FontSize="25" Margin="20" Content="Вийти" Width="150" HorizontalAlignment="Right" Click="Exit" />
+        <Button Grid.Column="0" Grid.Row="3" FontSize="30" Margin="20" Content="Статистика" Width="250" Click="Statistics" HorizontalAlignment="Left" />
+        <Button Grid.Column="1" Grid.Row="3" FontSize="30" Margin="20" Content="Вийти" Width="200" HorizontalAlignment="Right" Click="Exit" />
     </Grid>
 </Page>

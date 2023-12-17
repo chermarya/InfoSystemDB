@@ -36,6 +36,26 @@ namespace InfoSystemDB
             ChooseGrid.Visibility = Visibility.Collapsed;
             NewGrid.Visibility = Visibility.Visible;
         }
+        
+        private void CityChecked(object sender, RoutedEventArgs e)
+        {
+            if (KhCity.IsChecked == true)
+            {
+                AllCity.Visibility = Visibility.Collapsed;
+                KhCityList.Visibility = Visibility.Visible;
+
+                if (KhCityList.Items.IsEmpty)
+                {
+                    new Parser(KhCityList);
+                    KhCityList.SelectedIndex = 0;
+                }
+            }
+            else
+            {
+                AllCity.Visibility = Visibility.Visible;
+                KhCityList.Visibility = Visibility.Collapsed;
+            }
+        }
 
         private void Filter(object sender, RoutedEventArgs e)
         {
@@ -113,16 +133,19 @@ namespace InfoSystemDB
 
         private bool Validate()
         {
-            if (NewCityInput.Text == "")
+            if (KhCity.IsChecked == false)
             {
-                MessageBox.Show("Місто не заповнено.");
-                return false;
-            }
+                if (NewCityInput.Text == "")
+                {
+                    MessageBox.Show("Місто не заповнено.");
+                    return false;
+                }
 
-            if (NewDepInput.Text == "")
-            {
-                MessageBox.Show("Відділення не заповнено.");
-                return false;
+                if (NewDepInput.Text == "")
+                {
+                    MessageBox.Show("Відділення не заповнено.");
+                    return false;
+                }
             }
 
             return true;

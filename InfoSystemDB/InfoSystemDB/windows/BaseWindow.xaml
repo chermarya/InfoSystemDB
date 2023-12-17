@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:InfoSystemDB"
         mc:Ignorable="d"
         Title="" Height="750" Width="1250">
+
     <Grid Background="DimGray">
         <Frame x:Name="MainFrame" />
     </Grid>

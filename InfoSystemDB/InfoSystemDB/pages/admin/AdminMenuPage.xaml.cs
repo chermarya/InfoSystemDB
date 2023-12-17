@@ -45,6 +45,11 @@ namespace InfoSystemDB
             MainFrame.Content = new TableManagmentPage(MainFrame);
         }
         
+        private void Statistics(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new StatisticsPage(MainFrame);
+        }
+        
         private void Exit(object sender, RoutedEventArgs e)
         {
             Window wind = Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive);

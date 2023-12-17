@@ -65,6 +65,7 @@ namespace InfoSystemDB
             }
             
             DGridBuyers.SelectedIndex = 0;
+            AddressFilter();
         }
 
         private void AddressLoad(object sender, RoutedEventArgs e)

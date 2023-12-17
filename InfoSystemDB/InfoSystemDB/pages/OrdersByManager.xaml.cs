@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Windows;
@@ -53,11 +54,16 @@ namespace InfoSystemDB
                 {
                     if (el.order_id == reader.GetInt32(0))
                     {
-                        Order item = new Order(reader.GetInt32(0), reader.GetString(1), reader.GetString(2),
+                        string id = reader.GetInt32(0).ToString();
+                        
+                        id = string.Concat(Enumerable.Repeat("0" , 5 - id.Length)) + id;
+                        
+                        Order item = new Order(0, id, reader.GetString(1), reader.GetString(2),
                             reader.GetString(3), reader.GetString(4), reader.GetString(5), reader.GetString(6),
                             reader.GetString(7), reader.GetInt32(8), reader.GetInt32(9), reader.GetInt32(10),
                             reader.GetString(11), reader.GetString(12), reader.GetString(13), reader.GetString(14),
-                            reader.GetString(15));
+                            reader.GetString(15)
+                        );
 
                         orderList.Add(item);
                     }
@@ -71,11 +77,11 @@ namespace InfoSystemDB
         {
             new OrderSettings(manager_id, OutputList).Show();
         }
-        
+
         private void Delete(object sender, RoutedEventArgs e)
         {
-            int order_id = ((Order)DGridOrders.SelectedItem).ID;
-            
+            int order_id = Convert.ToInt32(((Order)DGridOrders.SelectedItem).ID);
+
             new DoSql("DELETE FROM SetOrder WHERE order_id = @id",
                 new SqlParameter[]
                 {
@@ -84,7 +90,7 @@ namespace InfoSystemDB
 
             OutputList();
         }
-        
+
         private void Exit(object sender, RoutedEventArgs e)
         {
             NavigationService.GoBack();

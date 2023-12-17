@@ -4,8 +4,20 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:InfoSystemDB"
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
       mc:Ignorable="d"
       Title="Orders">
+
+    <Page.Resources>
+        <Style TargetType="DataGridCell" x:Key="EditCell">
+            <Setter Property="Background" Value="SandyBrown" x:Name="ColorSetter" />
+        </Style>
+        <Style TargetType="DataGridCell" x:Key="StatusDateCell">
+            <Setter Property="Visibility" Value="Hidden"/>
+            <Setter Property="Background" Value="Black" />
+        </Style>
+    </Page.Resources>
+
     <Border>
         <Border.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
@@ -20,19 +32,30 @@
                 <RowDefinition Height="60" />
             </Grid.RowDefinitions>
 
-            <DataGrid Grid.Row="0" x:Name="DGridOrders" AutoGenerateColumns="False" IsReadOnly="True" Margin="0, 0, 0, 20">
+            <DataGrid Grid.Row="0" x:Name="DGridOrders" AutoGenerateColumns="False" IsReadOnly="False"
+                      CanUserAddRows="False"
+                      Margin="0, 0, 0, 20">
                 <DataGrid.Columns>
-                    <DataGridTextColumn FontSize="15" Width="80" Header="Дата" Binding="{Binding Date}" />
-                    <DataGridTextColumn FontSize="15" Width="100" Header="Нік" Binding="{Binding Nick}" />
-                    <DataGridTextColumn FontSize="15" MinWidth="150" Header="Ім'я" Binding="{Binding Name}">
+                    <DataGridTextColumn FontSize="15" MinWidth="65" Header="№ замов." Binding="{Binding ID}"
+                                        IsReadOnly="True" />
+                    <DataGridTextColumn FontSize="15" MinWidth="80" Header="Дата" Binding="{Binding Date}"
+                                        IsReadOnly="True" />
+                    <DataGridTextColumn FontSize="15" MinWidth="100" Header="Нік" Binding="{Binding Nick}"
+                                        IsReadOnly="True" />
+
+                    <DataGridTextColumn FontSize="15" MinWidth="150" Header="Ім'я" Binding="{Binding Name}"
+                                        IsReadOnly="True">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
                                 <Setter Property="TextWrapping" Value="Wrap" />
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
-                    <DataGridTextColumn FontSize="15" Width="130" Header="Телефон" Binding="{Binding Phone}" />
-                    <DataGridTextColumn FontSize="15" MinWidth="180" Width="*" Header="Вироби"
+
+                    <DataGridTextColumn FontSize="15" MinWidth="130" Header="Телефон" Binding="{Binding Phone}"
+                                        IsReadOnly="True" />
+
+                    <DataGridTextColumn FontSize="15" MinWidth="200" Width="*" Header="Вироби" IsReadOnly="True"
                                         Binding="{Binding Products}">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
@@ -40,7 +63,8 @@
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
-                    <DataGridTextColumn FontSize="15" MinWidth="100" Width="*" Header="Адреса"
+
+                    <DataGridTextColumn FontSize="15" MinWidth="120" Width="*" Header="Адреса" IsReadOnly="True"
                                         Binding="{Binding Address}">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
@@ -48,7 +72,9 @@
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
+
                     <DataGridTextColumn FontSize="15" MinWidth="65" MaxWidth="170" Width="*" Header="Знижка"
+                                        IsReadOnly="True"
                                         Binding="{Binding Discount}">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
@@ -56,26 +82,43 @@
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
-                    <DataGridTextColumn FontSize="15" Width="55" Binding="{Binding Sum}" x:Name="summ" />
-                    <DataGridTextColumn FontSize="15" Width="55" Binding="{Binding Prepay}" x:Name="prepay" />
-                    <DataGridTextColumn FontSize="15" Width="55" Binding="{Binding Amount_due}" x:Name="amount_due" />
-                    <DataGridTextColumn FontSize="15" Width="150" Header="Накладна" Binding="{Binding Invoice}" />
-                    <DataGridTextColumn FontSize="15" Width="90" Header="Статус" Binding="{Binding Status}">
+
+                    <DataGridTextColumn FontSize="15" MinWidth="55" Header="Сума&#x0a;замов." IsReadOnly="True"
+                                        Binding="{Binding Sum}" />
+                    <DataGridTextColumn FontSize="15" MinWidth="55" Header="Перед-&#x0a;оплата" IsReadOnly="True"
+                                        Binding="{Binding Prepay}" />
+                    <DataGridTextColumn FontSize="15" MinWidth="55" Header="Сума до&#x0a;сплати" IsReadOnly="True"
+                                        Binding="{Binding Amount_due}" />
+                    <DataGridTextColumn FontSize="15" MinWidth="120" Header="Накладна" Binding="{Binding Invoice}"
+                                        IsReadOnly="True" x:Name="InvoiceCell" />
+
+                    <DataGridTextColumn FontSize="15" MinWidth="120" Header="Статус" Binding="{Binding FullStatus}"
+                                        IsReadOnly="True" x:Name="StatusView" />
+                    <DataGridComboBoxColumn MinWidth="120" Header="Статус" x:Name="StatusList" IsReadOnly="True"
+                                            SelectedItemBinding="{Binding Status}" Visibility="Visible" />
+                    
+                    <DataGridTemplateColumn MinWidth="120" Header="Дата" IsReadOnly="True" >
+                        <DataGridTemplateColumn.CellTemplate >
+                            <DataTemplate>
+                                <DatePicker SelectedDate="{Binding StatusDate}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTextColumn FontSize="15" MinWidth="80" Header="Прим." Binding="{Binding Note}"
+                                        IsReadOnly="True">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
                                 <Setter Property="TextWrapping" Value="Wrap" />
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
-                    <DataGridTextColumn FontSize="15" Width="80" Header="Прим." Binding="{Binding Note}">
-                        <DataGridTextColumn.ElementStyle>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="TextWrapping" Value="Wrap" />
-                            </Style>
-                        </DataGridTextColumn.ElementStyle>
-                    </DataGridTextColumn>
-                    <DataGridTextColumn FontSize="17" MinWidth="65" Header="Магазин" Binding="{Binding Shop}" />
-                    <DataGridTextColumn FontSize="17" MinWidth="120" Header="Менеджер" Binding="{Binding Manager}">
+
+                    <DataGridTextColumn FontSize="15" MinWidth="65" Header="Магазин" Binding="{Binding Shop}"
+                                        IsReadOnly="True" />
+
+                    <DataGridTextColumn FontSize="15" MinWidth="120" Header="Менеджер" Binding="{Binding Manager}"
+                                        IsReadOnly="True">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
                                 <Setter Property="TextWrapping" Value="Wrap" />
@@ -87,13 +130,25 @@
 
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="490" />
                     <ColumnDefinition />
                     <ColumnDefinition />
+                    <ColumnDefinition Width="140" />
                 </Grid.ColumnDefinitions>
 
-                <Button Grid.Column="0" FontSize="17" Content="Додати накладну" HorizontalAlignment="Right" Width="200" Margin="50, 0" />
-                <Button Grid.Column="1" FontSize="17" Content="Змінити статус" HorizontalAlignment="Left" Width="200" Margin="50, 0" />
-                <Button Grid.Column="1" FontSize="40" Content="🢘" Width="120" HorizontalAlignment="Right" Click="Exit" />
+                <StackPanel Grid.Column="2" VerticalAlignment="Center">
+                    <ComboBox x:Name="ManagerList" FontSize="20" MaxWidth="350" />
+                </StackPanel>
+
+                <Button Grid.Column="0" FontSize="20" HorizontalAlignment="Left" Width="230"
+                        Content="Редагувати статуси&#x0a;замовлень" Click="EditStatus" x:Name="EditInvoiceBtn" />
+                <Button Grid.Column="0" FontSize="20" HorizontalAlignment="Right" Width="230"
+                        Content="Редагувати накладні" Click="EditInvoice" x:Name="EditStatusBtn" />
+                <Button Grid.Column="1" FontSize="20" HorizontalAlignment="Center" Width="230" Content="Зберегти"
+                        Margin="60, 0, 0, 0" Click="SaveInvoiceClick" x:Name="SaveInvoiceBtn" Visibility="Collapsed" />
+                <Button Grid.Column="1" FontSize="20" HorizontalAlignment="Center" Width="230" Content="Зберегти"
+                        Margin="60, 0, 0, 0" Click="SaveStatusClick" x:Name="SaveStatusBtn" Visibility="Collapsed" />
+                <Button Grid.Column="3" FontSize="40" Content="🢘" Width="120" HorizontalAlignment="Right" Click="Exit" />
             </Grid>
         </Grid>
     </Border>

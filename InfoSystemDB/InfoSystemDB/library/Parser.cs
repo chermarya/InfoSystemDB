@@ -19,7 +19,7 @@ namespace InfoSystemDB
             Run();
         }
 
-        public void Run()
+        private void Run()
         {
             for (int i = 0; i <= 7; i++)
             {
