@@ -12,10 +12,6 @@
         <Style TargetType="DataGridCell" x:Key="EditCell">
             <Setter Property="Background" Value="SandyBrown" x:Name="ColorSetter" />
         </Style>
-        <Style TargetType="DataGridCell" x:Key="StatusDateCell">
-            <Setter Property="Visibility" Value="Hidden"/>
-            <Setter Property="Background" Value="Black" />
-        </Style>
     </Page.Resources>
 
     <Border>
@@ -28,13 +24,51 @@
 
         <Grid Margin="50">
             <Grid.RowDefinitions>
+                <RowDefinition Height="60" />
                 <RowDefinition />
                 <RowDefinition Height="60" />
             </Grid.RowDefinitions>
 
-            <DataGrid Grid.Row="0" x:Name="DGridOrders" AutoGenerateColumns="False" IsReadOnly="False"
-                      CanUserAddRows="False"
-                      Margin="0, 0, 0, 20">
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="400" />
+                    <ColumnDefinition MinWidth="400" />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="140" />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0" FontSize="17" Content="№ замов." VerticalAlignment="Center"
+                       HorizontalAlignment="Left" Margin="0, 0, 210, 0" />
+                <TextBox Grid.Column="0" Width="200" HorizontalAlignment="Left" Margin="100, 10" FontSize="17"
+                         VerticalContentAlignment="Center" x:Name="OrderNumInput" TextChanged="OrderNumFilter" />
+
+                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                    <ComboBox x:Name="ManagerList" FontSize="20" MaxWidth="350" />
+                </StackPanel>
+
+                <Button Grid.Column="3" FontSize="40" Content="🢘" Width="120" HorizontalAlignment="Right" Click="Exit" />
+            </Grid>
+
+            <DataGrid Grid.Row="1" x:Name="DGridOrders" AutoGenerateColumns="False" IsReadOnly="False"
+                      CanUserAddRows="False" Margin="0, 20">
+
+                <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Status}" Value="терміново">
+                                <Setter Property="Background" Value="PaleGreen" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Status}" Value="відмова">
+                                <Setter Property="Background" Value="Tomato" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Status}" Value="обмін">
+                                <Setter Property="Background" Value="Aqua" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                        <Setter Property="FontSize" Value="15" />
+                    </Style>
+                </DataGrid.RowStyle>
+
                 <DataGrid.Columns>
                     <DataGridTextColumn FontSize="15" MinWidth="65" Header="№ замов." Binding="{Binding ID}"
                                         IsReadOnly="True" />
@@ -95,12 +129,23 @@
                     <DataGridTextColumn FontSize="15" MinWidth="120" Header="Статус" Binding="{Binding FullStatus}"
                                         IsReadOnly="True" x:Name="StatusView" />
                     <DataGridComboBoxColumn MinWidth="120" Header="Статус" x:Name="StatusList" IsReadOnly="True"
-                                            SelectedItemBinding="{Binding Status}" Visibility="Visible" />
-                    
-                    <DataGridTemplateColumn MinWidth="120" Header="Дата" IsReadOnly="True" >
-                        <DataGridTemplateColumn.CellTemplate >
+                                            SelectedItemBinding="{Binding Status}" Visibility="Collapsed" />
+
+                    <DataGridTemplateColumn MinWidth="120" Header="Дата" x:Name="DateStatusCell" Visibility="Collapsed">
+                        <DataGridTemplateColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Status}" Value="відгружен">
+                                        <Setter Property="IsEnabled" Value="True" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                                <Setter Property="IsEnabled" Value="False" />
+                            </Style>
+                        </DataGridTemplateColumn.CellStyle>
+
+                        <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <DatePicker SelectedDate="{Binding StatusDate}" />
+                                <DatePicker SelectedDate="{Binding StatusDate}" SelectedDateChanged="SelDateChanged" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
@@ -128,27 +173,33 @@
                 </DataGrid.Columns>
             </DataGrid>
 
-            <Grid Grid.Row="1">
+            <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="490" />
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition Width="140" />
+                    <ColumnDefinition MinWidth="400" />
+                    <ColumnDefinition Width="300" />
+                    <ColumnDefinition Width="270" />
                 </Grid.ColumnDefinitions>
-
-                <StackPanel Grid.Column="2" VerticalAlignment="Center">
-                    <ComboBox x:Name="ManagerList" FontSize="20" MaxWidth="350" />
-                </StackPanel>
-
+                
                 <Button Grid.Column="0" FontSize="20" HorizontalAlignment="Left" Width="230"
                         Content="Редагувати статуси&#x0a;замовлень" Click="EditStatus" x:Name="EditInvoiceBtn" />
                 <Button Grid.Column="0" FontSize="20" HorizontalAlignment="Right" Width="230"
                         Content="Редагувати накладні" Click="EditInvoice" x:Name="EditStatusBtn" />
+
                 <Button Grid.Column="1" FontSize="20" HorizontalAlignment="Center" Width="230" Content="Зберегти"
                         Margin="60, 0, 0, 0" Click="SaveInvoiceClick" x:Name="SaveInvoiceBtn" Visibility="Collapsed" />
                 <Button Grid.Column="1" FontSize="20" HorizontalAlignment="Center" Width="230" Content="Зберегти"
                         Margin="60, 0, 0, 0" Click="SaveStatusClick" x:Name="SaveStatusBtn" Visibility="Collapsed" />
-                <Button Grid.Column="3" FontSize="40" Content="🢘" Width="120" HorizontalAlignment="Right" Click="Exit" />
+                
+                <StackPanel Grid.Column="2" Height="27" Name="StackPanel1" Orientation="Horizontal"
+                            HorizontalAlignment="Center">
+                    <Viewbox Height="{Binding Path=ActualHeight, ElementName=StackPanel1}">
+                        <CheckBox Content="Необроблені замовлення" IsChecked="False" x:Name="OnlyOrderCheck" Click="OnlyOrder" />
+                    </Viewbox>
+                </StackPanel>
+                
+                <Button Grid.Column="3" FontSize="20" HorizontalAlignment="Center" Width="230" Content="Друк"
+                        Margin="60, 0, 0, 0" Click="SaveStatusClick" x:Name="PrintBtn" Visibility="Visible" />
             </Grid>
         </Grid>
     </Border>

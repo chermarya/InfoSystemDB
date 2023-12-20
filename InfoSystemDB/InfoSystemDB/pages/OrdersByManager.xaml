@@ -20,7 +20,24 @@
                 <RowDefinition Height="60" />
             </Grid.RowDefinitions>
 
-            <DataGrid Grid.Row="0" x:Name="DGridOrders" AutoGenerateColumns="False" IsReadOnly="True" Margin="0, 0, 0, 20">
+            <DataGrid Grid.Row="0" x:Name="DGridOrders" AutoGenerateColumns="False" IsReadOnly="True"
+                      Margin="0, 0, 0, 20">
+                <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Status}" Value="терміново">
+                                <Setter Property="Background" Value="PaleGreen" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Status}" Value="відмова">
+                                <Setter Property="Background" Value="Tomato" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Status}" Value="обмін">
+                                <Setter Property="Background" Value="Aqua" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.RowStyle>
+
                 <DataGrid.Columns>
                     <DataGridTextColumn FontSize="15" MinWidth="65" Header="№ замов." Binding="{Binding ID}" />
                     <DataGridTextColumn FontSize="15" MinWidth="80" Header="Дата" Binding="{Binding Date}" />
@@ -81,13 +98,32 @@
 
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300" />
                     <ColumnDefinition />
                     <ColumnDefinition />
+                    <ColumnDefinition Width="300" />
+                    <ColumnDefinition Width="140" />
                 </Grid.ColumnDefinitions>
 
-                <Button Grid.Column="0" FontSize="20" Width="300" Content="Додати" Click="Add" HorizontalAlignment="Right" Margin="50, 0" />
-                <Button Grid.Column="1" FontSize="20" Width="300" Content="Видалити" Click="Delete" HorizontalAlignment="Left" Margin="50, 0" />
-                <Button Grid.Column="1" FontSize="40" Width="120" Content="🢘" Click="Exit" HorizontalAlignment="Right" />
+                <Label Grid.Column="0" FontSize="17" Content="№ замов." VerticalAlignment="Center"
+                       HorizontalAlignment="Left" />
+                <TextBox Grid.Column="0" Width="170" HorizontalAlignment="Left" Margin="100, 10, 0, 10" FontSize="17"
+                         VerticalContentAlignment="Center" x:Name="OrderNumInput" TextChanged="OrderNumFilter" />
+
+                <Button Grid.Column="1" FontSize="20" Width="300" Content="Додати" Click="Add"
+                        HorizontalAlignment="Right" Margin="50, 0" />
+                <Button Grid.Column="2" FontSize="20" Width="300" Content="Видалити" Click="Delete"
+                        HorizontalAlignment="Left" Margin="50, 0" />
+
+                <StackPanel Grid.Column="3" Height="27" Name="StackPanel1" Orientation="Horizontal"
+                            HorizontalAlignment="Center">
+                    <Viewbox Height="{Binding Path=ActualHeight, ElementName=StackPanel1}">
+                        <CheckBox Content="Необроблені замовлення" IsChecked="False" x:Name="OnlyOrderCheck"
+                                  Click="OnlyOrder" />
+                    </Viewbox>
+                </StackPanel>
+
+                <Button Grid.Column="4" FontSize="40" Width="120" Content="🢘" Click="Exit" HorizontalAlignment="Right" />
             </Grid>
         </Grid>
     </Border>

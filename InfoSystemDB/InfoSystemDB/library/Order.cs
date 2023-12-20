@@ -5,7 +5,6 @@ namespace InfoSystemDB
 {
     public class Order
     {
-        private string _status;
         public int mode = 0;
 
         public string ID { get; }
@@ -23,28 +22,15 @@ namespace InfoSystemDB
 
         public string FullStatus { get; set; }
         public DateTime? StatusDate { get; set; }
-        
-        public string Status
-        {
-            get { return _status; }
 
-            set
-            {
-                if (value.Contains("відгружен") && mode == 1)
-                {
-                    MessageBox.Show(value);
-                }
-                else
-                    _status = value;
-            }
-        }
+        public string Status { get; set; }
 
         public string Note { get; }
         public string Shop { get; }
         public string Manager { get; }
 
         public Order(int m, string id, string date, string nick, string name, string phone, string products,
-            string address, string discount, int sum, int prepay, int amount, string invoice, string status, 
+            string address, string discount, int sum, int prepay, int amount, string invoice, string status,
             string note, string shop, string manager)
         {
             mode = m;
@@ -72,7 +58,6 @@ namespace InfoSystemDB
             {
                 FullStatus = status;
                 Status = status;
-                //StatusDate = null;
             }
 
             Note = note;

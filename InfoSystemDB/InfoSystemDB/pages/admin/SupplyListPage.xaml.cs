@@ -60,12 +60,17 @@ namespace InfoSystemDB
 
         private void Add(object sender, RoutedEventArgs e)
         {
-            new SupplySettings().Show();
+            new SupplySettings(FillGrid).Show();
         }
         
         private void Edit(object sender, RoutedEventArgs e)
         {
             
+        }
+        
+        private void Exit(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
         }
     }
 }

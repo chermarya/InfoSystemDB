@@ -19,10 +19,10 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" FontSize="25" Margin="0, 0, 15, 0" Content="Вироби" />
-            <Button Grid.Column="1" FontSize="25" Margin="15, 0, 0, 0" Content="Доступні знижки" />
+            <Button Grid.Column="0" FontSize="25" Margin="0, 0, 15, 0" Content="Вироби" Click="ProductFill" />
+            <Button Grid.Column="1" FontSize="25" Margin="15, 0, 0, 0" Content="Доступні знижки" Click="DiscountFill" />
         </Grid>
-        
+
         <DataGrid Grid.Column="0" Grid.Row="1" Margin="0, 30" x:Name="DGridOutput"
                   AutoGenerateColumns="False" IsReadOnly="True" ColumnWidth="*" />
 
@@ -48,7 +48,7 @@
             <StackPanel Grid.Column="4" Grid.Row="2" VerticalAlignment="Center" Margin="15, 0">
                 <ComboBox x:Name="SizeList" FontSize="17" />
             </StackPanel>
-            
+
             <Button Grid.Column="6" Grid.Row="2" FontSize="30" Content="🢘" Width="100" HorizontalAlignment="Right" />
         </Grid>
     </Grid>

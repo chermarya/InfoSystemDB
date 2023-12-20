@@ -22,22 +22,24 @@
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="70" />
                 <ColumnDefinition Width="300" />
                 <ColumnDefinition />
                 <ColumnDefinition />
                 <ColumnDefinition />
+                <ColumnDefinition Width="110" />
             </Grid.ColumnDefinitions>
 
             <Label Grid.Row="1" Grid.Column="0" FontSize="20" Content="Дата: " VerticalAlignment="Center" />
             <DatePicker Grid.Row="1" Grid.Column="1" x:Name="DPSelected" SelectedDateChanged="DateChanged"
-                        FontSize="20" VerticalAlignment="Center" />
+                        FontSize="20" VerticalAlignment="Center" Margin="0, 0, 20, 0" />
 
             <Button Grid.Row="1" Grid.Column="2" FontSize="20" Width="200" Content="Переглянути всі" Click="All" />
             <Button Grid.Row="1" Grid.Column="3" FontSize="30" Width="180" Content="+" Click="Add" />
             <Button Grid.Row="1" Grid.Column="4" FontSize="20" Width="180" Content="Редагувати" Click="Edit" />
+            <Button Grid.Row="1" Grid.Column="5" FontSize="35" Content="🢘" Width="100" HorizontalAlignment="Right" Click="Exit" />
 
-            <DataGrid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5" x:Name="DGridSupplies"
+            <DataGrid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="6" x:Name="DGridSupplies"
                       AutoGenerateColumns="False" IsReadOnly="True" Margin="0, 20">
                 <DataGrid.Columns>
                     <DataGridTextColumn FontSize="17" Width="150" Header="Дата" Binding="{Binding Date}" />

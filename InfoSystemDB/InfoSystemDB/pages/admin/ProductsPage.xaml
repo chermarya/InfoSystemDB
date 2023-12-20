@@ -7,6 +7,11 @@
       mc:Ignorable="d"
       Title="Products" Margin="30">
 
+    <Page.Resources>
+        <local:NumericConverter x:Key="Convert" />
+    </Page.Resources>
+
+
     <Border CornerRadius="50, 50, 50, 50">
         <Border.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
@@ -70,7 +75,18 @@
             </Button>
 
             <DataGrid Grid.Row="1" Grid.Column="0" Grid.RowSpan="7" x:Name="DGridProducts" AutoGenerateColumns="False"
-                      IsReadOnly="True">
+                      IsReadOnly="True" CanUserSortColumns="False">
+                <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding quantity, Converter={StaticResource Convert}}"
+                                         Value="True">
+                                <Setter Property="Background" Value="MistyRose" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.RowStyle>
+
                 <DataGrid.Columns>
                     <DataGridTextColumn FontSize="17" Width="*" Header="Тип" Binding="{Binding ProdType.title}" />
                     <DataGridTextColumn FontSize="17" Width="*" Header="Назва" Binding="{Binding title}" />

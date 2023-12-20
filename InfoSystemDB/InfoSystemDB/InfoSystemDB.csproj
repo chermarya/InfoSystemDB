@@ -122,6 +122,7 @@
     <Compile Include="library\DoSql.cs" />
     <Compile Include="library\ItemSettings.cs" />
     <Compile Include="library\ListItem.cs" />
+    <Compile Include="library\NumericConverter.cs" />
     <Compile Include="library\Order.cs" />
     <Compile Include="library\ParsedAddress.cs" />
     <Compile Include="library\Parser.cs" />

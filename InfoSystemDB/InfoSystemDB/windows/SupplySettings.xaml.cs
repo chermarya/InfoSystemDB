@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Windows;
@@ -8,9 +9,14 @@ namespace InfoSystemDB
     public partial class SupplySettings : Window
     {
         private List<Product> SelProdList = new List<Product>();
+        public delegate void Function(string where);
 
-        public SupplySettings()
+        private Function func;
+
+        public SupplySettings(Function func)
         {
+            this.func = func;
+            
             InitializeComponent();
         }
 
@@ -89,6 +95,8 @@ namespace InfoSystemDB
 
                 MessageBox.Show("Партія додана успішно.");
 
+                func("");
+                
                 Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive).Close();
             }
         }

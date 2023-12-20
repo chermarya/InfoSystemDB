@@ -3,6 +3,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 
 namespace InfoSystemDB
 {
@@ -16,6 +17,7 @@ namespace InfoSystemDB
         private string additionalType = "";
         private string additionalSize = "";
         private string additionalTitle = "";
+        private string AdditionalQuantity = "";
 
         private ListItem[] types = new ListItem[VsInsideDBEntities.Content().ProdType.ToList().Count];
         private ListItem[] sizes = new ListItem[VsInsideDBEntities.Content().Size.ToList().Count];
@@ -25,9 +27,25 @@ namespace InfoSystemDB
             mode = m;
             selectedList = selList;
             grid = gr;
+
             InitializeComponent();
             Loader();
+
             additionalTitle = $"WHERE title LIKE '%{TitleInput.Text}%' ";
+            
+            if (mode == 0)
+            {
+               AdditionalQuantity = " AND quantity > 0 ";
+                DGProducts.Columns.Add(new DataGridTextColumn()
+                {
+                    Header = "Залишок",
+                    Width = 75,
+                    FontSize = 15,
+                    Binding = new Binding("quantity"),
+                });
+            }
+
+            DoQuery();
         }
 
         private void AddProd(object sender, RoutedEventArgs e)
@@ -56,7 +74,7 @@ namespace InfoSystemDB
         {
             List<Product> newList = new List<Product>();
 
-            string expr = sql + additionalTitle + additionalType + additionalSize + " ORDER BY title";
+            string expr = sql + additionalTitle + AdditionalQuantity + additionalType + additionalSize + " ORDER BY title";
             SqlDataReader reader = new DoSql(expr, new SqlParameter[] { }).ToReadQuery();
 
             while (reader.Read())
@@ -74,7 +92,9 @@ namespace InfoSystemDB
         private void TypeChanged(object sender, RoutedEventArgs e)
         {
             if (TypeList.SelectedIndex != 0)
+            {
                 additionalType = $"AND prodtype_id = {types[TypeList.SelectedIndex - 1].Id} ";
+            }
             else
                 additionalType = "";
 
