@@ -31,7 +31,7 @@ namespace InfoSystemDB
         
         private void Buyers(object sender, RoutedEventArgs e)
         {
-            MainFrame.Content = new BuyerListPage();
+            MainFrame.Content = new BuyerListPage(MainFrame);
         }
         
         private void Info(object sender, RoutedEventArgs e)

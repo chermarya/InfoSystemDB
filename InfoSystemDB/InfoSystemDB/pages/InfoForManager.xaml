@@ -10,7 +10,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="70" />
             <RowDefinition />
-            <RowDefinition Height="45" />
+            <RowDefinition Height="80" />
         </Grid.RowDefinitions>
 
         <Grid Grid.Column="0" Grid.Row="0">
@@ -23,10 +23,14 @@
             <Button Grid.Column="1" FontSize="25" Margin="15, 0, 0, 0" Content="Доступні знижки" Click="DiscountFill" />
         </Grid>
 
-        <DataGrid Grid.Column="0" Grid.Row="1" Margin="0, 30" x:Name="DGridOutput"
-                  AutoGenerateColumns="False" IsReadOnly="True" ColumnWidth="*" />
+        <DataGrid Grid.Column="0" Grid.Row="1" x:Name="DGridOutput" IsReadOnly="True" ColumnWidth="*" Margin="0, 10"
+                  AutoGenerateColumns="False" />
 
         <Grid Grid.Column="0" Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition Width="40" />
@@ -37,19 +41,25 @@
                 <ColumnDefinition Width="100" />
             </Grid.ColumnDefinitions>
 
-            <StackPanel Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" Margin="15, 0">
+            <Label Grid.Row="0" Grid.Column="0" Content="Тип виробу" FontSize="17" VerticalAlignment="Top"
+                   HorizontalAlignment="Center" />
+            <StackPanel Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="15, 0">
                 <ComboBox x:Name="TypeList" FontSize="17" />
             </StackPanel>
 
-            <StackPanel Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" Margin="15, 0">
-                <ComboBox x:Name="ColorList" FontSize="17" />
-            </StackPanel>
-
-            <StackPanel Grid.Column="4" Grid.Row="2" VerticalAlignment="Center" Margin="15, 0">
+            <Label Grid.Row="0" Grid.Column="2" Content="Розмір" FontSize="17" VerticalAlignment="Top"
+                   HorizontalAlignment="Center" />
+            <StackPanel Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Margin="15, 0">
                 <ComboBox x:Name="SizeList" FontSize="17" />
             </StackPanel>
 
-            <Button Grid.Column="6" Grid.Row="2" FontSize="30" Content="🢘" Width="100" HorizontalAlignment="Right" />
+            <Label Grid.Row="0" Grid.Column="4" Content="Назва" FontSize="17" VerticalAlignment="Top"
+                   HorizontalAlignment="Center" />
+            <TextBox Grid.Row="1" Grid.Column="4" VerticalAlignment="Center" Margin="15, 0" FontSize="17" Padding="7"
+                     VerticalContentAlignment="Center" x:Name="TitleInput" />
+
+            <Button Grid.Row="0" Grid.RowSpan="2" Grid.Column="6" FontSize="30" Content="🢘" Width="100" Click="Exit"
+                    Height="50" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
         </Grid>
     </Grid>
 </Page>

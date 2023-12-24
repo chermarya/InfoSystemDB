@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
 using InfoSystemDB.windows;
 
 namespace InfoSystemDB
@@ -83,41 +81,30 @@ namespace InfoSystemDB
 
         private void Add(object sender, RoutedEventArgs e)
         {
-            new ProductSettings(DGridProducts).Show();
+            new ProductSettings(DGridProducts, FillGrid, orderMode[OrderByList.SelectedValue.ToString()]).Show();
         }
 
         private void Edit(object sender, RoutedEventArgs e)
         {
-            int selected_id = 0;
-            List<Product> selected = VsInsideDBEntities.Content().Product.ToList();
-
-            int rowInd = DGridProducts.SelectedIndex;
-            if (rowInd != -1)
-                selected_id = selected[rowInd].product_id;
-            else
+            if (DGridProducts.SelectedIndex == -1)
                 return;
 
-            new ProductSettings(DGridProducts, selected_id).Show();
+            new ProductSettings(DGridProducts, ((Product)DGridProducts.SelectedItem).product_id, FillGrid, orderMode[OrderByList.SelectedValue.ToString()]).Show();
+            
         }
 
         private void Delete(object sender, RoutedEventArgs e)
         {
-            int id = 0;
-            List<Product> selected = VsInsideDBEntities.Content().Product.ToList();
-
-            int rowIndex = DGridProducts.SelectedIndex;
-            if (rowIndex != -1)
-                id = selected[rowIndex].product_id;
-            else
+            if (DGridProducts.SelectedIndex == -1)
                 return;
 
             new DoSql("DELETE FROM Product WHERE product_id = @id",
                 new SqlParameter[]
                 {
-                    new SqlParameter("@id", id)
+                    new SqlParameter("@id", ((Product)DGridProducts.SelectedItem).product_id)
                 }).ToExecuteQuery();
-
-            DGridProducts.ItemsSource = VsInsideDBEntities.Content().Product.ToList();
+            
+            FillGrid(orderMode[OrderByList.SelectedValue.ToString()]);
         }
         
         private void Exit(object sender, RoutedEventArgs e)

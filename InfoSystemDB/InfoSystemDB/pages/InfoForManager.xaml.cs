@@ -9,16 +9,71 @@ namespace InfoSystemDB
 {
     public partial class InfoForManager : Page
     {
+        private string select = "SELECT * FROM Product WHERE quantity > 0";
+        private ListItem[] types = new ListItem[VsInsideDBEntities.Content().ProdType.ToList().Count];
+        private ListItem[] sizes = new ListItem[VsInsideDBEntities.Content().Size.ToList().Count];
         public InfoForManager()
         {
             InitializeComponent();
+            
             ProductLoader();
+            Loader();
+            
+            TypeList.SelectionChanged += ListSelect;
+            SizeList.SelectionChanged += ListSelect;
+            TitleInput.TextChanged += TitleChanged;
+        }
+
+        private void TitleChanged(object sender, TextChangedEventArgs e)
+        {
+            SqlCreate();
+        }
+
+        private void ListSelect(object sender, SelectionChangedEventArgs e)
+        {
+            SqlCreate();
+        }
+
+        private void SqlCreate()
+        {
+            select = $"SELECT * FROM Product WHERE quantity > 0 AND title LIKE '%{TitleInput.Text}%' ";
+
+            if (TypeList.SelectedIndex != 0)
+                select += $" AND prodtype_id = {types[TypeList.SelectedIndex - 1].Id} ";
+
+            if (SizeList.SelectedIndex != 0)
+                select += $" AND size_id = {sizes[SizeList.SelectedIndex - 1].Id} ";
+
+            DGridOutput.ItemsSource = ProductAvailability(select);
+        }
+        
+        private void Loader()
+        {
+            List<ProdType> typeList = VsInsideDBEntities.Content().ProdType.ToList();
+            List<Size> sizeList = VsInsideDBEntities.Content().Size.ToList();
+
+            TypeList.Items.Add("Усі");
+            TypeList.SelectedIndex = 0;
+
+            SizeList.Items.Add("Усі");
+            SizeList.SelectedIndex = 0;
+
+            for (var i = 0; i < typeList.Count; i++)
+            {
+                types[i] = new ListItem(typeList[i].prodtype_id, typeList[i].title);
+                TypeList.Items.Add(types[i].Title);
+            }
+
+            for (var i = 0; i < sizeList.Count; i++)
+            {
+                sizes[i] = new ListItem(sizeList[i].size_id, sizeList[i].title);
+                SizeList.Items.Add(sizes[i].Title);
+            }
         }
 
         private void ProductLoader()
         {
             TypeList.Visibility = Visibility.Visible;
-            ColorList.Visibility = Visibility.Visible;
             SizeList.Visibility = Visibility.Visible;
 
             DGridOutput.Columns.Clear();
@@ -69,7 +124,7 @@ namespace InfoSystemDB
                 Binding = new Binding("quantity")
             });
 
-            DGridOutput.ItemsSource = ProductAvailability();
+            DGridOutput.ItemsSource = ProductAvailability(select);
         }
 
         private void ProductFill(object sender, RoutedEventArgs e)
@@ -80,7 +135,6 @@ namespace InfoSystemDB
         private void DiscountFill(object sender, RoutedEventArgs e)
         {
             TypeList.Visibility = Visibility.Collapsed;
-            ColorList.Visibility = Visibility.Collapsed;
             SizeList.Visibility = Visibility.Collapsed;
 
             DGridOutput.Columns.Clear();
@@ -102,9 +156,9 @@ namespace InfoSystemDB
             DGridOutput.ItemsSource = VsInsideDBEntities.Content().Discount.ToList();
         }
 
-        private List<Product> ProductAvailability()
+        private List<Product> ProductAvailability(string sql)
         {
-            string sql = "SELECT * FROM Product WHERE quantity > 0";
+            //string sql = "SELECT * FROM Product WHERE quantity > 0";
 
             List<Product> prodFill = new List<Product>();
 
@@ -122,6 +176,11 @@ namespace InfoSystemDB
             }
 
             return prodFill;
+        }
+        
+        private void Exit(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
         }
     }
 }

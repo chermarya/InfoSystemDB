@@ -10,7 +10,7 @@ namespace InfoSystemDB
     {
         private ListItem[] managers = new ListItem[VsInsideDBEntities.Content().Manager.ToList().Count];
 
-        private string select = 
+        private string select =
             @"
             SELECT  
 	            so.order_id, 
@@ -42,7 +42,7 @@ namespace InfoSystemDB
 
         private string where = " ";
 
-        private string group = 
+        private string group =
             @"
             GROUP BY 
 	            so.order_id, 
@@ -66,8 +66,6 @@ namespace InfoSystemDB
             "в обробці",
             "терміново",
             "відгружен",
-            "обмін",
-            "повернення",
             "відмова",
             "завершено"
         };
@@ -254,31 +252,24 @@ namespace InfoSystemDB
 
         private List<Order> OutputList(string sql)
         {
-            List<SetOrder> orders = VsInsideDBEntities.Content().SetOrder.ToList();
             List<Order> newList = new List<Order>();
 
             SqlDataReader reader = new DoSql(sql, new SqlParameter[] { }).ToReadQuery();
 
             while (reader.Read())
             {
-                foreach (SetOrder el in orders)
-                {
-                    if (el.order_id == reader.GetInt32(0))
-                    {
-                        string id = reader.GetInt32(0).ToString();
+                string id = reader.GetInt32(0).ToString();
 
-                        id = string.Concat(Enumerable.Repeat("0", 5 - id.Length)) + id;
+                id = string.Concat(Enumerable.Repeat("0", 5 - id.Length)) + id;
 
-                        Order item = new Order(0, id, reader.GetString(1), reader.GetString(2),
-                            reader.GetString(3), reader.GetString(4), reader.GetString(5), reader.GetString(6),
-                            reader.GetString(7), reader.GetInt32(8), reader.GetInt32(9), reader.GetInt32(10),
-                            reader.GetString(11), reader.GetString(12), reader.GetString(13), reader.GetString(14),
-                            reader.GetString(15)
-                        );
+                Order item = new Order(0, id, reader.GetString(1), reader.GetString(2),
+                    reader.GetString(3), reader.GetString(4), reader.GetString(5), reader.GetString(6),
+                    reader.GetString(7), reader.GetInt32(8), reader.GetInt32(9), reader.GetInt32(10),
+                    reader.GetString(11), reader.GetString(12), reader.GetString(13), reader.GetString(14),
+                    reader.GetString(15)
+                );
 
-                        newList.Add(item);
-                    }
-                }
+                newList.Add(item);
             }
 
             return newList;

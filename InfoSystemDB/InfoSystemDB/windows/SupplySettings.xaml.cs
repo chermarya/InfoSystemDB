@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Windows;
@@ -12,9 +11,19 @@ namespace InfoSystemDB
         public delegate void Function(string where);
 
         private Function func;
-
-        public SupplySettings(Function func)
+        private int mode;
+        public SupplySettings(int m, Function func)
         {
+            mode = m;
+            this.func = func;
+            
+            InitializeComponent();
+        }
+        
+        public SupplySettings(int m, Function func, List<Product> sel)
+        {
+            SelProdList = sel;
+            mode = m;
             this.func = func;
             
             InitializeComponent();

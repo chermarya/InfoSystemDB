@@ -15,6 +15,7 @@ namespace InfoSystemDB
         {
             buyer_id = id;
             Function = func;
+
             InitializeComponent();
 
             DGAddress.ItemsSource = VsInsideDBEntities.Content().DelAddress.ToList();
@@ -23,37 +24,42 @@ namespace InfoSystemDB
             DepInput.TextChanged += Filter;
         }
 
-        private void CDSchecked(object sender, RoutedEventArgs e)
+        private void CBSchecked(object sender, RoutedEventArgs e)
         {
             CBNew.IsChecked = false;
+            KhCity.IsChecked = false;
+
             ChooseGrid.Visibility = Visibility.Visible;
+
             NewGrid.Visibility = Visibility.Collapsed;
+            KhCityGrid.Visibility = Visibility.Collapsed;
         }
 
-        private void CDNchecked(object sender, RoutedEventArgs e)
+        private void CBNchecked(object sender, RoutedEventArgs e)
         {
             CBSelect.IsChecked = false;
-            ChooseGrid.Visibility = Visibility.Collapsed;
+            KhCity.IsChecked = false;
+
             NewGrid.Visibility = Visibility.Visible;
+
+            ChooseGrid.Visibility = Visibility.Collapsed;
+            KhCityGrid.Visibility = Visibility.Collapsed;
         }
-        
+
         private void CityChecked(object sender, RoutedEventArgs e)
         {
-            if (KhCity.IsChecked == true)
-            {
-                AllCity.Visibility = Visibility.Collapsed;
-                KhCityList.Visibility = Visibility.Visible;
+            CBSelect.IsChecked = false;
+            CBNew.IsChecked = false;
 
-                if (KhCityList.Items.IsEmpty)
-                {
-                    new Parser(KhCityList);
-                    KhCityList.SelectedIndex = 0;
-                }
-            }
-            else
+            KhCityGrid.Visibility = Visibility.Visible;
+
+            NewGrid.Visibility = Visibility.Collapsed;
+            ChooseGrid.Visibility = Visibility.Collapsed;
+
+            if (KhCityList.Items.IsEmpty)
             {
-                AllCity.Visibility = Visibility.Visible;
-                KhCityList.Visibility = Visibility.Collapsed;
+                new Parser(KhCityList);
+                KhCityList.SelectedIndex = 0;
             }
         }
 
@@ -80,12 +86,17 @@ namespace InfoSystemDB
 
         private void Choose(object sender, RoutedEventArgs e)
         {
+            SelectedAddress(((DelAddress)DGAddress.SelectedItem).address_id);
+        }
+
+        private void SelectedAddress(int address_id)
+        {
             string sql = "INSERT INTO Delivery (buyer_id, address_id) VALUES (@buyer, @address)";
 
             new DoSql(sql, new SqlParameter[]
             {
                 new SqlParameter("@buyer", buyer_id),
-                new SqlParameter("@address", ((DelAddress)DGAddress.SelectedItem).address_id)
+                new SqlParameter("@address", address_id)
             }).ToExecuteQuery();
 
             Function();
@@ -100,35 +111,68 @@ namespace InfoSystemDB
                 string dep = NewDepInput.Text;
                 string note = NoteInput.Text;
 
-                string create = "INSERT INTO DelAddress (city, dep, note) VALUES (@city, @dep, @note)";
-
-                new DoSql(create, new SqlParameter[]
-                {
-                    new SqlParameter("@city", city),
-                    new SqlParameter("@dep", dep),
-                    new SqlParameter("@note", note)
-                }).ToExecuteQuery();
-
-                SqlDataReader reader = new DoSql("SELECT TOP 1 address_id FROM DelAddress ORDER BY address_id DESC",
-                    new SqlParameter[] { }).ToReadQuery();
-
-                int address_id = 0;
-                while (reader.Read())
-                {
-                    address_id = reader.GetInt32(0);
-                }
-
-                string add = "INSERT INTO Delivery (buyer_id, address_id) VALUES (@buyer, @address)";
-
-                new DoSql(add, new SqlParameter[]
-                {
-                    new SqlParameter("@buyer", buyer_id),
-                    new SqlParameter("@address", address_id)
-                }).ToExecuteQuery();
-
-                Function();
-                Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive).Close();
+                AddNewAddress(city, dep, note);
             }
+        }
+
+        private void AddNewAddress(string city, string dep, string note)
+        {
+            string create = "INSERT INTO DelAddress (city, dep, note) VALUES (@city, @dep, @note)";
+
+            new DoSql(create, new SqlParameter[]
+            {
+                new SqlParameter("@city", city),
+                new SqlParameter("@dep", dep),
+                new SqlParameter("@note", note)
+            }).ToExecuteQuery();
+
+            SqlDataReader reader = new DoSql("SELECT TOP 1 address_id FROM DelAddress ORDER BY address_id DESC",
+                new SqlParameter[] { }).ToReadQuery();
+
+            int address_id = 0;
+            while (reader.Read())
+            {
+                address_id = reader.GetInt32(0);
+            }
+
+            string add = "INSERT INTO Delivery (buyer_id, address_id) VALUES (@buyer, @address)";
+
+            new DoSql(add, new SqlParameter[]
+            {
+                new SqlParameter("@buyer", buyer_id),
+                new SqlParameter("@address", address_id)
+            }).ToExecuteQuery();
+
+            Function();
+
+            Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive).Close();
+        }
+
+        private void SaveKhDep(object sender, RoutedEventArgs e)
+        {
+            if (KhCityList.SelectedIndex == -1)
+                return;
+
+            string[] selected = KhCityList.SelectedItem.ToString().Split('\n');
+
+            string city = "Харків";
+            string dep = selected[0];
+            string note = selected[1].Split(':')[1].Substring(1);
+
+            string sqlCheck = $"SELECT * FROM DelAddress WHERE city = '{city}' AND dep = '{dep}' AND note = '{note}'";
+
+            SqlDataReader reader = new DoSql(sqlCheck, new SqlParameter[] { }).ToReadQuery();
+
+            int id = -1;
+            while (reader.Read())
+            {
+                id = reader.GetInt32(0);
+            }
+
+            if (id == -1)
+                AddNewAddress(city, dep, note);
+            else
+                SelectedAddress(id);
         }
 
         private bool Validate()

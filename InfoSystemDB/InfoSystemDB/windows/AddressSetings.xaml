@@ -5,10 +5,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:InfoSystemDB"
         mc:Ignorable="d"
-        Title="Addresses" Height="600" Width="500" ResizeMode="NoResize">
+        Title="Addresses" Height="650" Width="500" ResizeMode="NoResize">
     <Grid Margin="20">
         <Grid.RowDefinitions>
-            <RowDefinition Height="50" />
+            <RowDefinition Height="120" />
             <RowDefinition />
         </Grid.RowDefinitions>
 
@@ -19,30 +19,42 @@
 
         <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center">
             <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="50" />
+                </Grid.RowDefinitions>
+
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
-                <StackPanel Grid.Column="0" Height="20" Name="StackPanel1" Orientation="Horizontal"
+                <StackPanel Grid.Row="0" Grid.Column="0" Height="25" Name="StackPanel1" Orientation="Horizontal"
                             HorizontalAlignment="Center">
                     <Viewbox Height="{Binding Path=ActualHeight, ElementName=StackPanel1}">
-                        <CheckBox Content="Обрати адресу" IsChecked="True" x:Name="CBSelect" Click="CDSchecked" />
+                        <CheckBox Content="Обрати адресу" IsChecked="True" x:Name="CBSelect" Click="CBSchecked" />
                     </Viewbox>
                 </StackPanel>
 
-                <StackPanel Grid.Column="1" Height="20" Name="StackPanel2" Orientation="Horizontal"
+                <StackPanel Grid.Row="0" Grid.Column="1" Height="25" Name="StackPanel2" Orientation="Horizontal"
                             HorizontalAlignment="Center">
-                    <Viewbox Height="{Binding Path=ActualHeight, ElementName=StackPanel1}">
-                        <CheckBox Content="Додати нову" x:Name="CBNew" Click="CDNchecked" />
+                    <Viewbox Height="{Binding Path=ActualHeight, ElementName=StackPanel2}">
+                        <CheckBox Content="Додати нову" x:Name="CBNew" Click="CBNchecked" />
+                    </Viewbox>
+                </StackPanel>
+
+                <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Height="25" Name="StackPanel3"
+                            Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Viewbox Height="{Binding Path=ActualHeight, ElementName=StackPanel3}">
+                        <CheckBox Content="Відділення у Харкові" x:Name="KhCity" Click="CityChecked" FontSize="12" />
                     </Viewbox>
                 </StackPanel>
             </Grid>
         </StackPanel>
 
-        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" x:Name="ChooseGrid" Visibility="Collapsed"> <!-- //////////////////////////////////////////////////////////// -->
+        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" x:Name="ChooseGrid">
             <Grid.RowDefinitions>
-                <RowDefinition Height="290" />
+                <RowDefinition Height="250" />
                 <RowDefinition />
             </Grid.RowDefinitions>
 
@@ -77,15 +89,17 @@
                          x:Name="DepInput" FontSize="17" />
 
                 <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Content="Обрати" FontSize="20"
-                        Margin="60, 20, 60, 0" Click="Choose" />
+                        Margin="60, 0, 60, 0" Click="Choose" />
             </Grid>
         </Grid>
 
-         <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" x:Name="NewGrid" Visibility="Visible">   <!-- //////////////////////////////////////////////////////////// -->
-
+        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" x:Name="NewGrid" Visibility="Collapsed">
             <Grid.RowDefinitions>
-                <RowDefinition Height="40" />
                 <RowDefinition />
+                <RowDefinition Height="50" />
+                <RowDefinition />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="120" />
                 <RowDefinition Height="80" />
             </Grid.RowDefinitions>
 
@@ -94,48 +108,34 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Height="50" Name="StackPanel"
-                        Orientation="Horizontal"
-                        HorizontalAlignment="Center">
-                <Viewbox Height="{Binding Path=ActualHeight, ElementName=StackPanel1}">
-                    <CheckBox Content="Відділення у Харкові" x:Name="KhCity" Click="CityChecked" FontSize="12" />
-                </Viewbox>
-            </StackPanel>
+            <Label Grid.Row="0" Grid.Column="0" Content="Місто" FontSize="17" Margin="40, 10"
+                   VerticalContentAlignment="Center" />
+            <TextBox Grid.Row="0" Grid.Column="1" Margin="0, 10, 40, 10" VerticalContentAlignment="Center"
+                     x:Name="NewCityInput" FontSize="17" />
 
-            <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="0, 25, 0, 0" x:Name="AllCity" Visibility="Collapsed"> <!-- //////////////////////////////////////////////////////////// -->
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition Height="30" />
-                    <RowDefinition />
-                    <RowDefinition Height="30" />
-                    <RowDefinition Height="120" />
-                </Grid.RowDefinitions>
+            <Label Grid.Row="2" Grid.Column="0" Content="Відділення" FontSize="17" Margin="40, 10"
+                   VerticalContentAlignment="Center" />
+            <TextBox Grid.Row="2" Grid.Column="1" Margin="0, 10, 40, 10" VerticalContentAlignment="Center"
+                     x:Name="NewDepInput" FontSize="17" />
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
+            <Label Grid.Row="4" Grid.Column="0" Content="Примітка" FontSize="17" Margin="40, 10"
+                   VerticalContentAlignment="Top" />
+            <TextBox Grid.Row="4" Grid.Column="1" Margin="0, 10, 40, 10" TextWrapping="Wrap"
+                     x:Name="NoteInput" FontSize="17" />
 
-                <Label Grid.Row="0" Grid.Column="0" Content="Місто" FontSize="17" Margin="40, 10"
-                       VerticalContentAlignment="Center" />
-                <TextBox Grid.Row="0" Grid.Column="1" Margin="0, 10, 40, 10" VerticalContentAlignment="Center"
-                         x:Name="NewCityInput" FontSize="17" />
-
-                <Label Grid.Row="2" Grid.Column="0" Content="Відділення" FontSize="17" Margin="40, 10"
-                       VerticalContentAlignment="Center" />
-                <TextBox Grid.Row="2" Grid.Column="1" Margin="0, 10, 40, 10" VerticalContentAlignment="Center"
-                         x:Name="NewDepInput" FontSize="17" />
-
-                <Label Grid.Row="4" Grid.Column="0" Content="Примітка" FontSize="17" Margin="40, 10"
-                       VerticalContentAlignment="Top" />
-                <TextBox Grid.Row="4" Grid.Column="1" Margin="0, 10, 40, 10" VerticalContentAlignment="Center"
-                         x:Name="NoteInput" FontSize="17" />
-            </Grid>
-
-            <ListBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" x:Name="KhCityList" Visibility="Visible" /> <!-- //////////////////////////////////////////////////////////// -->
-
-            <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Content="Додати" FontSize="20"
+            <Button Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Content="Додати" FontSize="20"
                     Margin="60, 20, 60, 0" Click="Save" />
+        </Grid>
+
+        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" x:Name="KhCityGrid" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="80" />
+            </Grid.RowDefinitions>
+
+            <ListBox Grid.Row="0" x:Name="KhCityList" />
+
+            <Button Grid.Row="1" Content="Обрати" FontSize="20" Click="SaveKhDep" Margin="60, 20, 60, 0" />
         </Grid>
     </Grid>
 </Window>

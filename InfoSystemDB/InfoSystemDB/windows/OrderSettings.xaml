@@ -114,6 +114,7 @@
                 <RowDefinition Height="50" />
                 <RowDefinition Height="50" />
                 <RowDefinition Height="50" />
+                <RowDefinition Height="50" />
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
@@ -151,6 +152,12 @@
 
             <Button Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Content="Додати замовлення" FontSize="17"
                     Click="Save" />
+            
+            <StackPanel Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Height="25" Orientation="Horizontal">
+                <Viewbox Height="{Binding Path=ActualHeight}">
+                    <CheckBox Content="Термінове замовлення" x:Name="CBQuickly" FontSize="12" />
+                </Viewbox>
+            </StackPanel>
         </Grid>
     </Grid>
 </Window>

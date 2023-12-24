@@ -7,9 +7,17 @@ namespace InfoSystemDB.windows
     {
         private ItemSettings item;
         private int mode;
+        
+        public delegate void Function(string order);
 
-        public ProductSettings(DataGrid DGridProducts)
+        private Function func;
+        private string order;
+        
+        public ProductSettings(DataGrid DGridProducts, Function func, string order)
         {
+            this.func = func;
+            this.order = order;
+            
             InitializeComponent();
 
             mode = 0;
@@ -19,8 +27,11 @@ namespace InfoSystemDB.windows
             MaterialList.SelectionChanged += MaterialChanged;
         }
 
-        public ProductSettings(DataGrid DGridProducts, int selected_id)
+        public ProductSettings(DataGrid DGridProducts, int selected_id, Function func, string order)
         {
+            this.func = func;
+            this.order = order;
+            
             InitializeComponent();
 
             mode = 1;
@@ -33,6 +44,7 @@ namespace InfoSystemDB.windows
         private void Save(object sender, RoutedEventArgs e)
         {
             item.Save();
+            func(order);
         }
 
         private void MaterialChanged(object sender, RoutedEventArgs e)

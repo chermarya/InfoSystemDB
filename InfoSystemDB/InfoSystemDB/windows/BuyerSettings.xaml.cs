@@ -9,24 +9,21 @@ namespace InfoSystemDB
     public partial class BuyerSettings : Window
     {
         private DataGrid DGBuyers;
-        private int mode;
         private Buyer currentBuyer;
+
         private Action Function;
-        public BuyerSettings(DataGrid grid, int mode, Buyer buyer, Action func)
+        
+        public BuyerSettings(DataGrid grid, Buyer buyer, Action func)
         {
             Function = func;
             DGBuyers = grid;
-            this.mode = mode;
             currentBuyer = buyer;
+            
             InitializeComponent();
-
-            if (mode == 1)
-                LoadValues();
         }
 
         private void Save(object sender, RoutedEventArgs e)
         {
-            int row = DGBuyers.SelectedIndex;
             if (Validate())
             {
                 string nick = NickInput.Text;
@@ -34,11 +31,7 @@ namespace InfoSystemDB
                 string name = NameInput.Text;
                 string tel = "0" + TelInput.Text;
 
-                string sql;
-                if (mode == 0)
-                    sql = "INSERT INTO Buyer (nick, nname, surname, tel) VALUES (@nick, @name, @sur, @tel)";
-                else 
-                    sql = "UPDATE Buyer SET nick = @nick, nname = @name, surname = @sur, tel = @tel WHERE buyer_id = @id";
+                string sql = "INSERT INTO Buyer (nick, nname, surname, tel) VALUES (@nick, @name, @sur, @tel)";
                 
                 new DoSql(sql, new SqlParameter[]
                     {
@@ -52,10 +45,7 @@ namespace InfoSystemDB
 
                 DGBuyers.ItemsSource = VsInsideDBEntities.Content().Buyer.ToList();
                 
-                if (mode == 0)
-                    DGBuyers.SelectedIndex = VsInsideDBEntities.Content().Buyer.ToList().Count - 1;
-                else 
-                    DGBuyers.SelectedIndex = row;
+                DGBuyers.SelectedIndex = VsInsideDBEntities.Content().Buyer.ToList().Count - 1;
                 
                 SqlDataReader reader = new DoSql("SELECT TOP 1 buyer_id FROM Buyer ORDER BY buyer_id DESC",
                     new SqlParameter[] { }).ToReadQuery();
@@ -68,19 +58,10 @@ namespace InfoSystemDB
 
                 Window wind = Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive);
                 
-                if (mode == 0)
-                    new AddressSetings(buyer_id, Function).Show();
+                new AddressSetings(buyer_id, Function).Show();
                 
                 wind.Close();
             }
-        }
-
-        private void LoadValues()
-        {
-            NickInput.Text = currentBuyer.nick;
-            SurnameInput.Text = currentBuyer.surname;
-            NameInput.Text = currentBuyer.nname;
-            TelInput.Text = currentBuyer.tel.Substring(1);
         }
 
         private bool Validate()

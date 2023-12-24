@@ -31,9 +31,6 @@
                             <DataTrigger Binding="{Binding Status}" Value="відмова">
                                 <Setter Property="Background" Value="Tomato" />
                             </DataTrigger>
-                            <DataTrigger Binding="{Binding Status}" Value="обмін">
-                                <Setter Property="Background" Value="Aqua" />
-                            </DataTrigger>
                         </Style.Triggers>
                     </Style>
                 </DataGrid.RowStyle>
@@ -41,7 +38,8 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn FontSize="15" MinWidth="65" Header="№ замов." Binding="{Binding ID}" />
                     <DataGridTextColumn FontSize="15" MinWidth="80" Header="Дата" Binding="{Binding Date}" />
-                    <DataGridTextColumn FontSize="15" MinWidth="100" Header="Нік" Binding="{Binding Nick}" />
+                    <DataGridTextColumn FontSize="15" MinWidth="100" Header="Нік" Binding="{Binding Nick}"
+                                        CanUserSort="False" />
                     <DataGridTextColumn FontSize="15" MinWidth="150" Header="Ім'я" Binding="{Binding Name}">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
@@ -49,8 +47,9 @@
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
-                    <DataGridTextColumn FontSize="15" MinWidth="130" Header="Телефон" Binding="{Binding Phone}" />
-                    <DataGridTextColumn FontSize="15" MinWidth="200" Width="*" Header="Вироби"
+                    <DataGridTextColumn FontSize="15" MinWidth="130" Header="Телефон" Binding="{Binding Phone}"
+                                        CanUserSort="False" />
+                    <DataGridTextColumn FontSize="15" MinWidth="200" Width="*" Header="Вироби" CanUserSort="False"
                                         Binding="{Binding Products}">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
@@ -58,7 +57,7 @@
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
-                    <DataGridTextColumn FontSize="15" MinWidth="100" Width="*" Header="Адреса"
+                    <DataGridTextColumn FontSize="15" MinWidth="100" Width="*" Header="Адреса" CanUserSort="False"
                                         Binding="{Binding Address}">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
@@ -67,32 +66,38 @@
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
                     <DataGridTextColumn FontSize="15" MinWidth="65" MaxWidth="170" Width="*" Header="Знижка"
-                                        Binding="{Binding Discount}">
+                                        Binding="{Binding Discount}" CanUserSort="False">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
                                 <Setter Property="TextWrapping" Value="Wrap" />
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
-                    <DataGridTextColumn FontSize="15" MinWidth="55" Binding="{Binding Sum}" x:Name="summ" />
-                    <DataGridTextColumn FontSize="15" MinWidth="55" Binding="{Binding Prepay}" x:Name="prepay" />
-                    <DataGridTextColumn FontSize="15" MinWidth="55" Binding="{Binding Amount_due}" x:Name="amount_due" />
-                    <DataGridTextColumn FontSize="15" MinWidth="150" Header="Накладна" Binding="{Binding Invoice}" />
-                    <DataGridTextColumn FontSize="15" MinWidth="90" Header="Статус" Binding="{Binding Status}">
+                    <DataGridTextColumn FontSize="15" MinWidth="55" Binding="{Binding Sum}" Header="Сума&#x0a;замов." />
+                    <DataGridTextColumn FontSize="15" MinWidth="55" Binding="{Binding Prepay}"
+                                        Header="Перед-&#x0a;оплата" />
+                    <DataGridTextColumn FontSize="15" MinWidth="55" Binding="{Binding Amount_due}"
+                                        Header="Сума до&#x0a;сплати" />
+                    <DataGridTextColumn FontSize="15" MinWidth="150" Header="Накладна" Binding="{Binding Invoice}"
+                                        CanUserSort="False" />
+                    <DataGridTextColumn FontSize="15" MinWidth="90" Header="Статус" Binding="{Binding Status}"
+                                        CanUserSort="False">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
                                 <Setter Property="TextWrapping" Value="Wrap" />
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
-                    <DataGridTextColumn FontSize="15" MinWidth="80" Header="Прим." Binding="{Binding Note}">
+                    <DataGridTextColumn FontSize="15" MinWidth="80" Header="Прим." Binding="{Binding Note}"
+                                        CanUserSort="False">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
                                 <Setter Property="TextWrapping" Value="Wrap" />
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
-                    <DataGridTextColumn FontSize="15" MinWidth="65" Header="Магазин" Binding="{Binding Shop}" />
+                    <DataGridTextColumn FontSize="15" MinWidth="65" Header="Магазин" Binding="{Binding Shop}"
+                                        CanUserSort="False" />
                 </DataGrid.Columns>
             </DataGrid>
 

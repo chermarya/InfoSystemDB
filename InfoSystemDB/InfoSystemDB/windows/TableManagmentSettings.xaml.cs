@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace InfoSystemDB
 {

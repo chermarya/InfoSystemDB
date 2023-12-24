@@ -21,7 +21,7 @@ namespace InfoSystemDB
 
         private void Run()
         {
-            for (int i = 0; i <= 7; i++)
+            for (int i = 1; i <= 7; i++)
             {
                 result.AddRange(Parsing(i));
             }

@@ -74,7 +74,7 @@
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="ID" Binding="{Binding shop_id}" Width="40" />
                         <DataGridTextColumn Header="Назва" Binding="{Binding title}" Width="200" />
-                        <DataGridTextColumn Header="Менеджер" Binding="{Binding Managers.llogin}" Width="250" />
+                        <DataGridTextColumn Header="Менеджер" Binding="{Binding Manager.llogin}" Width="250" />
                         <DataGridTextColumn Header="Посилання" Binding="{Binding link}" Width="*" />
                     </DataGrid.Columns>
                 </DataGrid>

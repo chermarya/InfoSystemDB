@@ -20,12 +20,12 @@
         <Label Grid.Row="0" Grid.Column="0" Margin="80, 55, 0, 0" FontSize="17" Content="Назва" x:Name="NameLabel"
                VerticalAlignment="Top" />
         <TextBox Grid.Row="0" Grid.Column="1" Margin="30, 50" FontSize="17" x:Name="NameInput" Height="35"
-                 VerticalAlignment="Top" />
+                 VerticalAlignment="Top" VerticalContentAlignment="Center" />
 
         <Label Grid.Row="0" Grid.Column="0" Margin="80, 30, 0, 30" FontSize="17" Content="Код" x:Name="CodeLabel"
                VerticalAlignment="Center" />
         <TextBox Grid.Row="0" Grid.Column="1" Margin="30" FontSize="17" x:Name="CodeInput" Height="35"
-                 VerticalAlignment="Center" />
+                 VerticalAlignment="Center" VerticalContentAlignment="Center" />
 
         <Label Grid.Row="0" Grid.Column="0" Margin="80, 0, 0, 45" FontSize="17" Content="Матеріал"
                x:Name="MaterialLabel" VerticalAlignment="Bottom" />

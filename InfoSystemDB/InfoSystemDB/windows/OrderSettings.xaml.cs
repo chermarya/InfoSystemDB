@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -53,6 +52,9 @@ namespace InfoSystemDB
                 string stat = "в обробці";
                 string note = NoteInput.Text;
 
+                if (CBQuickly.IsChecked == true)
+                    stat = "терміново";
+                
                 ReadValues();
 
                 string expr =

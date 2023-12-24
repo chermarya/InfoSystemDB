@@ -61,9 +61,6 @@
                             <DataTrigger Binding="{Binding Status}" Value="відмова">
                                 <Setter Property="Background" Value="Tomato" />
                             </DataTrigger>
-                            <DataTrigger Binding="{Binding Status}" Value="обмін">
-                                <Setter Property="Background" Value="Aqua" />
-                            </DataTrigger>
                         </Style.Triggers>
                         <Setter Property="FontSize" Value="15" />
                     </Style>
@@ -75,7 +72,7 @@
                     <DataGridTextColumn FontSize="15" MinWidth="80" Header="Дата" Binding="{Binding Date}"
                                         IsReadOnly="True" />
                     <DataGridTextColumn FontSize="15" MinWidth="100" Header="Нік" Binding="{Binding Nick}"
-                                        IsReadOnly="True" />
+                                        IsReadOnly="True" CanUserSort="False" />
 
                     <DataGridTextColumn FontSize="15" MinWidth="150" Header="Ім'я" Binding="{Binding Name}"
                                         IsReadOnly="True">
@@ -87,10 +84,10 @@
                     </DataGridTextColumn>
 
                     <DataGridTextColumn FontSize="15" MinWidth="130" Header="Телефон" Binding="{Binding Phone}"
-                                        IsReadOnly="True" />
+                                        IsReadOnly="True" CanUserSort="False" />
 
                     <DataGridTextColumn FontSize="15" MinWidth="200" Width="*" Header="Вироби" IsReadOnly="True"
-                                        Binding="{Binding Products}">
+                                        Binding="{Binding Products}" CanUserSort="False">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
                                 <Setter Property="TextWrapping" Value="Wrap" />
@@ -99,7 +96,7 @@
                     </DataGridTextColumn>
 
                     <DataGridTextColumn FontSize="15" MinWidth="120" Width="*" Header="Адреса" IsReadOnly="True"
-                                        Binding="{Binding Address}">
+                                        Binding="{Binding Address}" CanUserSort="False">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
                                 <Setter Property="TextWrapping" Value="Wrap" />
@@ -108,8 +105,7 @@
                     </DataGridTextColumn>
 
                     <DataGridTextColumn FontSize="15" MinWidth="65" MaxWidth="170" Width="*" Header="Знижка"
-                                        IsReadOnly="True"
-                                        Binding="{Binding Discount}">
+                                        IsReadOnly="True" Binding="{Binding Discount}" CanUserSort="False">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
                                 <Setter Property="TextWrapping" Value="Wrap" />
@@ -124,14 +120,16 @@
                     <DataGridTextColumn FontSize="15" MinWidth="55" Header="Сума до&#x0a;сплати" IsReadOnly="True"
                                         Binding="{Binding Amount_due}" />
                     <DataGridTextColumn FontSize="15" MinWidth="120" Header="Накладна" Binding="{Binding Invoice}"
-                                        IsReadOnly="True" x:Name="InvoiceCell" />
+                                        IsReadOnly="True" x:Name="InvoiceCell" CanUserSort="False" />
 
                     <DataGridTextColumn FontSize="15" MinWidth="120" Header="Статус" Binding="{Binding FullStatus}"
-                                        IsReadOnly="True" x:Name="StatusView" />
+                                        IsReadOnly="True" x:Name="StatusView" CanUserSort="False" />
                     <DataGridComboBoxColumn MinWidth="120" Header="Статус" x:Name="StatusList" IsReadOnly="True"
-                                            SelectedItemBinding="{Binding Status}" Visibility="Collapsed" />
+                                            SelectedItemBinding="{Binding Status}" Visibility="Collapsed"
+                                            CanUserSort="False" />
 
-                    <DataGridTemplateColumn MinWidth="120" Header="Дата" x:Name="DateStatusCell" Visibility="Collapsed">
+                    <DataGridTemplateColumn MinWidth="120" Header="Дата" x:Name="DateStatusCell" Visibility="Collapsed"
+                                            CanUserSort="False">
                         <DataGridTemplateColumn.CellStyle>
                             <Style TargetType="DataGridCell">
                                 <Style.Triggers>
@@ -151,7 +149,7 @@
                     </DataGridTemplateColumn>
 
                     <DataGridTextColumn FontSize="15" MinWidth="80" Header="Прим." Binding="{Binding Note}"
-                                        IsReadOnly="True">
+                                        IsReadOnly="True" CanUserSort="False" >
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
                                 <Setter Property="TextWrapping" Value="Wrap" />
@@ -160,10 +158,10 @@
                     </DataGridTextColumn>
 
                     <DataGridTextColumn FontSize="15" MinWidth="65" Header="Магазин" Binding="{Binding Shop}"
-                                        IsReadOnly="True" />
+                                        IsReadOnly="True" CanUserSort="False" />
 
-                    <DataGridTextColumn FontSize="15" MinWidth="120" Header="Менеджер" Binding="{Binding Manager}"
-                                        IsReadOnly="True">
+                    <DataGridTextColumn FontSize="15" MinWidth="140" Header="Менеджер" Binding="{Binding Manager}"
+                                        IsReadOnly="True" CanUserSort="False">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
                                 <Setter Property="TextWrapping" Value="Wrap" />
@@ -180,7 +178,7 @@
                     <ColumnDefinition Width="300" />
                     <ColumnDefinition Width="270" />
                 </Grid.ColumnDefinitions>
-                
+
                 <Button Grid.Column="0" FontSize="20" HorizontalAlignment="Left" Width="230"
                         Content="Редагувати статуси&#x0a;замовлень" Click="EditStatus" x:Name="EditInvoiceBtn" />
                 <Button Grid.Column="0" FontSize="20" HorizontalAlignment="Right" Width="230"
@@ -190,14 +188,15 @@
                         Margin="60, 0, 0, 0" Click="SaveInvoiceClick" x:Name="SaveInvoiceBtn" Visibility="Collapsed" />
                 <Button Grid.Column="1" FontSize="20" HorizontalAlignment="Center" Width="230" Content="Зберегти"
                         Margin="60, 0, 0, 0" Click="SaveStatusClick" x:Name="SaveStatusBtn" Visibility="Collapsed" />
-                
+
                 <StackPanel Grid.Column="2" Height="27" Name="StackPanel1" Orientation="Horizontal"
                             HorizontalAlignment="Center">
                     <Viewbox Height="{Binding Path=ActualHeight, ElementName=StackPanel1}">
-                        <CheckBox Content="Необроблені замовлення" IsChecked="False" x:Name="OnlyOrderCheck" Click="OnlyOrder" />
+                        <CheckBox Content="Необроблені замовлення" IsChecked="False" x:Name="OnlyOrderCheck"
+                                  Click="OnlyOrder" />
                     </Viewbox>
                 </StackPanel>
-                
+
                 <Button Grid.Column="3" FontSize="20" HorizontalAlignment="Center" Width="230" Content="Друк"
                         Margin="60, 0, 0, 0" Click="SaveStatusClick" x:Name="PrintBtn" Visibility="Visible" />
             </Grid>
