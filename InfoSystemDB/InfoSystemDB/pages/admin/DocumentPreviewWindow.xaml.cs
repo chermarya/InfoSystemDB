@@ -160,6 +160,8 @@ namespace InfoSystemDB
                     printDialog.PrintDocument(paginatorSource.DocumentPaginator, "Друк документа");
                 }
             }
+            
+            MessageBox.Show("Process finished successfully.");
         }
 
         private void Save(object sender, RoutedEventArgs e)
@@ -350,18 +352,15 @@ namespace InfoSystemDB
                                                         .Indexed = 29;
                                                 }
                                             }
-
                                             columnIndex++;
                                         }
-
                                         rowIndex++;
                                     }
                                 }
                             }
                         }
-
                         excelPackage.SaveAs(new System.IO.FileInfo(filePath));
-                        MessageBox.Show($"Excel file saved successfully.");
+                        MessageBox.Show("Excel file saved successfully.");
                     }
                 }
             }

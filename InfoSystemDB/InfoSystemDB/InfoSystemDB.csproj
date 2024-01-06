@@ -272,6 +272,7 @@
     <Compile Include="library\ParsedAddress.cs" />
     <Compile Include="library\Parser.cs" />
     <Compile Include="library\Statistics\MProductivity.cs" />
+    <Compile Include="library\Statistics\ProdStat.cs" />
     <Compile Include="library\Statistics\RBuyer.cs" />
     <Compile Include="library\Statistics\SDate.cs" />
     <Compile Include="library\SupplyItem.cs" />
@@ -298,6 +299,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="NewServerWindow.xaml.cs">
+      <DependentUpon>NewServerWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Packaging.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
@@ -419,6 +423,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="NewServerWindow.xaml" />
     <Page Include="pages\admin\AdminMenuPage.xaml" />
     <Page Include="pages\admin\BuyerInfoPage.xaml" />
     <Page Include="pages\admin\BuyerListPage.xaml" />

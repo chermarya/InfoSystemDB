@@ -57,7 +57,7 @@ namespace InfoSystemDB
         {
             List<Product> cont = new List<Product>();
 
-            SqlDataReader reader = new DoSql("SELECT product_id FROM Product WHERE quantity > 0", 
+            SqlDataReader reader = new DoSql("SELECT product_id FROM Product WHERE quantity > 0 ORDER BY title", 
                 new SqlParameter[]{ }).ToReadQuery();
 
             while (reader.Read())

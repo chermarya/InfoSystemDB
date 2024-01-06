@@ -7,6 +7,37 @@
       mc:Ignorable="d"
       Title="PopularProductColor" Width="870" Height="500">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
         
+        <ListView Grid.Column="0" x:Name="LBProduct" FontSize="20" Margin="20">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Товар" DisplayMemberBinding="{Binding Title}" />
+                    <GridViewColumn Header="К-ть" DisplayMemberBinding="{Binding Quantity}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        
+        <ListView Grid.Column="1" x:Name="LBSize" FontSize="20" Margin="20">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Розмір" DisplayMemberBinding="{Binding Title}" />
+                    <GridViewColumn Header="К-ть" DisplayMemberBinding="{Binding Quantity}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        
+        <ListView Grid.Column="2" x:Name="LBColor" FontSize="20" Margin="20">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Колір" DisplayMemberBinding="{Binding Title}" />
+                    <GridViewColumn Header="К-ть" DisplayMemberBinding="{Binding Quantity}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Page>

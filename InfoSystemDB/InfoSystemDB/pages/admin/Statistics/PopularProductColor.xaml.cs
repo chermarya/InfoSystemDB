@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.SqlClient;
 using System.Windows.Controls;
 
@@ -6,7 +7,10 @@ namespace InfoSystemDB
 {
     public partial class PopularProductColor : Page
     {
-        private List<MProductivity> Data;
+        private ObservableCollection<ProdStat> LeaderboardP = new ObservableCollection<ProdStat>();
+        private ObservableCollection<ProdStat> LeaderboardS = new ObservableCollection<ProdStat>();
+        private ObservableCollection<ProdStat> LeaderboardC = new ObservableCollection<ProdStat>();
+        private List<ProdStat> Data;
         private string dateString;
         
         public PopularProductColor(string date)
@@ -17,53 +21,103 @@ namespace InfoSystemDB
                 dateString = date;
             
             InitializeComponent();
+            
+            LoadLiderboard(LeaderboardP, "Prod");
+            LoadLiderboard(LeaderboardS, "Size");
+            LoadLiderboard(LeaderboardC, "Color");
+            LBProduct.ItemsSource = LeaderboardP;
+            LBSize.ItemsSource = LeaderboardS;
+            LBColor.ItemsSource = LeaderboardC;
         }
         
-        private void ReadData()
+        private void LoadLiderboard(ObservableCollection<ProdStat> board, string mode)
         {
-            Data = new List<MProductivity>();
+            DataContext = board;
+
+            ReadData(mode);
             
-            string sel1 = @"
+            foreach (ProdStat i in Data)
+            {
+                board.Add(i);
+            }
+        }
+        
+        private void ReadData(string mode)
+        {
+            Data = new List<ProdStat>();
+            
+            string selectProd = @"
                 SELECT
-                    mg.surname + ' ' + mg.nname AS Manager,
-                    COALESCE(COUNT(DISTINCT so.order_id), 0) AS OrderCount,
-                    COALESCE(TotalOrderSum, 0) AS TotalSum,
-                    COALESCE(COUNT(pk.product_id), 0) AS ProductCount
-                FROM Manager mg
-                LEFT JOIN (
-                    SELECT
-	                sp.manager_id,
-                    SUM(so.summ) AS TotalOrderSum
-                    FROM SetOrder so
-                    LEFT JOIN Shop sp ON so.shop_id = sp.shop_id
-                    WHERE so.stat <> 'відмова'
+                    pt.title + ' ' + pd.title AS Product,
+                    COUNT(*) AS OrderCount
+                FROM SetOrder so
+                JOIN Packaging pk ON so.order_id = pk.order_id
+                JOIN Product pd ON pk.product_id = pd.product_id
+                JOIN ProdType pt ON pd.prodtype_id = pt.prodtype_id
+                WHERE so.stat <> 'відмова'
             ";
             
-            string sel2 = @"
-                    GROUP BY sp.manager_id
-                ) q ON q.manager_id = mg.manager_id
-                LEFT JOIN Shop sp ON sp.manager_id = mg.manager_id
-                LEFT JOIN SetOrder so ON so.shop_id = sp.shop_id 
-                AND so.stat <> 'відмова'
-              ";
+            string groupProd = @"
+                GROUP BY pt.title, pd.title
+                ORDER BY OrderCount DESC, Product
+            ";
             
-            string and = @"  
-                LEFT JOIN Packaging pk ON pk.order_id = so.order_id
-                GROUP BY mg.surname + ' ' + mg.nname, TotalOrderSum
-                ORDER BY OrderCount DESC, TotalSum DESC;
+            string selectSize = @"
+                SELECT
+                    s.title,
+                    COUNT(*) AS SizeCount
+                FROM SetOrder so
+                JOIN Packaging pk ON so.order_id = pk.order_id
+                JOIN Product pd ON pk.product_id = pd.product_id
+                JOIN Size s ON pd.size_id = s.size_id
+                WHERE so.stat <> 'відмова'
+            ";
+            
+            string groupSize = @"
+                GROUP BY s.title
+                ORDER BY SizeCount DESC
+            ";
+            
+            string selectColor = @"
+                SELECT
+                    c.title,
+                    COUNT(*) AS ColorCount
+                FROM SetOrder so
+                JOIN Packaging pa ON so.order_id = pa.order_id
+                JOIN Product pd ON pa.product_id = pd.product_id
+                JOIN Color c ON pd.color_id = c.color_id
+                WHERE so.stat <> 'відмова'
+            ";
+            
+            string groupColor = @"
+                GROUP BY c.title
+                ORDER BY ColorCount DESC
             ";
 
-            string sql = sel1 + dateString + sel2 + dateString + and;
+            string sql = "";
+            switch (mode)
+            {
+                case "Prod":
+                    sql = selectProd + dateString + groupProd;
+                    break;
+                
+                case "Size":
+                    sql = selectSize + dateString + groupSize;
+                    break;
+                
+                case "Color":
+                    sql = selectColor + dateString + groupColor;
+                    break;
+            }
+                
                 
             SqlDataReader reader = new DoSql(sql, new SqlParameter[] { }).ToReadQuery();
 
             while (reader.Read())
             {
-                Data.Add(new MProductivity(
+                Data.Add(new ProdStat(
                     reader.GetString(0),
-                    reader.GetInt32(1),
-                    reader.GetInt32(2),
-                    reader.GetInt32(3)
+                    reader.GetInt32(1)
                 ));
             }
         }
