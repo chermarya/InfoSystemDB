@@ -5,7 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:InfoSystemDB"
         mc:Ignorable="d"
-        Title="DocumentPreviewWindow" Height="720" Width="1200" ResizeMode="NoResize">
+        Title="Перегляд документу" ResizeMode="NoResize" x:Name="MainWindow">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -15,8 +15,11 @@
 
         <TextBlock Grid.Row="0" Text="Перегляд документу" FontSize="18" FontWeight="Bold" Margin="10" />
 
-        <Frame Grid.Row="1" Name="contentFrame" Width="1150" Height="550" Margin="10" />
+        <Frame Grid.Row="1" Name="contentFrame" Margin="10" />
         
-        <Button Grid.Row="2" Content="Друк" FontSize="20" HorizontalAlignment="Center" Margin="10" Width="200" Click="PrintButton_Click" />
+        <Button Grid.Row="2" Content="Друк" FontSize="20" HorizontalAlignment="Center" Margin="10" Width="200" 
+                Click="Print" x:Name="PrintBtn" />
+        <Button Grid.Row="2" Content="Зберегти" FontSize="20" HorizontalAlignment="Center" Margin="10" Width="200" 
+                Click="Save" x:Name="SaveBtn" />
     </Grid>
 </Window>

@@ -99,12 +99,6 @@ namespace InfoSystemDB
         {
             new DocumentPreviewWindow(content).ShowDialog();
         }
-
-        // foreach (Order i in content)
-            // {
-            //     Paragraph productParagraph = new Paragraph(new Run($"{i.ID}: {i.Products}"));
-            //     document.Blocks.Add(productParagraph);
-            // }
         private void OnlyOrder(object sender, RoutedEventArgs e)
         {
             FillGrid();
