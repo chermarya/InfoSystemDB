@@ -75,6 +75,10 @@ namespace InfoSystemDB
         {
             TypeList.Visibility = Visibility.Visible;
             SizeList.Visibility = Visibility.Visible;
+            TitleInput.Visibility = Visibility.Visible;
+            TypeProdLabel.Visibility = Visibility.Visible;
+            SizeLabel.Visibility = Visibility.Visible;
+            NameLabel.Visibility = Visibility.Visible;
 
             DGridOutput.Columns.Clear();
 
@@ -136,6 +140,10 @@ namespace InfoSystemDB
         {
             TypeList.Visibility = Visibility.Collapsed;
             SizeList.Visibility = Visibility.Collapsed;
+            TitleInput.Visibility = Visibility.Collapsed;
+            TypeProdLabel.Visibility = Visibility.Collapsed;
+            SizeLabel.Visibility = Visibility.Collapsed;
+            NameLabel.Visibility = Visibility.Collapsed;
 
             DGridOutput.Columns.Clear();
             

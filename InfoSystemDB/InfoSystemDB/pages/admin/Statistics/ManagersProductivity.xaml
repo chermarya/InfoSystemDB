@@ -4,22 +4,72 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:InfoSystemDB"
-      xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
       mc:Ignorable="d"
       Title="ManagersProductivity" Background="White">
+
+    <Page.Resources>
+        <Style TargetType="Button" x:Key="TransparentBckg">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <ContentPresenter Content="{TemplateBinding Content}" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+    </Page.Resources>
+
     <Grid>
-        <!-- <Grid.RowDefinitions> -->
-        <!--     <RowDefinition /> -->
-        <!--     <RowDefinition /> -->
-        <!--     <RowDefinition Height="500" /> -->
-        <!-- </Grid.RowDefinitions> -->
-        
-        <lvc:PieChart Name="pieChart" Margin="10">
-            <lvc:PieChart.Series>
-                <lvc:PieSeries Title="Series 1" Values="30" />
-                <lvc:PieSeries Title="Series 2" Values="40" />
-                <lvc:PieSeries Title="Series 3" Values="60" />
-            </lvc:PieChart.Series>
-        </lvc:PieChart>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="90" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            
+            <Border Grid.Column="0" Margin="15" CornerRadius="20, 20, 0, 0">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="Aqua" Offset="0.0" x:Name="GBC1" />
+                        <GradientStop Color="Transparent" Offset="1.0" />
+                    </LinearGradientBrush>
+                </Border.Background>
+
+                <Button FontSize="20" Content="Кількість замовлень" Style="{StaticResource TransparentBckg}"
+                        Cursor="Hand" Click="MOrderStat" HorizontalAlignment="Center" />
+            </Border>
+            
+            <Border Grid.Column="1" Margin="15" CornerRadius="20, 20, 0, 0">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="Transparent" Offset="0.0" x:Name="GBC2" />
+                        <GradientStop Color="Transparent" Offset="1.0" />
+                    </LinearGradientBrush>
+                </Border.Background>
+
+                <Button FontSize="20" Content="Загальна сума" Style="{StaticResource TransparentBckg}"
+                        Cursor="Hand" Click="MSumStat" HorizontalAlignment="Center" />
+            </Border>
+            
+            <Border Grid.Column="2" Margin="15" CornerRadius="20, 20, 0, 0">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="Transparent" Offset="0.0" x:Name="GBC3" />
+                        <GradientStop Color="Transparent" Offset="1.0" />
+                    </LinearGradientBrush>
+                </Border.Background>
+
+                <Button FontSize="20" Content="Кількість товарів" Style="{StaticResource TransparentBckg}"
+                        Cursor="Hand" Click="MProdStat" HorizontalAlignment="Center" />
+            </Border>
+        </Grid>
+
+        <Frame Grid.Row="1" Margin="30" x:Name="ManagerStatisticsFrame" />
     </Grid>
 </Page>

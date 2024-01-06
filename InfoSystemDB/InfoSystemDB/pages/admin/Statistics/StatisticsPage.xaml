@@ -20,12 +20,17 @@
     </Page.Resources>
 
     <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="100" />
+        </Grid.RowDefinitions>
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="300" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Row="0" Grid.Column="0" x:Name="MenuGrid">
+        <Grid Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" x:Name="MenuGrid">
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />
@@ -39,7 +44,7 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
 
-            <Border Grid.Row="1" CornerRadius="30, 30, 0, 0
+            <Border Grid.Row="1" CornerRadius="30, 0, 0, 30
             ">
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
@@ -54,7 +59,7 @@
                 </Button>
             </Border>
 
-            <Border Grid.Row="3" CornerRadius="30, 30, 0, 0">
+            <Border Grid.Row="3" CornerRadius="30, 0, 0, 30">
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                         <GradientStop Color="White" Offset="0.0" x:Name="BeginColor2" />
@@ -67,7 +72,7 @@
                 </Button>
             </Border>
 
-            <Border Grid.Row="5" CornerRadius="30, 30, 0, 0">
+            <Border Grid.Row="5" CornerRadius="30, 0, 0, 30">
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                         <GradientStop Color="White" Offset="0.0" x:Name="BeginColor3" />
@@ -80,7 +85,7 @@
                 </Button>
             </Border>
 
-            <Border Grid.Row="7" CornerRadius="30, 30, 0, 0">
+            <Border Grid.Row="7" CornerRadius="30, 0, 0, 30">
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                         <GradientStop Color="White" Offset="0.0" x:Name="BeginColor4" />
@@ -92,7 +97,7 @@
                 </Button>
             </Border>
 
-            <Border Grid.Row="9" CornerRadius="30, 30, 0, 0">
+            <Border Grid.Row="9" CornerRadius="30, 30, 30, 30">
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                         <GradientStop Color="Beige" Offset="0.0" />
@@ -100,11 +105,40 @@
                     </LinearGradientBrush>
                 </Border.Background>
 
-                <Button FontSize="22" Style="{StaticResource TransparentBckg}" x:Name="ExitBtn" Margin="20, 0"
-                        Content="Повернутися у меню" Click="Exit" Cursor="Hand" HorizontalAlignment="Center" />
+                <Button FontSize="22" Style="{StaticResource TransparentBckg}" HorizontalAlignment="Center"
+                        Content="Повернутися у меню" Click="Exit" Cursor="Hand" x:Name="ExitBtn" Margin="20, 0" />
             </Border>
         </Grid>
 
         <Frame Grid.Row="0" Grid.Column="1" x:Name="ContentFrame" Margin="30, 0, 0, 0" />
+
+        <Border Grid.Row="1" Grid.Column="1" CornerRadius="20, 20, 20, 20" Margin="30,10,0,0"
+                Padding="20,20">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="White" Offset="0.0" />
+                    <GradientStop Color="Beige" Offset="0.5" />
+                    <GradientStop Color="White" Offset="1.0" />
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="45" />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="170" />
+                </Grid.ColumnDefinitions>
+
+                <DatePicker Grid.Column="0" FontSize="22" VerticalContentAlignment="Center" x:Name="DPBegin" />
+
+                <Label Grid.Column="1" Content="—" FontSize="30" HorizontalAlignment="Center" />
+
+                <DatePicker Grid.Column="2" FontSize="22" VerticalContentAlignment="Center" x:Name="DPEnd" />
+
+                <Button Grid.Column="3" FontSize="22" Click="Drop" Content="За весь час" HorizontalAlignment="Right"
+                        Width="150" />
+
+            </Grid>
+        </Border>
     </Grid>
 </Page>

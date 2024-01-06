@@ -198,7 +198,7 @@
                 </StackPanel>
 
                 <Button Grid.Column="3" FontSize="20" HorizontalAlignment="Center" Width="230" Content="Друк"
-                        Margin="60, 0, 0, 0" Click="SaveStatusClick" x:Name="PrintBtn" Visibility="Visible" />
+                        Margin="60, 0, 0, 0" Click="PrintButton_Click" x:Name="PrintBtn" Visibility="Visible" />
             </Grid>
         </Grid>
     </Border>

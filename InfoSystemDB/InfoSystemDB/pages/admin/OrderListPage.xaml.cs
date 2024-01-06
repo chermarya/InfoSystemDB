@@ -3,12 +3,14 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
 
 namespace InfoSystemDB
 {
     public partial class OrderListPage : Page
     {
         private ListItem[] managers = new ListItem[VsInsideDBEntities.Content().Manager.ToList().Count];
+        private List<Order> content;
 
         private string select =
             @"
@@ -93,6 +95,16 @@ namespace InfoSystemDB
             where = $" WHERE so.order_id LIKE '%{OrderNumInput.Text}%' ";
         }
 
+        private void PrintButton_Click(object sender, RoutedEventArgs e)
+        {
+            new DocumentPreviewWindow(content).ShowDialog();
+        }
+
+        // foreach (Order i in content)
+            // {
+            //     Paragraph productParagraph = new Paragraph(new Run($"{i.ID}: {i.Products}"));
+            //     document.Blocks.Add(productParagraph);
+            // }
         private void OnlyOrder(object sender, RoutedEventArgs e)
         {
             FillGrid();
@@ -241,7 +253,7 @@ namespace InfoSystemDB
 
             newList = OutputList(select + where + group);
 
-            List<Order> content = new List<Order>();
+            content = new List<Order>();
             foreach (var i in newList)
             {
                 content.Add(i);

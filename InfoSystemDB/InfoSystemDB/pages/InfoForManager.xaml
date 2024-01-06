@@ -42,19 +42,19 @@
             </Grid.ColumnDefinitions>
 
             <Label Grid.Row="0" Grid.Column="0" Content="Тип виробу" FontSize="17" VerticalAlignment="Top"
-                   HorizontalAlignment="Center" />
+                   HorizontalAlignment="Center" x:Name="TypeProdLabel" />
             <StackPanel Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="15, 0">
                 <ComboBox x:Name="TypeList" FontSize="17" />
             </StackPanel>
 
             <Label Grid.Row="0" Grid.Column="2" Content="Розмір" FontSize="17" VerticalAlignment="Top"
-                   HorizontalAlignment="Center" />
+                   HorizontalAlignment="Center" x:Name="SizeLabel" />
             <StackPanel Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Margin="15, 0">
                 <ComboBox x:Name="SizeList" FontSize="17" />
             </StackPanel>
 
             <Label Grid.Row="0" Grid.Column="4" Content="Назва" FontSize="17" VerticalAlignment="Top"
-                   HorizontalAlignment="Center" />
+                   HorizontalAlignment="Center" x:Name="NameLabel" />
             <TextBox Grid.Row="1" Grid.Column="4" VerticalAlignment="Center" Margin="15, 0" FontSize="17" Padding="7"
                      VerticalContentAlignment="Center" x:Name="TitleInput" />
 
