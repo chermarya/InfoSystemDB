@@ -5,21 +5,18 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:InfoSystemDB"
         mc:Ignorable="d"
-        Title="DocumentPreviewWindow" Height="900" Width="650">
+        Title="DocumentPreviewWindow" Height="720" Width="1200" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="70"/>
         </Grid.RowDefinitions>
 
-        <!-- Заголовок -->
-        <TextBlock Grid.Row="0" Text="Предпросмотр документа" FontSize="18" FontWeight="Bold" Margin="10"/>
+        <TextBlock Grid.Row="0" Text="Перегляд документу" FontSize="18" FontWeight="Bold" Margin="10" />
 
-        <!-- Frame для размещения FlowDocumentScrollViewer -->
-        <Frame Grid.Row="1" Name="contentFrame" Width="595" Height="842" Margin="10"/>
+        <Frame Grid.Row="1" Name="contentFrame" Width="1150" Height="550" Margin="10" />
         
-        <!-- Кнопка для печати -->
-        <Button Grid.Row="2" Content="Печать" HorizontalAlignment="Right" Margin="10" Click="PrintButton_Click"/>
+        <Button Grid.Row="2" Content="Друк" FontSize="20" HorizontalAlignment="Center" Margin="10" Width="200" Click="PrintButton_Click" />
     </Grid>
 </Window>
