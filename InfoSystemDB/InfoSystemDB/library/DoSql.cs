@@ -1,17 +1,23 @@
 ﻿using System;
 using System.Data.SqlClient;
+using System.IO;
 using System.Windows;
 
 namespace InfoSystemDB
 {
     public class DoSql
     {
-        private string connectionString = "Data Source=WIN-FSJH44K4B7V;Initial Catalog=VsInsideDB;Integrated Security=true;";
+        private string connectionString = "";
         private string sqlExpression;
         private SqlParameter[] parameters;
-        
+        //WIN-FSJH44K4B7V
         public DoSql(string sql, SqlParameter[] parametrs)
         {
+            string filePath = "ServerName.txt";
+            string content = File.ReadAllText(filePath);
+            
+            connectionString = $"Data Source={content};Initial Catalog=VsInsideDB;Integrated Security=true;";
+            
             sqlExpression = sql;
             parameters = parametrs;
         }

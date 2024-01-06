@@ -40,10 +40,9 @@ namespace InfoSystemDB
 
             if (content == "*")
             {
-                
+                MessageBox.Show(content);
+                new NewServerWindow().Show();
             }
-            
-            MessageBox.Show(content);
         }
 
         private void Login(object sender, RoutedEventArgs e)
