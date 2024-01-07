@@ -10,7 +10,6 @@ namespace InfoSystemDB
         private string connectionString = "";
         private string sqlExpression;
         private SqlParameter[] parameters;
-        //WIN-FSJH44K4B7V
         public DoSql(string sql, SqlParameter[] parametrs)
         {
             string filePath = "ServerName.txt";

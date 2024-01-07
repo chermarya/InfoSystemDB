@@ -19,10 +19,7 @@ namespace InfoSystemDB
             lines[0] = ServerInput.Text;
             
             File.WriteAllLines(filePath, lines);
-            
-            string content = File.ReadAllText(filePath);
-            MessageBox.Show(content);
-            
+
             Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive).Close();
         }
     }

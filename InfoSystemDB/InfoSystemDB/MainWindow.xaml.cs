@@ -24,29 +24,28 @@ namespace InfoSystemDB
         {
             InitializeComponent();
 
-            foreach (Manager i in VsInsideDBEntities.Content().Manager.ToList())
-            {
-                managers.Add(i.llogin, i.pass);
-            }
-
             StartProgram();
         }
 
         private void StartProgram()
         {
             string filePath = "ServerName.txt";
-            
+
             string content = File.ReadAllText(filePath);
 
             if (content == "*")
             {
-                MessageBox.Show(content);
                 new NewServerWindow().Show();
             }
         }
 
         private void Login(object sender, RoutedEventArgs e)
         {
+            foreach (Manager i in VsInsideDBEntities.Content().Manager.ToList())
+            {
+                managers.Add(i.llogin, i.pass);
+            }
+
             if (Validate())
             {
                 Window window = Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive);
