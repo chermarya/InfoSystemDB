@@ -26,14 +26,14 @@ namespace InfoSystemDB
         private void FillGaps(int pos)
         {
             if (pos == 0)
-                BtnL.Opacity = 0;
+                BtnL.Visibility = Visibility.Collapsed;
             else
-                BtnL.Opacity = 1;
+                BtnL.Visibility = Visibility.Visible;
 
             if (pos == managers_list.Count - 1)
-                BtnR.Opacity = 0;
+                BtnR.Visibility = Visibility.Collapsed;
             else
-                BtnR.Opacity = 1;
+                BtnR.Visibility = Visibility.Visible;
 
             CountLabel.Content = pos + 1 + "/" + managers_list.Count;
 

@@ -31,22 +31,20 @@
 
             <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="400" />
-                    <ColumnDefinition MinWidth="400" />
                     <ColumnDefinition />
                     <ColumnDefinition Width="140" />
                 </Grid.ColumnDefinitions>
 
                 <Label Grid.Column="0" FontSize="17" Content="№ замов." VerticalAlignment="Center"
                        HorizontalAlignment="Left" Margin="0, 0, 210, 0" />
-                <TextBox Grid.Column="0" Width="200" HorizontalAlignment="Left" Margin="100, 10" FontSize="17"
+                <TextBox Grid.Column="0" Width="300" HorizontalAlignment="Left" Margin="100, 10" FontSize="17"
                          VerticalContentAlignment="Center" x:Name="OrderNumInput" TextChanged="OrderNumFilter" />
 
-                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                <StackPanel Grid.Column="0" VerticalAlignment="Center" Margin="300, 0, 0, 0">
                     <ComboBox x:Name="ManagerList" FontSize="20" MaxWidth="350" />
                 </StackPanel>
 
-                <Button Grid.Column="3" FontSize="40" Content="🢘" Width="120" HorizontalAlignment="Right" Click="Exit" />
+                <Button Grid.Column="1" FontSize="40" Content="🢘" Width="120" HorizontalAlignment="Right" Click="Exit" />
             </Grid>
 
             <DataGrid Grid.Row="1" x:Name="DGridOrders" AutoGenerateColumns="False" IsReadOnly="False"
@@ -149,7 +147,7 @@
                     </DataGridTemplateColumn>
 
                     <DataGridTextColumn FontSize="15" MinWidth="80" Header="Прим." Binding="{Binding Note}"
-                                        IsReadOnly="True" CanUserSort="False" >
+                                        IsReadOnly="True" CanUserSort="False">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
                                 <Setter Property="TextWrapping" Value="Wrap" />
@@ -198,7 +196,8 @@
                 </StackPanel>
 
                 <Button Grid.Column="3" FontSize="20" HorizontalAlignment="Center" Width="230" Content="Друк"
-                        Margin="60, 0, 0, 0" Click="PrintButton_Click" x:Name="PrintBtn" Visibility="Visible" />
+                        HorizontalContentAlignment="Center" Margin="60, 0, 0, 0" Click="PrintButton_Click" 
+                        x:Name="PrintBtn" Visibility="Visible" />
             </Grid>
         </Grid>
     </Border>

@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Media;
 using Microsoft.Win32;
+using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using Paragraph = System.Windows.Documents.Paragraph;
 using Table = System.Windows.Documents.Table;
@@ -14,12 +15,12 @@ namespace InfoSystemDB
 {
     public partial class DocumentPreviewWindow : Window
     {
-        private List<Order> content;
-        private List<Product> products;
+        private List<Order> _content;
+        private List<Product> _products;
 
         public DocumentPreviewWindow(List<Order> content)
         {
-            this.content = content;
+            this._content = content;
             InitializeComponent();
 
             contentFrame.Width = 1150;
@@ -42,7 +43,7 @@ namespace InfoSystemDB
 
         public DocumentPreviewWindow(List<Product> prods)
         {
-            products = prods;
+            _products = prods;
             InitializeComponent();
 
             contentFrame.Width = 620;
@@ -102,7 +103,7 @@ namespace InfoSystemDB
 
             table.RowGroups[0].Rows.Add(headerRow);
 
-            foreach (Product i in products)
+            foreach (Product i in _products)
             {
                 TableRow dataRow = new TableRow();
 
@@ -160,7 +161,7 @@ namespace InfoSystemDB
                     printDialog.PrintDocument(paginatorSource.DocumentPaginator, "Друк документа");
                 }
             }
-            
+
             MessageBox.Show("Process finished successfully.");
         }
 
@@ -229,7 +230,7 @@ namespace InfoSystemDB
 
             table.RowGroups[0].Rows.Add(headerRow);
 
-            foreach (Order i in content)
+            foreach (Order i in _content)
             {
                 TableRow dataRow = new TableRow();
 
@@ -279,10 +280,13 @@ namespace InfoSystemDB
             return document;
         }
 
-        public static void SaveToExcel(FlowDocument flowDocument)
+        public void SaveToExcel(FlowDocument flowDocument)
         {
             try
             {
+                // Set the LicenseContext based on your usage scenario
+                ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+
                 SaveFileDialog saveFileDialog = new SaveFileDialog();
                 saveFileDialog.Filter = "Excel Files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
                 saveFileDialog.DefaultExt = "xlsx";
@@ -314,6 +318,7 @@ namespace InfoSystemDB
                                         {
                                             string cellValue = GetTableCellValue(cell);
 
+                                            // Convert the quantity to a numeric value
                                             if (columnIndex == 2 && rowIndex > 1)
                                             {
                                                 int quantity = int.Parse(cellValue);
@@ -352,15 +357,18 @@ namespace InfoSystemDB
                                                         .Indexed = 29;
                                                 }
                                             }
+
                                             columnIndex++;
                                         }
+
                                         rowIndex++;
                                     }
                                 }
                             }
                         }
+
                         excelPackage.SaveAs(new System.IO.FileInfo(filePath));
-                        MessageBox.Show("Excel file saved successfully.");
+                        MessageBox.Show($"Excel file saved successfully.");
                     }
                 }
             }

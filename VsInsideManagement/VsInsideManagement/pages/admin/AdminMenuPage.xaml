@@ -1,0 +1,36 @@
+﻿<Page x:Class="VsInsideManagement.pages.admin.AdminMenuPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:VsInsideManagement.pages.admin"
+      mc:Ignorable="d"
+      Title="AdminMenuPage" Height="700" Width="1200">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition Height="150" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Button Grid.Column="0" Grid.Row="0" FontSize="25" Margin="20" Content="Перегляд замовлень" Click="Orders"
+                FontFamily="Verdana" />
+        <Button Grid.Column="1" Grid.Row="0" FontSize="25" Margin="20" Content="Менеджери та магазини" Click="Managers" />
+        <Button Grid.Column="0" Grid.Row="1" FontSize="25" Margin="20" Content="База покупців" Click="Buyers" />
+        <Button Grid.Column="1" Grid.Row="1" FontSize="25" Margin="20" Content="Список виробів" Click="Products" />
+        <Button Grid.Column="0" Grid.Row="2" FontSize="25" Margin="20" Content="Управління партіями" Click="Supplies" />
+        <Button Grid.Column="1" Grid.Row="2" FontSize="25" Margin="20" Content="Управління таблицями" Click="Tables" />
+        <Button Grid.Column="0" Grid.Row="3" FontSize="30" Margin="20" Content="Актуальна&#x0a;наявність" Width="250"
+                Click="Stock" HorizontalAlignment="Left" />
+        <Button Grid.Column="1" Grid.Row="3" FontSize="30" Margin="20" Content="Вийти" Width="200"
+                HorizontalAlignment="Right" Click="Exit" />
+        <Button Grid.Column="0" Grid.Row="3" FontSize="30" Margin="20" Content="Статистика" Grid.ColumnSpan="2"
+                Width="400" HorizontalAlignment="Center" Click="Statistics" />
+    </Grid>
+</Page>

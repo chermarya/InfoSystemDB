@@ -13,13 +13,21 @@ namespace InfoSystemDB
 
         private void SaveBtn(object sender, RoutedEventArgs e)
         {
-            string filePath = "ServerName.txt";
-            string[] lines = File.ReadAllLines(filePath);
+            string serverPath = "ServerName.txt";
+            string[] serv = File.ReadAllLines(serverPath);
 
-            lines[0] = ServerInput.Text;
+            serv[0] = ServerInput.Text;
             
-            File.WriteAllLines(filePath, lines);
+            File.WriteAllLines(serverPath, serv);
+            
+            string configPath = "../../App.config";
+            string[] conf = File.ReadAllLines(configPath);
 
+            conf[10] = conf[10].Replace("WIN-FSJH44K4B7V", ServerInput.Text);
+            conf[11] = conf[11].Replace("WIN-FSJH44K4B7V", ServerInput.Text);
+
+            File.WriteAllLines(configPath, conf);
+            
             Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive).Close();
         }
     }

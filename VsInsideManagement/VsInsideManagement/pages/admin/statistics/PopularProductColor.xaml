@@ -1,0 +1,43 @@
+﻿<Page x:Class="VsInsideManagement.pages.admin.statistics.PopularProductColor"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:VsInsideManagement.pages.admin.statistics"
+      mc:Ignorable="d"
+      Title="PopularProductColor" Background="White">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="200" />
+        </Grid.ColumnDefinitions>
+        
+        <ListView Grid.Column="0" x:Name="LBProduct" FontSize="20" Margin="20">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Товар" DisplayMemberBinding="{Binding Title}" />
+                    <GridViewColumn Header="К-ть" DisplayMemberBinding="{Binding Quantity}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        
+        <ListView Grid.Column="1" x:Name="LBSize" FontSize="20" Margin="20">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Розмір" DisplayMemberBinding="{Binding Title}" />
+                    <GridViewColumn Header="К-ть" DisplayMemberBinding="{Binding Quantity}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        
+        <ListView Grid.Column="2" x:Name="LBColor" FontSize="20" Margin="20">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Колір" DisplayMemberBinding="{Binding Title}" />
+                    <GridViewColumn Header="К-ть" DisplayMemberBinding="{Binding Quantity}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Page>

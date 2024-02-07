@@ -1,0 +1,43 @@
+﻿<Page x:Class="VsInsideManagement.pages.admin.TableManagmentPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:VsInsideManagement.pages.admin"
+      mc:Ignorable="d"
+      Title="TableManagmentPage" Height="700" Width="1200">
+    <Grid Margin="30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70" />
+            <RowDefinition />
+            <RowDefinition Height="60" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Button Grid.Column="0" Grid.Row="0" FontSize="25" Margin="0, 0, 15, 0" Content="Кольори" Click="Colors" />
+        <Button Grid.Column="1" Grid.Row="0" FontSize="25" Margin="15, 0" Content="Матеріали" Click="Materials" />
+        <Button Grid.Column="2" Grid.Row="0" FontSize="25" Margin="15, 0" Content="Знижки" Click="Discounts" />
+        <Button Grid.Column="3" Grid.Row="0" FontSize="25" Margin="15, 0, 0, 0" Content="Типи виробів"
+                Click="Prodtypes" />
+        <Button Grid.Column="3" Grid.Row="2" FontSize="30" Content="🢘" Width="100" HorizontalAlignment="Right"
+                Click="Exit" />
+
+        <DataGrid Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="4" Margin="0, 30" x:Name="DGridOutput"
+                  AutoGenerateColumns="False" IsReadOnly="True" ColumnWidth="*" />
+
+        <StackPanel Grid.Column="0" Grid.Row="2" Width="200" VerticalAlignment="Center">
+            <ComboBox x:Name="MatList" Visibility="Hidden" SelectionChanged="SetFilter" FontSize="17" />
+        </StackPanel>
+
+        <Button Grid.Column="1" Grid.Row="2" Width="250" Margin="15, 0" FontSize="25" HorizontalAlignment="Right"
+                Content="Додати" Click="Add" />
+        <Button Grid.Column="2" Grid.Row="2" Width="250" Margin="15, 0" FontSize="25" HorizontalAlignment="Left"
+                Content="Видалити" Click="Delete" />
+    </Grid>
+</Page>

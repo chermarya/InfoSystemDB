@@ -1,0 +1,135 @@
+﻿<Page x:Class="VsInsideManagement.pages.OrdersByManager"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      mc:Ignorable="d"
+      Title="OrdersByManager">
+    
+    <Border>
+        <Border.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                <GradientStop Color="White" Offset="0.0" />
+                <GradientStop Color="Transparent" Offset="1.0" />
+            </LinearGradientBrush>
+        </Border.Background>
+
+        <Grid Margin="50">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="60" />
+            </Grid.RowDefinitions>
+
+            <DataGrid Grid.Row="0" x:Name="DGridOrders" AutoGenerateColumns="False" IsReadOnly="True"
+                      Margin="0, 0, 0, 20">
+                <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Status}" Value="терміново">
+                                <Setter Property="Background" Value="PaleGreen" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Status}" Value="відмова">
+                                <Setter Property="Background" Value="Tomato" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.RowStyle>
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn FontSize="15" MinWidth="65" Header="№ замов." Binding="{Binding ID}" />
+                    <DataGridTextColumn FontSize="15" MinWidth="80" Header="Дата" Binding="{Binding Date}" />
+                    <DataGridTextColumn FontSize="15" MinWidth="100" Header="Нік" Binding="{Binding Nick}"
+                                        CanUserSort="False" />
+                    <DataGridTextColumn FontSize="15" MinWidth="150" Header="Ім'я" Binding="{Binding Name}">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="TextWrapping" Value="Wrap" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn FontSize="15" MinWidth="130" Header="Телефон" Binding="{Binding Phone}"
+                                        CanUserSort="False" />
+                    <DataGridTextColumn FontSize="15" MinWidth="200" Width="*" Header="Вироби" CanUserSort="False"
+                                        Binding="{Binding Products}">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="TextWrapping" Value="Wrap" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn FontSize="15" MinWidth="100" Width="*" Header="Адреса" CanUserSort="False"
+                                        Binding="{Binding Address}">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="TextWrapping" Value="Wrap" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn FontSize="15" MinWidth="65" MaxWidth="170" Width="*" Header="Знижка"
+                                        Binding="{Binding Discount}" CanUserSort="False">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="TextWrapping" Value="Wrap" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn FontSize="15" MinWidth="55" Binding="{Binding Sum}" Header="Сума&#x0a;замов." />
+                    <DataGridTextColumn FontSize="15" MinWidth="55" Binding="{Binding Prepay}"
+                                        Header="Перед-&#x0a;оплата" />
+                    <DataGridTextColumn FontSize="15" MinWidth="55" Binding="{Binding Amount_due}"
+                                        Header="Сума до&#x0a;сплати" />
+                    <DataGridTextColumn FontSize="15" MinWidth="150" Header="Накладна" Binding="{Binding Invoice}"
+                                        CanUserSort="False" />
+                    <DataGridTextColumn FontSize="15" MinWidth="90" Header="Статус" Binding="{Binding Status}"
+                                        CanUserSort="False">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="TextWrapping" Value="Wrap" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn FontSize="15" MinWidth="80" Header="Прим." Binding="{Binding Note}"
+                                        CanUserSort="False">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="TextWrapping" Value="Wrap" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn FontSize="15" MinWidth="65" Header="Магазин" Binding="{Binding Shop}"
+                                        CanUserSort="False" />
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300" />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="300" />
+                    <ColumnDefinition Width="140" />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0" FontSize="17" Content="№ замов." VerticalAlignment="Center"
+                       HorizontalAlignment="Left" />
+                <TextBox Grid.Column="0" Width="170" HorizontalAlignment="Left" Margin="100, 10, 0, 10" FontSize="17"
+                         VerticalContentAlignment="Center" x:Name="OrderNumInput" TextChanged="OrderNumFilter" />
+
+                <Button Grid.Column="1" FontSize="20" Content="Додати" Click="Add"
+                        Margin="50, 0" />
+                <Button Grid.Column="2" FontSize="20" Content="Видалити" Click="Delete"
+                        Margin="50, 0" />
+
+                <StackPanel Grid.Column="3" Height="27" Name="StackPanel1" Orientation="Horizontal"
+                            HorizontalAlignment="Center">
+                    <Viewbox Height="{Binding Path=ActualHeight, ElementName=StackPanel1}">
+                        <CheckBox Content="Необроблені замовлення" IsChecked="False" x:Name="OnlyOrderCheck"
+                                  Click="OnlyOrder" />
+                    </Viewbox>
+                </StackPanel>
+
+                <Button Grid.Column="4" FontSize="40" Width="120" Content="🢘" Click="Exit" HorizontalAlignment="Right" />
+            </Grid>
+        </Grid>
+    </Border>
+</Page>

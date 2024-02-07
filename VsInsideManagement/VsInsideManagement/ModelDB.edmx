@@ -1,0 +1,987 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище VsInsideDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Buyer">
+          <Key>
+            <PropertyRef Name="buyer_id" />
+          </Key>
+          <Property Name="buyer_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nick" Type="varchar" MaxLength="25" />
+          <Property Name="nname" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="surname" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="tel" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Color">
+          <Key>
+            <PropertyRef Name="color_id" />
+          </Key>
+          <Property Name="color_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="code" Type="varchar" MaxLength="10" />
+          <Property Name="material_id" Type="int" />
+        </EntityType>
+        <EntityType Name="DelAddress">
+          <Key>
+            <PropertyRef Name="address_id" />
+          </Key>
+          <Property Name="address_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="city" Type="varchar" MaxLength="200" />
+          <Property Name="dep" Type="varchar" MaxLength="200" />
+          <Property Name="note" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Delivery">
+          <Key>
+            <PropertyRef Name="delivery_id" />
+          </Key>
+          <Property Name="delivery_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="buyer_id" Type="int" />
+          <Property Name="address_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Discount">
+          <Key>
+            <PropertyRef Name="discount_id" />
+          </Key>
+          <Property Name="discount_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="per" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Making">
+          <Key>
+            <PropertyRef Name="making_id" />
+          </Key>
+          <Property Name="making_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="supply_id" Type="int" />
+          <Property Name="product_id" Type="int" />
+          <Property Name="quantity" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Manager">
+          <Key>
+            <PropertyRef Name="manager_id" />
+          </Key>
+          <Property Name="manager_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nname" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="surname" Type="varchar" MaxLength="25" />
+          <Property Name="llogin" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="pass" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Material">
+          <Key>
+            <PropertyRef Name="material_id" />
+          </Key>
+          <Property Name="material_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Packaging">
+          <Key>
+            <PropertyRef Name="packaging_id" />
+          </Key>
+          <Property Name="packaging_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="order_id" Type="int" />
+          <Property Name="product_id" Type="int" />
+        </EntityType>
+        <EntityType Name="ProdType">
+          <Key>
+            <PropertyRef Name="prodtype_id" />
+          </Key>
+          <Property Name="prodtype_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="product_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="prodtype_id" Type="int" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="size_id" Type="int" />
+          <Property Name="color_id" Type="int" />
+          <Property Name="price" Type="int" Nullable="false" />
+          <Property Name="quantity" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SetOrder">
+          <Key>
+            <PropertyRef Name="order_id" />
+          </Key>
+          <Property Name="order_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ddate" Type="date" Nullable="false" />
+          <Property Name="delivery_id" Type="int" />
+          <Property Name="summ" Type="int" Nullable="false" />
+          <Property Name="discount_id" Type="int" />
+          <Property Name="prepay" Type="int" Nullable="false" />
+          <Property Name="amount_due" Type="int" Nullable="false" />
+          <Property Name="invoice" Type="varchar" MaxLength="20" />
+          <Property Name="stat" Type="varchar" MaxLength="50" />
+          <Property Name="note" Type="varchar" MaxLength="500" />
+          <Property Name="shop_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Shop">
+          <Key>
+            <PropertyRef Name="shop_id" />
+          </Key>
+          <Property Name="shop_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="manager_id" Type="int" />
+          <Property Name="link" Type="varchar" MaxLength="80" />
+        </EntityType>
+        <EntityType Name="Size">
+          <Key>
+            <PropertyRef Name="size_id" />
+          </Key>
+          <Property Name="size_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Supply">
+          <Key>
+            <PropertyRef Name="supply_id" />
+          </Key>
+          <Property Name="supply_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dday" Type="date" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Color__material___3B75D760">
+          <End Role="Material" Type="Self.Material" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Color" Type="Self.Color" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Material">
+              <PropertyRef Name="material_id" />
+            </Principal>
+            <Dependent Role="Color">
+              <PropertyRef Name="material_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Delivery__addres__571DF1D5">
+          <End Role="DelAddress" Type="Self.DelAddress" Multiplicity="0..1" />
+          <End Role="Delivery" Type="Self.Delivery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DelAddress">
+              <PropertyRef Name="address_id" />
+            </Principal>
+            <Dependent Role="Delivery">
+              <PropertyRef Name="address_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Delivery__buyer___5629CD9C">
+          <End Role="Buyer" Type="Self.Buyer" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Delivery" Type="Self.Delivery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Buyer">
+              <PropertyRef Name="buyer_id" />
+            </Principal>
+            <Dependent Role="Delivery">
+              <PropertyRef Name="buyer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Making__product___4D94879B">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="Making" Type="Self.Making" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="Making">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Making__supply_i__4CA06362">
+          <End Role="Supply" Type="Self.Supply" Multiplicity="0..1" />
+          <End Role="Making" Type="Self.Making" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supply">
+              <PropertyRef Name="supply_id" />
+            </Principal>
+            <Dependent Role="Making">
+              <PropertyRef Name="supply_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Packaging__order__6B24EA82">
+          <End Role="SetOrder" Type="Self.SetOrder" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Packaging" Type="Self.Packaging" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SetOrder">
+              <PropertyRef Name="order_id" />
+            </Principal>
+            <Dependent Role="Packaging">
+              <PropertyRef Name="order_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Packaging__produ__6C190EBB">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="Packaging" Type="Self.Packaging" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="Packaging">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Product__color_i__45F365D3">
+          <End Role="Color" Type="Self.Color" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Color">
+              <PropertyRef Name="color_id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="color_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Product__prodtyp__440B1D61">
+          <End Role="ProdType" Type="Self.ProdType" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProdType">
+              <PropertyRef Name="prodtype_id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="prodtype_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Product__size_id__44FF419A">
+          <End Role="Size" Type="Self.Size" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Size">
+              <PropertyRef Name="size_id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="size_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SetOrder__delive__6477ECF3">
+          <End Role="Delivery" Type="Self.Delivery" Multiplicity="0..1" />
+          <End Role="SetOrder" Type="Self.SetOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Delivery">
+              <PropertyRef Name="delivery_id" />
+            </Principal>
+            <Dependent Role="SetOrder">
+              <PropertyRef Name="delivery_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SetOrder__discou__656C112C">
+          <End Role="Discount" Type="Self.Discount" Multiplicity="0..1" />
+          <End Role="SetOrder" Type="Self.SetOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Discount">
+              <PropertyRef Name="discount_id" />
+            </Principal>
+            <Dependent Role="SetOrder">
+              <PropertyRef Name="discount_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SetOrder__shop_i__66603565">
+          <End Role="Shop" Type="Self.Shop" Multiplicity="0..1" />
+          <End Role="SetOrder" Type="Self.SetOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shop">
+              <PropertyRef Name="shop_id" />
+            </Principal>
+            <Dependent Role="SetOrder">
+              <PropertyRef Name="shop_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Shop__manager_id__5EBF139D">
+          <End Role="Manager" Type="Self.Manager" Multiplicity="0..1" />
+          <End Role="Shop" Type="Self.Shop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Manager">
+              <PropertyRef Name="manager_id" />
+            </Principal>
+            <Dependent Role="Shop">
+              <PropertyRef Name="manager_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище VsInsideDBModelContainer">
+          <EntitySet Name="Buyer" EntityType="Self.Buyer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Color" EntityType="Self.Color" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DelAddress" EntityType="Self.DelAddress" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Delivery" EntityType="Self.Delivery" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Discount" EntityType="Self.Discount" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Making" EntityType="Self.Making" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Manager" EntityType="Self.Manager" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Material" EntityType="Self.Material" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Packaging" EntityType="Self.Packaging" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProdType" EntityType="Self.ProdType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SetOrder" EntityType="Self.SetOrder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Shop" EntityType="Self.Shop" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Size" EntityType="Self.Size" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Supply" EntityType="Self.Supply" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Color__material___3B75D760" Association="Self.FK__Color__material___3B75D760">
+            <End Role="Material" EntitySet="Material" />
+            <End Role="Color" EntitySet="Color" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Delivery__addres__571DF1D5" Association="Self.FK__Delivery__addres__571DF1D5">
+            <End Role="DelAddress" EntitySet="DelAddress" />
+            <End Role="Delivery" EntitySet="Delivery" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Delivery__buyer___5629CD9C" Association="Self.FK__Delivery__buyer___5629CD9C">
+            <End Role="Buyer" EntitySet="Buyer" />
+            <End Role="Delivery" EntitySet="Delivery" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Making__product___4D94879B" Association="Self.FK__Making__product___4D94879B">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Making" EntitySet="Making" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Making__supply_i__4CA06362" Association="Self.FK__Making__supply_i__4CA06362">
+            <End Role="Supply" EntitySet="Supply" />
+            <End Role="Making" EntitySet="Making" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Packaging__order__6B24EA82" Association="Self.FK__Packaging__order__6B24EA82">
+            <End Role="SetOrder" EntitySet="SetOrder" />
+            <End Role="Packaging" EntitySet="Packaging" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Packaging__produ__6C190EBB" Association="Self.FK__Packaging__produ__6C190EBB">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Packaging" EntitySet="Packaging" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Product__color_i__45F365D3" Association="Self.FK__Product__color_i__45F365D3">
+            <End Role="Color" EntitySet="Color" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Product__prodtyp__440B1D61" Association="Self.FK__Product__prodtyp__440B1D61">
+            <End Role="ProdType" EntitySet="ProdType" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Product__size_id__44FF419A" Association="Self.FK__Product__size_id__44FF419A">
+            <End Role="Size" EntitySet="Size" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SetOrder__delive__6477ECF3" Association="Self.FK__SetOrder__delive__6477ECF3">
+            <End Role="Delivery" EntitySet="Delivery" />
+            <End Role="SetOrder" EntitySet="SetOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SetOrder__discou__656C112C" Association="Self.FK__SetOrder__discou__656C112C">
+            <End Role="Discount" EntitySet="Discount" />
+            <End Role="SetOrder" EntitySet="SetOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SetOrder__shop_i__66603565" Association="Self.FK__SetOrder__shop_i__66603565">
+            <End Role="Shop" EntitySet="Shop" />
+            <End Role="SetOrder" EntitySet="SetOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Shop__manager_id__5EBF139D" Association="Self.FK__Shop__manager_id__5EBF139D">
+            <End Role="Manager" EntitySet="Manager" />
+            <End Role="Shop" EntitySet="Shop" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="VsInsideDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Buyer">
+          <Key>
+            <PropertyRef Name="buyer_id" />
+          </Key>
+          <Property Name="buyer_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nick" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="nname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="surname" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tel" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Delivery" Relationship="Self.FK__Delivery__buyer___5629CD9C" FromRole="Buyer" ToRole="Delivery" />
+        </EntityType>
+        <EntityType Name="Color">
+          <Key>
+            <PropertyRef Name="color_id" />
+          </Key>
+          <Property Name="color_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="material_id" Type="Int32" />
+          <NavigationProperty Name="Material" Relationship="Self.FK__Color__material___3B75D760" FromRole="Color" ToRole="Material" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__Product__color_i__45F365D3" FromRole="Color" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="DelAddress">
+          <Key>
+            <PropertyRef Name="address_id" />
+          </Key>
+          <Property Name="address_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="city" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="dep" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="note" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Delivery" Relationship="Self.FK__Delivery__addres__571DF1D5" FromRole="DelAddress" ToRole="Delivery" />
+        </EntityType>
+        <EntityType Name="Delivery">
+          <Key>
+            <PropertyRef Name="delivery_id" />
+          </Key>
+          <Property Name="delivery_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="buyer_id" Type="Int32" />
+          <Property Name="address_id" Type="Int32" />
+          <NavigationProperty Name="Buyer" Relationship="Self.FK__Delivery__buyer___5629CD9C" FromRole="Delivery" ToRole="Buyer" />
+          <NavigationProperty Name="DelAddress" Relationship="Self.FK__Delivery__addres__571DF1D5" FromRole="Delivery" ToRole="DelAddress" />
+          <NavigationProperty Name="SetOrder" Relationship="Self.FK__SetOrder__delive__6477ECF3" FromRole="Delivery" ToRole="SetOrder" />
+        </EntityType>
+        <EntityType Name="Discount">
+          <Key>
+            <PropertyRef Name="discount_id" />
+          </Key>
+          <Property Name="discount_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="per" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SetOrder" Relationship="Self.FK__SetOrder__discou__656C112C" FromRole="Discount" ToRole="SetOrder" />
+        </EntityType>
+        <EntityType Name="Making">
+          <Key>
+            <PropertyRef Name="making_id" />
+          </Key>
+          <Property Name="making_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="supply_id" Type="Int32" />
+          <Property Name="product_id" Type="Int32" />
+          <Property Name="quantity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__Making__product___4D94879B" FromRole="Making" ToRole="Product" />
+          <NavigationProperty Name="Supply" Relationship="Self.FK__Making__supply_i__4CA06362" FromRole="Making" ToRole="Supply" />
+        </EntityType>
+        <EntityType Name="Manager">
+          <Key>
+            <PropertyRef Name="manager_id" />
+          </Key>
+          <Property Name="manager_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nname" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="surname" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="llogin" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="pass" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Shop" Relationship="Self.FK__Shop__manager_id__5EBF139D" FromRole="Manager" ToRole="Shop" />
+        </EntityType>
+        <EntityType Name="Material">
+          <Key>
+            <PropertyRef Name="material_id" />
+          </Key>
+          <Property Name="material_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Color" Relationship="Self.FK__Color__material___3B75D760" FromRole="Material" ToRole="Color" />
+        </EntityType>
+        <EntityType Name="Packaging">
+          <Key>
+            <PropertyRef Name="packaging_id" />
+          </Key>
+          <Property Name="packaging_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="order_id" Type="Int32" />
+          <Property Name="product_id" Type="Int32" />
+          <NavigationProperty Name="SetOrder" Relationship="Self.FK__Packaging__order__6B24EA82" FromRole="Packaging" ToRole="SetOrder" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__Packaging__produ__6C190EBB" FromRole="Packaging" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="ProdType">
+          <Key>
+            <PropertyRef Name="prodtype_id" />
+          </Key>
+          <Property Name="prodtype_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__Product__prodtyp__440B1D61" FromRole="ProdType" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="product_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="prodtype_id" Type="Int32" Nullable="false" />
+          <Property Name="title" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="size_id" Type="Int32" />
+          <Property Name="color_id" Type="Int32" />
+          <Property Name="price" Type="Int32" Nullable="false" />
+          <Property Name="quantity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Color" Relationship="Self.FK__Product__color_i__45F365D3" FromRole="Product" ToRole="Color" />
+          <NavigationProperty Name="Making" Relationship="Self.FK__Making__product___4D94879B" FromRole="Product" ToRole="Making" />
+          <NavigationProperty Name="Packaging" Relationship="Self.FK__Packaging__produ__6C190EBB" FromRole="Product" ToRole="Packaging" />
+          <NavigationProperty Name="ProdType" Relationship="Self.FK__Product__prodtyp__440B1D61" FromRole="Product" ToRole="ProdType" />
+          <NavigationProperty Name="Size" Relationship="Self.FK__Product__size_id__44FF419A" FromRole="Product" ToRole="Size" />
+        </EntityType>
+        <EntityType Name="SetOrder">
+          <Key>
+            <PropertyRef Name="order_id" />
+          </Key>
+          <Property Name="order_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ddate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="delivery_id" Type="Int32" />
+          <Property Name="summ" Type="Int32" Nullable="false" />
+          <Property Name="discount_id" Type="Int32" />
+          <Property Name="prepay" Type="Int32" Nullable="false" />
+          <Property Name="amount_due" Type="Int32" Nullable="false" />
+          <Property Name="invoice" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="stat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="note" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="shop_id" Type="Int32" />
+          <NavigationProperty Name="Delivery" Relationship="Self.FK__SetOrder__delive__6477ECF3" FromRole="SetOrder" ToRole="Delivery" />
+          <NavigationProperty Name="Discount" Relationship="Self.FK__SetOrder__discou__656C112C" FromRole="SetOrder" ToRole="Discount" />
+          <NavigationProperty Name="Packaging" Relationship="Self.FK__Packaging__order__6B24EA82" FromRole="SetOrder" ToRole="Packaging" />
+          <NavigationProperty Name="Shop" Relationship="Self.FK__SetOrder__shop_i__66603565" FromRole="SetOrder" ToRole="Shop" />
+        </EntityType>
+        <EntityType Name="Shop">
+          <Key>
+            <PropertyRef Name="shop_id" />
+          </Key>
+          <Property Name="shop_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="manager_id" Type="Int32" />
+          <Property Name="link" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Manager" Relationship="Self.FK__Shop__manager_id__5EBF139D" FromRole="Shop" ToRole="Manager" />
+          <NavigationProperty Name="SetOrder" Relationship="Self.FK__SetOrder__shop_i__66603565" FromRole="Shop" ToRole="SetOrder" />
+        </EntityType>
+        <EntityType Name="Size">
+          <Key>
+            <PropertyRef Name="size_id" />
+          </Key>
+          <Property Name="size_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__Product__size_id__44FF419A" FromRole="Size" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Supply">
+          <Key>
+            <PropertyRef Name="supply_id" />
+          </Key>
+          <Property Name="supply_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dday" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Making" Relationship="Self.FK__Making__supply_i__4CA06362" FromRole="Supply" ToRole="Making" />
+        </EntityType>
+        <Association Name="FK__Delivery__buyer___5629CD9C">
+          <End Role="Buyer" Type="Self.Buyer" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Delivery" Type="Self.Delivery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Buyer">
+              <PropertyRef Name="buyer_id" />
+            </Principal>
+            <Dependent Role="Delivery">
+              <PropertyRef Name="buyer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Color__material___3B75D760">
+          <End Role="Material" Type="Self.Material" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Color" Type="Self.Color" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Material">
+              <PropertyRef Name="material_id" />
+            </Principal>
+            <Dependent Role="Color">
+              <PropertyRef Name="material_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Product__color_i__45F365D3">
+          <End Role="Color" Type="Self.Color" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Color">
+              <PropertyRef Name="color_id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="color_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Delivery__addres__571DF1D5">
+          <End Role="DelAddress" Type="Self.DelAddress" Multiplicity="0..1" />
+          <End Role="Delivery" Type="Self.Delivery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DelAddress">
+              <PropertyRef Name="address_id" />
+            </Principal>
+            <Dependent Role="Delivery">
+              <PropertyRef Name="address_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SetOrder__delive__6477ECF3">
+          <End Role="Delivery" Type="Self.Delivery" Multiplicity="0..1" />
+          <End Role="SetOrder" Type="Self.SetOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Delivery">
+              <PropertyRef Name="delivery_id" />
+            </Principal>
+            <Dependent Role="SetOrder">
+              <PropertyRef Name="delivery_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SetOrder__discou__656C112C">
+          <End Role="Discount" Type="Self.Discount" Multiplicity="0..1" />
+          <End Role="SetOrder" Type="Self.SetOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Discount">
+              <PropertyRef Name="discount_id" />
+            </Principal>
+            <Dependent Role="SetOrder">
+              <PropertyRef Name="discount_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Making__product___4D94879B">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="Making" Type="Self.Making" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="Making">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Making__supply_i__4CA06362">
+          <End Role="Supply" Type="Self.Supply" Multiplicity="0..1" />
+          <End Role="Making" Type="Self.Making" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supply">
+              <PropertyRef Name="supply_id" />
+            </Principal>
+            <Dependent Role="Making">
+              <PropertyRef Name="supply_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Shop__manager_id__5EBF139D">
+          <End Role="Manager" Type="Self.Manager" Multiplicity="0..1" />
+          <End Role="Shop" Type="Self.Shop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Manager">
+              <PropertyRef Name="manager_id" />
+            </Principal>
+            <Dependent Role="Shop">
+              <PropertyRef Name="manager_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Packaging__order__6B24EA82">
+          <End Role="SetOrder" Type="Self.SetOrder" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Packaging" Type="Self.Packaging" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SetOrder">
+              <PropertyRef Name="order_id" />
+            </Principal>
+            <Dependent Role="Packaging">
+              <PropertyRef Name="order_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Packaging__produ__6C190EBB">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="Packaging" Type="Self.Packaging" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="Packaging">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Product__prodtyp__440B1D61">
+          <End Role="ProdType" Type="Self.ProdType" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProdType">
+              <PropertyRef Name="prodtype_id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="prodtype_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Product__size_id__44FF419A">
+          <End Role="Size" Type="Self.Size" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Size">
+              <PropertyRef Name="size_id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="size_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SetOrder__shop_i__66603565">
+          <End Role="Shop" Type="Self.Shop" Multiplicity="0..1" />
+          <End Role="SetOrder" Type="Self.SetOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shop">
+              <PropertyRef Name="shop_id" />
+            </Principal>
+            <Dependent Role="SetOrder">
+              <PropertyRef Name="shop_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="VsInsideDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Buyer" EntityType="Self.Buyer" />
+          <EntitySet Name="Color" EntityType="Self.Color" />
+          <EntitySet Name="DelAddress" EntityType="Self.DelAddress" />
+          <EntitySet Name="Delivery" EntityType="Self.Delivery" />
+          <EntitySet Name="Discount" EntityType="Self.Discount" />
+          <EntitySet Name="Making" EntityType="Self.Making" />
+          <EntitySet Name="Manager" EntityType="Self.Manager" />
+          <EntitySet Name="Material" EntityType="Self.Material" />
+          <EntitySet Name="Packaging" EntityType="Self.Packaging" />
+          <EntitySet Name="ProdType" EntityType="Self.ProdType" />
+          <EntitySet Name="Product" EntityType="Self.Product" />
+          <EntitySet Name="SetOrder" EntityType="Self.SetOrder" />
+          <EntitySet Name="Shop" EntityType="Self.Shop" />
+          <EntitySet Name="Size" EntityType="Self.Size" />
+          <EntitySet Name="Supply" EntityType="Self.Supply" />
+          <AssociationSet Name="FK__Delivery__buyer___5629CD9C" Association="Self.FK__Delivery__buyer___5629CD9C">
+            <End Role="Buyer" EntitySet="Buyer" />
+            <End Role="Delivery" EntitySet="Delivery" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Color__material___3B75D760" Association="Self.FK__Color__material___3B75D760">
+            <End Role="Material" EntitySet="Material" />
+            <End Role="Color" EntitySet="Color" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Product__color_i__45F365D3" Association="Self.FK__Product__color_i__45F365D3">
+            <End Role="Color" EntitySet="Color" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Delivery__addres__571DF1D5" Association="Self.FK__Delivery__addres__571DF1D5">
+            <End Role="DelAddress" EntitySet="DelAddress" />
+            <End Role="Delivery" EntitySet="Delivery" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SetOrder__delive__6477ECF3" Association="Self.FK__SetOrder__delive__6477ECF3">
+            <End Role="Delivery" EntitySet="Delivery" />
+            <End Role="SetOrder" EntitySet="SetOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SetOrder__discou__656C112C" Association="Self.FK__SetOrder__discou__656C112C">
+            <End Role="Discount" EntitySet="Discount" />
+            <End Role="SetOrder" EntitySet="SetOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Making__product___4D94879B" Association="Self.FK__Making__product___4D94879B">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Making" EntitySet="Making" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Making__supply_i__4CA06362" Association="Self.FK__Making__supply_i__4CA06362">
+            <End Role="Supply" EntitySet="Supply" />
+            <End Role="Making" EntitySet="Making" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Shop__manager_id__5EBF139D" Association="Self.FK__Shop__manager_id__5EBF139D">
+            <End Role="Manager" EntitySet="Manager" />
+            <End Role="Shop" EntitySet="Shop" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Packaging__order__6B24EA82" Association="Self.FK__Packaging__order__6B24EA82">
+            <End Role="SetOrder" EntitySet="SetOrder" />
+            <End Role="Packaging" EntitySet="Packaging" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Packaging__produ__6C190EBB" Association="Self.FK__Packaging__produ__6C190EBB">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Packaging" EntitySet="Packaging" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Product__prodtyp__440B1D61" Association="Self.FK__Product__prodtyp__440B1D61">
+            <End Role="ProdType" EntitySet="ProdType" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Product__size_id__44FF419A" Association="Self.FK__Product__size_id__44FF419A">
+            <End Role="Size" EntitySet="Size" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SetOrder__shop_i__66603565" Association="Self.FK__SetOrder__shop_i__66603565">
+            <End Role="Shop" EntitySet="Shop" />
+            <End Role="SetOrder" EntitySet="SetOrder" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище VsInsideDBModelContainer" CdmEntityContainer="VsInsideDBEntities">
+          <EntitySetMapping Name="Buyer">
+            <EntityTypeMapping TypeName="VsInsideDBModel.Buyer">
+              <MappingFragment StoreEntitySet="Buyer">
+                <ScalarProperty Name="buyer_id" ColumnName="buyer_id" />
+                <ScalarProperty Name="nick" ColumnName="nick" />
+                <ScalarProperty Name="nname" ColumnName="nname" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="tel" ColumnName="tel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Color">
+            <EntityTypeMapping TypeName="VsInsideDBModel.Color">
+              <MappingFragment StoreEntitySet="Color">
+                <ScalarProperty Name="color_id" ColumnName="color_id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="material_id" ColumnName="material_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DelAddress">
+            <EntityTypeMapping TypeName="VsInsideDBModel.DelAddress">
+              <MappingFragment StoreEntitySet="DelAddress">
+                <ScalarProperty Name="address_id" ColumnName="address_id" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="dep" ColumnName="dep" />
+                <ScalarProperty Name="note" ColumnName="note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Delivery">
+            <EntityTypeMapping TypeName="VsInsideDBModel.Delivery">
+              <MappingFragment StoreEntitySet="Delivery">
+                <ScalarProperty Name="delivery_id" ColumnName="delivery_id" />
+                <ScalarProperty Name="buyer_id" ColumnName="buyer_id" />
+                <ScalarProperty Name="address_id" ColumnName="address_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Discount">
+            <EntityTypeMapping TypeName="VsInsideDBModel.Discount">
+              <MappingFragment StoreEntitySet="Discount">
+                <ScalarProperty Name="discount_id" ColumnName="discount_id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="per" ColumnName="per" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Making">
+            <EntityTypeMapping TypeName="VsInsideDBModel.Making">
+              <MappingFragment StoreEntitySet="Making">
+                <ScalarProperty Name="making_id" ColumnName="making_id" />
+                <ScalarProperty Name="supply_id" ColumnName="supply_id" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Manager">
+            <EntityTypeMapping TypeName="VsInsideDBModel.Manager">
+              <MappingFragment StoreEntitySet="Manager">
+                <ScalarProperty Name="manager_id" ColumnName="manager_id" />
+                <ScalarProperty Name="nname" ColumnName="nname" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="llogin" ColumnName="llogin" />
+                <ScalarProperty Name="pass" ColumnName="pass" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Material">
+            <EntityTypeMapping TypeName="VsInsideDBModel.Material">
+              <MappingFragment StoreEntitySet="Material">
+                <ScalarProperty Name="material_id" ColumnName="material_id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Packaging">
+            <EntityTypeMapping TypeName="VsInsideDBModel.Packaging">
+              <MappingFragment StoreEntitySet="Packaging">
+                <ScalarProperty Name="packaging_id" ColumnName="packaging_id" />
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProdType">
+            <EntityTypeMapping TypeName="VsInsideDBModel.ProdType">
+              <MappingFragment StoreEntitySet="ProdType">
+                <ScalarProperty Name="prodtype_id" ColumnName="prodtype_id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Product">
+            <EntityTypeMapping TypeName="VsInsideDBModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="prodtype_id" ColumnName="prodtype_id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="size_id" ColumnName="size_id" />
+                <ScalarProperty Name="color_id" ColumnName="color_id" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SetOrder">
+            <EntityTypeMapping TypeName="VsInsideDBModel.SetOrder">
+              <MappingFragment StoreEntitySet="SetOrder">
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+                <ScalarProperty Name="ddate" ColumnName="ddate" />
+                <ScalarProperty Name="delivery_id" ColumnName="delivery_id" />
+                <ScalarProperty Name="summ" ColumnName="summ" />
+                <ScalarProperty Name="discount_id" ColumnName="discount_id" />
+                <ScalarProperty Name="prepay" ColumnName="prepay" />
+                <ScalarProperty Name="amount_due" ColumnName="amount_due" />
+                <ScalarProperty Name="invoice" ColumnName="invoice" />
+                <ScalarProperty Name="stat" ColumnName="stat" />
+                <ScalarProperty Name="note" ColumnName="note" />
+                <ScalarProperty Name="shop_id" ColumnName="shop_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Shop">
+            <EntityTypeMapping TypeName="VsInsideDBModel.Shop">
+              <MappingFragment StoreEntitySet="Shop">
+                <ScalarProperty Name="shop_id" ColumnName="shop_id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="manager_id" ColumnName="manager_id" />
+                <ScalarProperty Name="link" ColumnName="link" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Size">
+            <EntityTypeMapping TypeName="VsInsideDBModel.Size">
+              <MappingFragment StoreEntitySet="Size">
+                <ScalarProperty Name="size_id" ColumnName="size_id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Supply">
+            <EntityTypeMapping TypeName="VsInsideDBModel.Supply">
+              <MappingFragment StoreEntitySet="Supply">
+                <ScalarProperty Name="supply_id" ColumnName="supply_id" />
+                <ScalarProperty Name="dday" ColumnName="dday" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

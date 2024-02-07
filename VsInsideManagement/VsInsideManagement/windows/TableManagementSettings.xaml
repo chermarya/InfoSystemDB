@@ -1,0 +1,40 @@
+﻿<Window x:Class="VsInsideManagement.windows.TableManagementSettings"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:VsInsideManagement.windows"
+        mc:Ignorable="d"
+        Title="Settings" Height="450" Width="400" x:Name="MainWindow">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="100" x:Name="RowButton" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="190" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="0" Margin="80, 55, 0, 0" FontSize="17" Content="Назва" x:Name="NameLabel"
+               VerticalAlignment="Top" />
+        <TextBox Grid.Row="0" Grid.Column="1" Margin="30, 50" FontSize="17" x:Name="NameInput" Height="35"
+                 VerticalAlignment="Top" VerticalContentAlignment="Center" />
+
+        <Label Grid.Row="0" Grid.Column="0" Margin="80, 30, 0, 30" FontSize="17" Content="Код" x:Name="CodeLabel"
+               VerticalAlignment="Center" />
+        <TextBox Grid.Row="0" Grid.Column="1" Margin="30" FontSize="17" x:Name="CodeInput" Height="35"
+                 VerticalAlignment="Center" VerticalContentAlignment="Center" />
+
+        <Label Grid.Row="0" Grid.Column="0" Margin="80, 0, 0, 45" FontSize="17" Content="Матеріал"
+               x:Name="MaterialLabel" VerticalAlignment="Bottom" />
+        <StackPanel Grid.Row="0" Grid.Column="1" Margin="30, 40" x:Name="MaterialInput" Height="50"
+                    VerticalAlignment="Bottom">
+            <ComboBox x:Name="MaterialList" FontSize="17" Margin="0,15, 0, 0" VerticalAlignment="Center" />
+        </StackPanel>
+
+        <Button Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Width="250" FontSize="17" Margin="0, 15, 0, 30"
+                Content="Зберегти" x:Name="BtnSave" Click="Save" />
+    </Grid>
+</Window>

@@ -10,8 +10,7 @@
     <Page.Resources>
         <local:NumericConverter x:Key="Convert" />
     </Page.Resources>
-
-
+    
     <Border CornerRadius="50, 50, 50, 50">
         <Border.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">

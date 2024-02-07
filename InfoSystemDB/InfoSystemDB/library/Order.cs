@@ -5,7 +5,6 @@ namespace InfoSystemDB
     public class Order
     {
         public int mode = 0;
-
         public string ID { get; }
         public string Date { get; }
         public string Nick { get; }

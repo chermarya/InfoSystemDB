@@ -1,0 +1,38 @@
+﻿<Page x:Class="VsInsideManagement.pages.admin.statistics.ManagerStatistics.MProdSPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+      mc:Ignorable="d"
+      Title="MProdSPage">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <ListView Grid.Row="1" Grid.Column="0" x:Name="LeaderboardListView" FontSize="20">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Менеджер" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="К-ть тов." DisplayMemberBinding="{Binding Score}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <wpf:PieChart Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" x:Name="PieChart" Margin="10">
+            <wpf:PieChart.Series>
+                <wpf:PieSeries Title="Initial Series" Values="1" />
+            </wpf:PieChart.Series>
+        </wpf:PieChart>
+
+        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontSize="20" Content="Загальна кількість проданих товарів: "
+               VerticalAlignment="Top" x:Name="TotalProd" />
+    </Grid>
+</Page>
